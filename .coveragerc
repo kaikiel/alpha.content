@@ -1,0 +1,6 @@
+[report]
+include =
+    src/alpha/*
+omit =
+    */test*
+    */upgrades/*
