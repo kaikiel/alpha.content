@@ -12,8 +12,6 @@ from alpha.content import _
 
 
 class IProduct(model.Schema):
-    """ Marker interface and Dexterity Python Schema for Product
-    """
     title = schema.TextLine(
         title=_(u'Title'),
         required=True
@@ -23,7 +21,34 @@ class IProduct(model.Schema):
         title=_(u'Product Nomber'),
         required=False
     )
+    
+    rating = schema.TextLine(
+        title=_(u'Rating'),
+        required=False,
+        readonly=True,
+    )
+    
+    price = schema.TextLine(
+        title=_(u'Price'),
+        required=False
+    )
 
+    salePrice = schema.TextLine(
+        title=_(u'Sale Price'),
+        required=False
+    )
+
+    cover = namedfile.NamedBlobImage(
+        title=_(u'Cover Image'),
+        required=False,
+    )
+
+    description = schema.Text(
+        title=(u'Description'),
+        required=False
+    )
+ 
+    fieldset('More Info', fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
     brand = schema.TextLine(
         title=_(u'Brand'),
         required=False
@@ -38,30 +63,21 @@ class IProduct(model.Schema):
         title=(u'Availability'),
         required=False
     )
-
-    description = schema.Text(
-        title=(u'Description'),
-        required=False
-    )
-
     
-    text = RichText(
-        title=_(u'Text'),
-        required=False
-    )
-
     downloadFile = namedfile.NamedBlobFile(
         title=_(u'Download File'),
         required=False,
     )
-
-    cover = namedfile.NamedBlobImage(
-        title=_(u'Cover Image'),
-        required=False,
-    )
     
+    feature = RichText(
+        title=_(u'Feature'),
+        required=False
+    )
+
+    fieldset('Specification', fields=['specification'])
     specification = schema.List(
         title=_(u'specification'),
+        description=_(u'ex. clockspeed:100mhz'),
         value_type=schema.TextLine(),
         required=False,
     )

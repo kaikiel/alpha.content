@@ -9,4 +9,6 @@ from zope.interface import alsoProvides
 
 class ProductView(BrowserView):
     def pdb(self):
+        request = self.request
+        alsoProvides(request, IDisableCSRFProtection)
         import pdb;pdb.set_trace()
