@@ -8,8 +8,8 @@
         name="product_banner"
         for="*"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        template="cover_banner.pt"
-        class=".viewlet.ProductBanner"
+        template="product_banner.pt"
+        class=".viewlets.ProductBanner"
         layer="zope.interface.Interface"
         permission="zope2.View"
     />
