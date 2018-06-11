@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="alpha.content.AddProductimg"
+        title="alpha.content: Add Productimg"
+    />
+
+        
+    <permission
         id="alpha.content.AddProduct"
         title="alpha.content: Add Product"
     />
