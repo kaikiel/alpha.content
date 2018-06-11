@@ -18,4 +18,12 @@
       directory="static"
       />
 
+  <browser:page
+      name="news_item_view"
+      for="plone.app.contenttypes.interfaces.INewsItem"
+      class=".view.NewsItemView"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
+
 </configure>
