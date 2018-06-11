@@ -3,5 +3,29 @@
   <permissions>
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission name="alpha.content: Add Productreview" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
+
+        
+    <permission name="alpha.content: Add Productimg" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
+
+        
+    <permission name="alpha.content: Add Product" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
+
+        
   </permissions>
 </rolemap>

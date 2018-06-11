@@ -26,4 +26,12 @@
       permission="zope2.View"
       />
 
+  <browser:page 
+      name="product_view" 
+      template="templates/product_view.pt" 
+      for="alpha.content.content.product.IProduct" 
+      class=".view.ProductView" 
+      layer="zope.interface.Interface" 
+      permission="zope2.View" 
+      />
 </configure>

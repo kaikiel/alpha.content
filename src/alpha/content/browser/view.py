@@ -13,3 +13,10 @@ class NewsItemView(BrowserView):
     template = ViewPageTemplateFile('templates/news_item_view.pt')
     def __call__(self):
         return self.template()
+
+
+class ProductView(BrowserView):
+    def pdb(self):
+        request = self.request
+        alsoProvides(request, IDisableCSRFProtection)
+        import pdb;pdb.set_trace()
