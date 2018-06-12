@@ -18,16 +18,16 @@ class IProduct(model.Schema):
     )
 
     productNo = schema.TextLine(
-        title=_(u'Product Nomber'),
+        title=_(u'Product Number'),
         required=False
     )
-    
+ 
     rating = schema.TextLine(
         title=_(u'Rating'),
         required=False,
         readonly=True,
     )
-    
+
     price = schema.TextLine(
         title=_(u'Price'),
         required=False
@@ -55,20 +55,20 @@ class IProduct(model.Schema):
     )
 
     productCode = schema.TextLine(
-        title=_(u'Produce Code'),
+        title=_(u'Product Code'),
         required=False
     )
 
-    availability = schema.TextLine(
+    availability = schema.Bool(
         title=(u'Availability'),
         required=False
     )
-    
+
     downloadFile = namedfile.NamedBlobFile(
         title=_(u'Download File'),
         required=False,
     )
-    
+
     feature = RichText(
         title=_(u'Feature'),
         required=False
