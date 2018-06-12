@@ -21,6 +21,11 @@ class ProductView(BrowserView):
         alsoProvides(request, IDisableCSRFProtection)
         import pdb;pdb.set_trace()
 
+    def getImg(self):
+	request = self.request
+	context = self.context
+	imgBrain = api.content.find(context=context, portal_type='ProductImg')
+	return imgBrain
 
 class CoverView(BrowserView):
     template = ViewPageTemplateFile('templates/cover_view.pt')
