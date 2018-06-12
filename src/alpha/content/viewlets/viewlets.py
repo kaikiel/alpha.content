@@ -4,7 +4,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 
 
-class ProductBanner(base.ViewletBase):
+class MainBanner(base.ViewletBase):
+    def getBannerImg():
+        return
+
+
+class ProductViewlet(base.ViewletBase):
     def getMostView(self):
         mostView = api.content.find(portal_type='Product', b_size=8)
         return mostView
@@ -16,3 +21,21 @@ class ProductBanner(base.ViewletBase):
     def getLatest(self):
         latest = api.content.find(portal_type='Product', b_size=8)
         return latest
+
+
+class TimeLimitViewlet(base.ViewletBase):
+    def getMostView(self):
+        mostView = api.content.find(portal_type='Product', b_size=8)
+        return mostView
+
+
+class BestSellersViewlet(base.ViewletBase):
+    def getMostView(self):
+        mostView = api.content.find(portal_type='Product', b_size=8)
+        return mostView
+
+
+class NewsViewlet(base.ViewletBase):
+    def getMostView(self):
+        mostView = api.content.find(portal_type='Product', b_size=8)
+        return mostView

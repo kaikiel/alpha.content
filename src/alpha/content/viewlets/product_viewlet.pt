@@ -1,0 +1,14 @@
+<tal:repeat repeat="item view/getMostView">
+  <tal:define define="obj item/getObject">
+    <p>${obj/title}</p>
+  </tal:define>
+</tal:repeat>
+
+<tal:repeat repeat="item view/getSpecial">
+    <p>${item/Title}</p>
+</tal:repeat>
+
+<tal:repeat repeat="item view/getLatest">
+    <p>${item/Title}</p>
+</tal:repeat>
+
