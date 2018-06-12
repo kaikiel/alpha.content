@@ -8,9 +8,16 @@ from plone.supermodel.directives import fieldset
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.app.vocabularies.catalog import CatalogSource
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from zope import schema
 from zope.interface import implementer
 from alpha.content import _
+
+categoryVocabulary = SimpleVocabulary(
+    [SimpleTerm(value=u'mostView', title=_(u'Most View')),
+     SimpleTerm(value=u'special', title=_(u'Special')),
+     SimpleTerm(value=u'latest', title=_(u'Latest'))]
+)
 
 
 class IProduct(model.Schema):
@@ -32,11 +39,13 @@ class IProduct(model.Schema):
 
     price = schema.TextLine(
         title=_(u'Price'),
+        description=_(u'Enter USD$'),
         required=False
     )
 
     salePrice = schema.TextLine(
         title=_(u'Sale Price'),
+        description=_(u'Enter USD$'),
         required=False
     )
 
@@ -46,10 +55,30 @@ class IProduct(model.Schema):
     )
 
     description = schema.Text(
-        title=(u'Description'),
+        title=_(u'Description'),
+        required=False
+    )
+
+    category = schema.TextLine(
+        title=_(u'Category'),
+        required=False
+    )
+
+    subcategory = schema.TextLine(
+        title=_(u'Subcategory'),
         required=False
     )
     
+    relatedProduct = RelationList(
+        title=_(u"Related Product"),
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            source=CatalogSource(portal_type='Product')
+        ),
+        required=True,
+    )
+
     fieldset('More Info', fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
     brand = schema.TextLine(
         title=_(u'Brand'),
@@ -84,14 +113,17 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    relatedProduct = RelationList(
-        title=_(u"Related Product"),
-        default=[],
-        value_type=RelationChoice(
-            title=_(u"Related"),
-            source=CatalogSource(portal_type='Product')
-        ),
-        required=True,
+    fieldset('Index Category', fields=['indexCategory', 'bestSeller'])
+    indexCategory = schema.Choice(
+        title=_(u"Index Category"),
+        description=_(u'Select the classification of this product (Most View, Special, Latest)'),
+        vocabulary=categoryVocabulary,
+        required=False,
+    )
+
+    bestSeller = schema.Bool(
+        title=_(u"Best Seller"),
+        required=False,
     )
 
 @implementer(IProduct)
