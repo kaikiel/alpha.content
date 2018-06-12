@@ -34,4 +34,13 @@
       layer="zope.interface.Interface" 
       permission="zope2.View" 
       />
+  <browser:page
+      name="cover_view"
+      for="alpha.content.content.cover.ICover"
+      class=".view.CoverView"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
+
+
 </configure>

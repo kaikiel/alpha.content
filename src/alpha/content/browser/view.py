@@ -20,3 +20,9 @@ class ProductView(BrowserView):
         request = self.request
         alsoProvides(request, IDisableCSRFProtection)
         import pdb;pdb.set_trace()
+
+
+class CoverView(BrowserView):
+    template = ViewPageTemplateFile('templates/cover_view.pt')
+    def __call__(self):
+	return self.template()
