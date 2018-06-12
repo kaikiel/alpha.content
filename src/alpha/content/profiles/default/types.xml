@@ -5,4 +5,5 @@
   <object meta_type="Dexterity FTI" name="Product"/>
   <object meta_type="Dexterity FTI" name="ProductImg"/>
   <object meta_type="Dexterity FTI" name="ProductReview"/>
+  <object meta_type="Dexterity FTI" name="Cover"/>
 </object>
