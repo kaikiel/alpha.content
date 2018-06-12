@@ -24,7 +24,7 @@ class ProductView(BrowserView):
     def getImg(self):
 	request = self.request
 	context = self.context
-	imgBrain = api.content.find(context=context, portal_type='ProductImg')
+	imgBrain = api.content.find(context=context, portal_type='ProductImg', sort_limit=4)
 	return imgBrain
 
 class CoverView(BrowserView):
