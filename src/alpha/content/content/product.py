@@ -49,7 +49,7 @@ class IProduct(model.Schema):
         title=(u'Description'),
         required=False
     )
- 
+    
     fieldset('More Info', fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
     brand = schema.TextLine(
         title=_(u'Brand'),
