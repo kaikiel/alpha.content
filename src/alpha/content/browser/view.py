@@ -7,7 +7,7 @@ import json
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 from zope.globalrequest import getRequest
-
+from alpha.content.browser.configlet import IDict
 
 class NewsItemView(BrowserView):
     template = ViewPageTemplateFile('templates/news_item_view.pt')
@@ -36,35 +36,65 @@ class CoverView(BrowserView):
 
 class UpdateConfiglet():
     def __call__(self):
-        productBrains = api.content.find(path="gct/products", portal_type="Product")
-        data = {}
+	portal = api.portal.get()
+	try:
+            productBrains = api.content.find(context=portal["products"], portal_type="Product")
+	except:
+	    productBrains = []
         try:
             request = self.request
         except:
             request = getRequest()
 
         alsoProvides(request, IDisableCSRFProtection)
-        # data[buggy] = [0,{'1/4': 0, '1/8': 5} ]
-        # data[${cayegory}] = [${category_count}, { ${subject}: ${subject_count} }]
+        # sortList[buggy] = [0,{'1/4': 0, '1/8': 5} ]
+        # sortList[${cayegory}] = [${category_count}, { ${subject}: ${subject_count} }]
+        sortList = {}
+	brandList = {}
+	productData = {}
         try:
             for item in productBrains:
-                category = item.p_category
-                subject = item.p_subject
+		obj = item.getObject()
+                category = obj.category
+                subject = obj.subcategory
+		brand = obj.brand
+		title = obj.title
 
-                if data.has_key(category):
-                    data[category][0] += 1
-                    if data[category][1].has_key(subject):
+		if obj.salePrice:
+		    price = obj.salePrice
+		else:
+		    price = obj.price
 
-
-                        data[category][1][subject] += 1
+                if sortList.has_key(category):
+                    sortList[category][0] += 1
+                    if sortList[category][1].has_key(subject):
+                        sortList[category][1][subject] += 1
                     else:
-                        data[category][1][subject] = 1
+                        sortList[category][1][subject] = 1
                 else:
-                    data[category] = [1, {subject: 1}]
+                    sortList[category] = [1, {subject: 1}]
 
-            data = json.dumps(data).decode('utf-8')
-            api.portal.set_registry_record('dict', data, interface=IDict)
-            return "Successful"
+		if brandList.has_key(brand):
+		    brandList[brand] += 1
+		else:
+		    brandList[brand] = 1
+
+		productData[title] = [category, subject, brand, price] 
+
+            sortList = json.dumps(sortList).decode('utf-8')
+            api.portal.set_registry_record('sortList', sortList, interface=IDict)
+
+	    brandList = json.dumps(brandList).decode('utf-8')
+	    api.portal.set_registry_record('brandList', brandList, interface=IDict)
+
+            productData = json.dumps(productData).decode('utf-8')
+            api.portal.set_registry_record('productData', productData, interface=IDict)
+
         except  Exception as e:
-            return e
+            print e
 
+
+class ProductListing(BrowserView):
+    template = ViewPageTemplateFile("template/product_listing.pt")
+    def __call__(self):
+        return self.template()

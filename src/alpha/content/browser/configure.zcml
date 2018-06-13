@@ -48,6 +48,13 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+  <browser:page
+      name="product_listing"
+      for="plone.app.contenttypes.interfaces.IFolder"
+      class=".view.ProductListing"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
 
 
 <!-- configlet -->
