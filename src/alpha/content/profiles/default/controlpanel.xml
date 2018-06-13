@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<object
+    name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="alpha.content">
+
+    <configlet
+        title="Custom Related Setting"
+        action_id="alpha.connect.Dict"
+        appId="alpha.connect"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@categoriesControlPanel"
+        icon_expr="string:/favicon.ico"
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage portal</permission>
+    </configlet>
+
+</object>
