@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="alpha.content">
+
+    <subscriber
+        for="alpha.content.content.product.IProduct 
+             zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".event.add_configlet"
+    />
+    <subscriber
+        for="alpha.content.content.product.IProduct
+             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+        handler=".event.modify_configlet"
+    />
+    <subscriber
+        for="alpha.content.content.product.IProduct
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".event.modify_configlet"
+    />
+
+    <subscriber
+        for="zope.interface.Interface plone.dexterity.interfaces.IEditFinishedEvent"
+        handler=".event.toFolderContents"
+    />
+    <subscriber
+        for="zope.interface.Interface plone.dexterity.interfaces.ICancelledEvent"
+        handler=".event.toFolderContents"
+    />
+    <subscriber
+        for="zope.interface.Interface zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".event.toFolderContents"
+    />
+    <subscriber
+        for="Products.PlonePAS.events.IUserLoggedInEvent"
+        handler=".event.back_to_cover"
+    />
+</configure>

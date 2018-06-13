@@ -16,6 +16,7 @@
   <include package=".browser" />
   <include package=".viewlets" />
   <include package=".index" />
+  <include package=".event" />
 
   <include file="permissions.zcml" />
 

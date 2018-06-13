@@ -41,6 +41,28 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+  <browser:page
+      name="update_configlet"
+      for="*"
+      class=".view.UpdateConfiglet"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
+  <browser:page
+      name="product_listing"
+      for="plone.app.contenttypes.interfaces.IFolder"
+      class=".view.ProductListing"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
 
+
+<!-- configlet -->
+  <browser:page
+    name="categoriesControlPanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    permission="cmf.ManagePortal"
+    class=".configlet.CategoriesControlPanelForm"
+    />
 
 </configure>
