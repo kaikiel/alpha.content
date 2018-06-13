@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<object
+    i18n:domain="plone"
+    meta_type="Dexterity FTI"
+    name="Folder"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+  <property name="filter_content_types">True</property>
+  <property name="allowed_content_types">
+    <element value="Document" />
+    <element value="Product" />
+    <element value="NewsItem" />
+    <element value="Image" />
+    <element value="File" />
+    <element value="Folder" />
+  </property>
+
+  <property name="view_methods">
+    <element value="album_view"/>
+    <element value="event_listing"/>
+    <element value="full_view"/>
+    <element value="listing_view"/>
+    <element value="summary_view"/>
+    <element value="tabular_view"/>
+    <element value="product_listing"/>
+  </property>
+</object>
+
