@@ -51,7 +51,7 @@ class IProduct(model.Schema):
 
     cover = namedfile.NamedBlobImage(
         title=_(u'Cover Image'),
-        required=False,
+        required=True,
     )
 
     description = schema.Text(
@@ -61,12 +61,12 @@ class IProduct(model.Schema):
 
     category = schema.TextLine(
         title=_(u'Category'),
-        required=False
+        required=True
     )
 
     subcategory = schema.TextLine(
         title=_(u'Subcategory'),
-        required=False
+        required=True
     )
     
     relatedProduct = RelationList(
@@ -76,7 +76,7 @@ class IProduct(model.Schema):
             title=_(u"Related"),
             source=CatalogSource(portal_type='Product')
         ),
-        required=True,
+        required=False,
     )
 
     fieldset('More Info', fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
