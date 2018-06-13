@@ -5,37 +5,44 @@ from plone import api
 
 
 class MainBanner(base.ViewletBase):
-    def getBannerImg():
-        return
+    def pdb(self):
+        import pdb;pdb.set_trace()
+
+    def getBannerImg(self):
+        bannerImg = api.content.find(path='alpha/banner')
+        return bannerImg
 
 
 class ProductViewlet(base.ViewletBase):
     def getMostView(self):
-        mostView = api.content.find(portal_type='Product', b_size=8)
+        mostView = api.content.find(portal_type='Product', b_size=12, p_indexCategory='mostView')
         return mostView
 
     def getSpecial(self):
-        special = api.content.find(portal_type='Product', b_size=8)
+        special = api.content.find(portal_type='Product', b_size=12, p_indexCategory='special')
         return special
 
     def getLatest(self):
-        latest = api.content.find(portal_type='Product', b_size=8)
+        latest = api.content.find(portal_type='Product', b_size=12, p_indexCategory='latest')
         return latest
 
 
 class TimeLimitViewlet(base.ViewletBase):
-    def getMostView(self):
-        mostView = api.content.find(portal_type='Product', b_size=8)
-        return mostView
+    def getTiemLimit(self):
+        timeLimet = api.content.find(portal_type='Product', b_size=8)
+        return timeLimet
 
 
 class BestSellersViewlet(base.ViewletBase):
-    def getMostView(self):
-        mostView = api.content.find(portal_type='Product', b_size=8)
-        return mostView
+    def getBestSellers(self):
+        bestSellers = api.content.find(portal_type='Product', b_size=32, p_bestSeller=True)
+        bestSellersLen = len(bestSellers)
+        if bestSellersLen%2 != 0:
+            bestSellers = api.content.find(portal_type='Product', b_size=(bestSellersLen-1), p_bestSeller=True)
+        return bestSellers
 
 
 class NewsViewlet(base.ViewletBase):
-    def getMostView(self):
-        mostView = api.content.find(portal_type='Product', b_size=8)
-        return mostView
+    def getNewsItem(self):
+        newsItem = api.content.find(portal_type='News Item', b_size=12)
+        return newsItem

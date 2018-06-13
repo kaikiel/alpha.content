@@ -1,0 +1,12 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="alpha.content">
+      <adapter name="p_subject"  factory=".indexers.product_subject" />
+      <adapter name="p_category" factory=".indexers.product_category" />
+      <adapter name="p_indexCategory"  factory=".indexers.product_indexCategory" />
+      <adapter name="p_bestSeller" factory=".indexers.product_bestSeller" />
+      
+</configure>
+

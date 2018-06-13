@@ -1,4 +1,23 @@
 <?xml version="1.0"?>
 <object name="portal_catalog">
-  <!--<column value="my_meta_column"/>-->
+  <index name="p_category" meta_type="FieldIndex">
+    <indexed_attr value="p_category" />
+  </index>
+  <column value="p_category"/>
+
+  <index name="p_subject" meta_type="FieldIndex">
+    <indexed_attr value="p_subject" />
+  </index>
+  <column value="p_subject"/>
+
+  <index name="p_indexCategory" meta_type="FieldIndex">
+    <indexed_attr value="p_indexCategory" />
+  </index>
+  <column value="p_indexCategory"/>
+
+  <index name="p_bestSeller" meta_type="FieldIndex">
+    <indexed_attr value="p_bestSeller" />
+  </index>
+  <column value="p_bestSeller"/>
+
 </object>
