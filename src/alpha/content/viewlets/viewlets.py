@@ -9,7 +9,10 @@ class MainBanner(base.ViewletBase):
         import pdb;pdb.set_trace()
 
     def getBannerImg(self):
-        bannerImg = api.content.find(path='alpha/banner')
+        portal = api.portal.get()
+        bannerImg = []
+        if portal.hasObject('banner'):
+            bannerImg = api.content.find(portal['banner'])
         return bannerImg
 
 
@@ -28,7 +31,7 @@ class ProductViewlet(base.ViewletBase):
 
 
 class TimeLimitViewlet(base.ViewletBase):
-    def getTiemLimit(self):
+    def getTimeLimit(self):
         timeLimet = api.content.find(portal_type='Product', b_size=8)
         return timeLimet
 
