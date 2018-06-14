@@ -15,6 +15,16 @@
     />
 
     <browser:viewlet
+        name="brands_viewlet"
+        for="alpha.content.content.cover.ICover"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        template="brands_viewlet.pt"
+        class=".viewlets.MainBanner"
+        layer="zope.interface.Interface"
+        permission="zope2.View"
+    />
+    
+    <browser:viewlet
         name="product_viewlet"
         for="alpha.content.content.cover.ICover"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
