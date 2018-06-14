@@ -21,8 +21,7 @@
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <element value="ProductReview" />
-            <element value="ProductImg" />
+    <element value="ProductImg" />
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">alpha.content.AddProduct</property>

@@ -5,10 +5,7 @@
     name="News Item"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-  <property name="global_allow">False</property>
-
   <property name="default_view">news_item_view</property>
-  <property name="default_view_fallback">False</property>
   <property name="immediate_view">news_item_view</property>
   <property name="view_methods">
     <element value="newsitem_view"/>
