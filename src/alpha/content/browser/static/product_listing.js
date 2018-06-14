@@ -38,27 +38,30 @@ var product_listing = new Vue({
     el: '#product-listing',
     data: {
         product_data: [],
+	none_limit_data: [],
 	origin_data: [],
         pages: 0,
         now_page: 0,
 	numbers: 12,
-	sort: 'a-z'
+	sort: 'a-z',
     },
     created: function(){
 	this.origin_data = JSON.parse(document.getElementById('productData').innerText)
 	origin_data = this.origin_data
 	product_data = this.product_data
+	this.none_limit_data = origin_data
+	numbers = this.numbers
 	count = 0
-	while (product_data.length < 9){
+	while (product_data.length < numbers){
 	    product_data.push(origin_data[count])
 	    count ++
 	}
 	total_number = origin_data.length
-	if (total_number % 9 != 0){
-	    this.pages = Math.floor(total_number / 9) +1
+	if (total_number % numbers != 0){
+	    this.pages = Math.floor(total_number / numbers) +1
 	}
 	else{
-	    this.pages = total_number / 9
+	    this.pages = total_number / numbers
 	}
     },
     components:{
@@ -68,61 +71,188 @@ var product_listing = new Vue({
         add: function(item_id){
         },
         change_page: function(page){
-	    this.product_data = []
 	    product_data = this.product_data
-	    origin_data = this.origin_data
+	    none_limit_data = this.none_limit_data
 	    numbers = this.numbers
-	    count = (page - 1) * 9
-	    debugger
-	    while(product_data.length < numbers){
-		if(count >= origin_data.length){
-		    break
-		}else{
-		    product_data.push(origin_data[count])
-		    count ++
-		}
+	    start = (page - 1) * numbers
+	    this.product_data = []
+	    while(this.product_data.length < numbers){
+                if(start == this.none_limit_data.length){
+                    break
+                }else{
+	            this.product_data.push(this.none_limit_data[start])
+		    start ++
+                }
 	    }
         },
-        prev_page: function(){
-            if(this.now_page != 1){
-                prev_page = this.now_page - 1
-                this.change_page(prev_page)
-            }else{
-                return 
-            }
-        },
-        next_page: function(){
-            next_page = this.now_page + 1
-            len = this.pages.length
-            if(next_page <= this.pages[len-1]){
-                this.change_page(next_page)
-            }else{
-                return 
-            }
-        },
 	change_numbers: function(){
-
-	},
-	change_sort: function(){
-
-	},
-	change_category: function(category, subject){
-	    origin_data = this.origin_data
-	    numbers = this.numbers
-	    this.product_data = origin_data.filter(function(value){
-		return value[1][0] == category && value[1][1] == subject
-	    })
-
-            total_number = this.product_data.length
-            if (total_number % 9 != 0){
-                this.pages = Math.floor(total_number / 9) +1
+            numbers = this.numbers
+	    count = 1
+            start = 0
+            this.product_data = []
+            while(this.product_data.length < numbers){
+                this.product_data.push(this.none_limit_data[start])
+                start ++
+            }
+	    total_number = this.none_limit_data.length
+            if (total_number % numbers != 0){
+                this.pages = Math.floor(total_number / numbers) +1
             }
             else{
-                this.pages = total_number / 9
+                this.pages = total_number / numbers
             }
-	}
-    }
+	},
+	change_sort: function(){
+            sort = this.sort
+            origin_data = this.origin_data
+            if(sort == 'highest'){
+                origin_data.sort(function(a,b){
+                    a_price = product_listing.judge_price(a)
+                    b_price = product_listing.judge_price(b)
+                    return b_price - a_price
+                })
+            }else if(sort == 'lowest'){
+                origin_data.sort(function(a,b){
+                    a_price = product_listing.judge_price(a)
+                    b_price = product_listing.judge_price(b)
+                    return a_price - b_price
+                })
+            }else if(sort == 'a-z'){
+                origin_data.sort(function(a,b){
+                    a_title = a[0].toUpperCase()
+                    b_title = b[0].toUpperCase()
+                    if(a_title > b_title){
+                        return 1
+                    }
+                    if(a_title < b_title){
+                        return -1
+                    }
+                    return 0
+                })
+            }else if(sort == 'z-a'){
+                origin_data.sort(function(a,b){
+                    a_title = a[0].toUpperCase()
+                    b_title = b[0].toUpperCase()
+                    if(a_title > b_title){ 
+                        return -1
+                    }
+                    if(a_title < b_title){ 
+                        return 1
+                    }
+                    return 0
 
+                })
+            }
+            activity = $('.activity')
+            if(activity.length == 0){
+                low = parseInt($('#amount1').val().split('-')[0].trim())
+                height = parseInt($('#amount1').val().split('-')[1].trim())
+                product_listing.change_price_range(low, height)
+            }else{
+                mode = activity.data('mode')
+                if(mode == 'brand'){
+                    brand = activity.data('brand')
+                    product_listing.change_brand(brand)
+                }else if(mode == 'category'){
+                    category = activity.data('category')
+                    subject = activity.data('subject')
+                    product_listing.change_category(category, subject)
+                }
+            }
+	},
+        judge_price: function(product){
+            if(product[1][4]){
+                return parseInt(product[1][4])
+            }else{
+                return parseInt(product[1][3])
+            }
+        },
+	change_category: function(category, subject){
+	   origin_data = this.origin_data
+	    numbers = this.numbers
+	    count  = 1
+	    none_limit_count = 1
+
+            this.none_limit_data = []
+            low = parseInt($('#amount1').val().split('-')[0].trim())
+            height = parseInt($('#amount1').val().split('-')[1].trim())
+	    this.product_data = origin_data.filter(function(value){
+                if(value[1][4]){
+                    price = parseInt(value[1][4])
+                }else{
+                    price = parseInt(value[1][3])
+                }
+
+		if(value[1][0] == category && value[1][1] == subject && price >= low && price <= height){
+		    none_limit_count ++
+		    product_listing.none_limit_data.push(value)
+		    if(count <= numbers){
+		         count ++
+		         return value
+		    }
+		}
+	    })
+            if (none_limit_count % numbers != 0){
+                this.pages = Math.floor(none_limit_count / numbers) +1
+            }
+            else{
+                this.pages = none_limit_count / numbers
+            }
+	},
+	change_brand: function(brand){
+            origin_data = this.origin_data
+            numbers = this.numbers
+	    count = 1
+	    none_limit_count = 1
+            this.none_limit_data = []
+            low = parseInt($('#amount1').val().split('-')[0].trim())
+            height = parseInt($('#amount1').val().split('-')[1].trim())
+            this.product_data = origin_data.filter(function(value){
+                if(value[1][4]){
+                    price = parseInt(value[1][4])
+                }else{
+                    price = parseInt(value[1][3])
+                }
+		if(value[1][2] == brand && price >= low && price <= height){
+		    none_limit_count ++
+                    product_listing.none_limit_data.push(value)
+	            if(count <= numbers){
+                        count ++
+                        return value
+		    }
+		}
+            })
+            if (none_limit_count % numbers != 0){
+                this.pages = Math.floor(none_limit_count / numbers) +1
+            }
+            else{
+                this.pages = none_limit_count / numbers
+            }
+	},
+        change_price_range: function(low, height){
+            this.none_limit_data = []
+            this.product_data = []
+            product_data = this.product_data
+            numbers = this.numbers
+            none_limit_count = 1
+            this.product_data = this.origin_data.filter(function(value){
+                price = product_listing.judge_price(value)
+                if(price >= low && price <= height){
+                    product_listing.none_limit_data.push(value)
+                    none_limit_count ++
+                    if(product_data.length < numbers){
+                        return value
+                    }
+                }
+            })
+            if (none_limit_count % numbers != 0){
+                this.pages = Math.floor(none_limit_count / numbers) +1
+            }
+            else{
+                this.pages = none_limit_count / numbers
+            }
+        },
+    }
 });
 
 
