@@ -74,4 +74,14 @@
         permission="zope2.View"
     />
 
+    <browser:viewlet
+        name="shop_cart"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        template="shop_cart.pt"
+        class=".viewlets.ShopCart"
+        layer="zope.interface.Interface"
+        permission="zope2.View"
+    />
+
 </configure>
