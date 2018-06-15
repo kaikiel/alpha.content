@@ -115,6 +115,24 @@ class ConfirmCart(BrowserView):
     template = ViewPageTemplateFile("templates/confirm_cart.pt")
     def __call__(self):
         request = self.request
-	self.shop_cart = json.loads(request.cookies['shop_cart'])
-	pdb.set_trace()
+	shop_cart = json.loads(request.cookies['shop_cart'])
+	uidList = shop_cart.keys()
+	productData = []
+	totalNumber = 0
+	for uid in uidList:
+	    product = api.content.get(UID=uid)
+	    amount = shop_cart[str(uid)][4]
+	    title = product.title
+            price = product.price
+            salePrice = product.salePrice
+            abs_url = product.absolute_url()
+	    if salePrice:
+		totalNumber += salePrice * amount
+	    else:
+		totalNumber += price * amount
+
+	    productData.append( [title, price, salePrice, abs_url, amount, uid] )
+
+	self.totalNumber = totalNumber
+	self.productData = productData
 	return self.template()
