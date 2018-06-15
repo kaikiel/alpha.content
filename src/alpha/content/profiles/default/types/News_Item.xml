@@ -5,13 +5,11 @@
     name="News Item"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-  <property name="default_view">news_item_view</property>
-  <property name="immediate_view">news_item_view</property>
+  <!-- View information -->
+  <property name="default_view">newsitem_view</property>
+  <property name="immediate_view">view</property>
   <property name="view_methods">
     <element value="newsitem_view"/>
-    <!--override-->
-    <element value="news_item_view"/>
   </property>
 
 </object>
-
