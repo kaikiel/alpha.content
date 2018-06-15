@@ -77,3 +77,8 @@ class NewsViewlet(base.ViewletBase):
     def getNewsItem(self):
         newsItem = api.content.find(portal_type='News Item', b_size=12)
         return newsItem
+
+
+class ShopCart(base.ViewletBase):
+   """"""
+
