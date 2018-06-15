@@ -8,6 +8,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
+import pdb
 
 
 class NewsItemView(BrowserView):
@@ -79,7 +80,8 @@ class UpdateConfiglet():
 		else:
 		    brandList[brand] = 1
 		img = objAbsUrl + '/@@images/cover'
-		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img]
+		uid = obj.UID()
+		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid]
 
 
             sortList = json.dumps(sortList).decode('utf-8')
@@ -107,3 +109,12 @@ class ProductListing(BrowserView):
 	self.brandList = json.loads(brandList)
 	self.productData = productData
         return self.template()
+
+
+class ConfirmCart(BrowserView):
+    template = ViewPageTemplateFile("templates/confirm_cart.pt")
+    def __call__(self):
+        request = self.request
+	self.shop_cart = json.loads(request.cookies['shop_cart'])
+	pdb.set_trace()
+	return self.template()

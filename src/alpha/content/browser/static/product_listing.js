@@ -22,8 +22,8 @@ var product = {
             </div>
             <div class="add-to-links mt-15">
               <ul>
-                <li><a class="add_shop" v-bind:data-title="title" v-bind:data-price="price" v-bind:sale_price="sale_price"
-			v-bind:data-url="url" v-bind:data-image="image" >
+                <li><a class="add_shop" v-bind:data-title="title" v-bind:data-price="price" v-bind:data-uid="uid"
+			v-bind:data-sale_price="sale_price" v-bind:data-url="url" v-bind:data-image="image" >
 			<i class="fa fa-shopping-cart"></i></a></li>
                 <li><a href="#"><i class="fa fa-refresh"></i></a></li>
                 <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
@@ -32,7 +32,7 @@ var product = {
             </div>
           </div>
       </div>`,
-    props: ['title','product_number','price', 'sale_price', 'url', 'image']
+    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid']
 }
 
 Vue.component('paginate', VuejsPaginate)
