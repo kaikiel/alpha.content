@@ -9,6 +9,7 @@ from zope.interface import alsoProvides
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
 
+
 class NewsItemView(BrowserView):
     template = ViewPageTemplateFile('templates/news_item_view.pt')
     def __call__(self):
@@ -59,11 +60,10 @@ class UpdateConfiglet():
                 subject = obj.subcategory
 		brand = obj.brand
 		title = obj.title
-
-		if obj.salePrice:
-		    price = obj.salePrice
-		else:
-		    price = obj.price
+		productNo = obj.productNo
+		objAbsUrl = obj.absolute_url()
+		salePrice = obj.salePrice
+		price = obj.price
 
                 if sortList.has_key(category):
                     sortList[category][0] += 1
@@ -78,8 +78,9 @@ class UpdateConfiglet():
 		    brandList[brand] += 1
 		else:
 		    brandList[brand] = 1
+		img = objAbsUrl + '/@@images/cover'
+		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img]
 
-		productData[title] = [category, subject, brand, price] 
 
             sortList = json.dumps(sortList).decode('utf-8')
             api.portal.set_registry_record('sortList', sortList, interface=IDict)
@@ -87,6 +88,7 @@ class UpdateConfiglet():
 	    brandList = json.dumps(brandList).decode('utf-8')
 	    api.portal.set_registry_record('brandList', brandList, interface=IDict)
 
+	    productData = sorted(productData.items(), key=lambda x:x[0])
             productData = json.dumps(productData).decode('utf-8')
             api.portal.set_registry_record('productData', productData, interface=IDict)
 
@@ -97,4 +99,11 @@ class UpdateConfiglet():
 class ProductListing(BrowserView):
     template = ViewPageTemplateFile("templates/product_listing.pt")
     def __call__(self):
+	sortList = api.portal.get_registry_record("sortList", interface=IDict)
+	brandList = api.portal.get_registry_record('brandList', interface=IDict)
+	productData = api.portal.get_registry_record('productData', interface=IDict)
+
+	self.sortList = json.loads(sortList)
+	self.brandList = json.loads(brandList)
+	self.productData = productData
         return self.template()
