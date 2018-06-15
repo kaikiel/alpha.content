@@ -9,7 +9,7 @@
   <property name="allowed_content_types">
     <element value="Document" />
     <element value="Product" />
-    <element value="NewsItem" />
+    <element value="News Item" />
     <element value="Image" />
     <element value="File" />
     <element value="Folder" />
@@ -25,4 +25,3 @@
     <element value="product_listing"/>
   </property>
 </object>
-
