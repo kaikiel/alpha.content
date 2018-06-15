@@ -45,7 +45,7 @@
     />
 
     <browser:viewlet
-        name="best_sellers_viewlet.pt"
+        name="best_sellers_viewlet"
         for="alpha.content.content.cover.ICover"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
         template="best_sellers_viewlet.pt"
