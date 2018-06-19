@@ -1,0 +1,7 @@
+<metal:block metal:define-macro="social">
+
+<script>
+    data_url = document.getElementById('social-button').parentElement.getAttribute('data-url');
+</script>
+</metal:block>
+

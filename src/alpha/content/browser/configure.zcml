@@ -21,6 +21,7 @@
   <browser:page
       name="news_item_view"
       for="plone.app.contenttypes.interfaces.INewsItem"
+      template="templates/news_item_view.pt"
       class=".view.NewsItemView"
       layer="zope.interface.Interface"
       permission="zope2.View"
@@ -55,6 +56,24 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+
+  <browser:page
+      name="news_folder_view"
+      for="plone.app.contenttypes.interfaces.IFolder"
+      template="templates/news_folder_view.pt"
+      class=".view.NewsFolderView"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="social_button_macro"
+      for="*"
+      template="templates/social_button_macro.pt"
+      class=".view.SocialButtonMacro"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+  />
 
 
 <!-- configlet -->

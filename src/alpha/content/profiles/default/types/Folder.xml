@@ -11,6 +11,7 @@
     <element value="Product" />
     <element value="News Item" />
     <element value="Image" />
+    <element value="Link" />
     <element value="File" />
     <element value="Folder" />
   </property>
@@ -23,5 +24,6 @@
     <element value="summary_view"/>
     <element value="tabular_view"/>
     <element value="product_listing"/>
+    <element value="news_folder_view"/>
   </property>
 </object>
