@@ -65,6 +65,8 @@ class UpdateConfiglet():
 		objAbsUrl = obj.absolute_url()
 		salePrice = obj.salePrice
 		price = obj.price
+		availability = obj.availability
+		description = obj.description
 
                 if sortList.has_key(category):
                     sortList[category][0] += 1
@@ -81,7 +83,8 @@ class UpdateConfiglet():
 		    brandList[brand] = 1
 		img = objAbsUrl + '/@@images/cover'
 		uid = obj.UID()
-		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid]
+		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid,
+					availability, description]
 
 
             sortList = json.dumps(sortList).decode('utf-8')
