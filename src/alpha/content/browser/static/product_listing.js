@@ -1,4 +1,6 @@
-var product = {
+Vue.component(
+    'product_gernal',
+    {
     template:
     `<div class="single-product mb-30">
           <div class="single-img">
@@ -20,11 +22,15 @@ var product = {
 		</template>
               </ul>
             </div>
+            <div class="availability">
+              <span v-if="!stock">Out of stock</span>
+            </div>
             <div class="add-to-links mt-15">
               <ul>
-                <li><a class="add_shop" v-bind:data-title="title" v-bind:data-price="price" v-bind:sale_price="sale_price"
-			v-bind:data-url="url" v-bind:data-image="image" >
-			<i class="fa fa-shopping-cart"></i></a></li>
+                <li>
+		  <a class="add_shop" v-if="stock" v-on:click="$emit('add_to_cart')"><i class="fa fa-shopping-cart"></i></a>
+		  <a class="out_of_stock" v-else><i class="fa fa-shopping-cart"></i></a>
+		</li>
                 <li><a href="#"><i class="fa fa-refresh"></i></a></li>
                 <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
                 <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
@@ -32,13 +38,75 @@ var product = {
             </div>
           </div>
       </div>`,
-    props: ['title','product_number','price', 'sale_price', 'url', 'image']
-}
-
+    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'stock']
+})
+Vue.component(
+    'product_detail',
+    {
+        template:
+        `<div class="shop-product bb-5">
+           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+             <div class="product-wrapper-2">
+  		<div class="single-img">
+  			<a v-bind:href="url">
+ 			  <img v-bind:src="image" alt="product" class="first" />
+  			</a>
+  		</div>
+             </div>
+           </div>
+          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+            <div class="product-details-2">
+  		<h3><a v-bind:href="url">{{title}}</a></h3>
+  		<div class="product-rating mb-10 color">
+  			<a href="#"><i class="fa fa-star"></i></a>
+  			<a href="#"><i class="fa fa-star"></i></a>
+  			<a href="#"><i class="fa fa-star"></i></a>
+  			<a href="#"><i class="fa fa-star"></i></a>
+  			<a href="#"><i class="fa fa-star"></i></a>
+  		</div>
+  		<div class="product-price">
+  			<ul>
+                <template v-if="sale_price == null">
+                  <li class="new-price" >{{price}}</li>
+                </template>
+                <template v-else>
+                  <li class="new-price sale"> {{sale_price}}</li>
+                  <li class="old-price">{{price}}</li>
+                </template>
+  			</ul>
+  		</div>
+  		<p>{{description}}</p>
+  		<div class="action-inner mt-20">
+  			<div class="product-button-3">
+  		          <a class="add_shop"  v-if="stock" v-on:click="$emit('add_to_cart')" >
+			    <i class="fa fa-shopping-cart"></i>Add to cart</a>
+			  <a class="out_of_stock" v-else ><i class="fa fa-shopping-cart"></i>Out of cart</a>
+  			</div>
+  			<div class="add-to-links">
+  				<ul>
+  					<li><a href="#"><i class="fa fa-refresh"></i></a></li>
+  					<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+  					<li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
+  				</ul>
+  			</div>
+  		</div>
+  	</div>  
+  	<div class="availability">
+          <span v-if="!stock">Out of stock</span>
+  	</div>
+  	<!-- single-details-end -->
+  </div>
+</div>`,
+        props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'description', 'stock']
+    }
+)
 Vue.component('paginate', VuejsPaginate)
+
+
 var product_listing = new Vue({
     el: '#product-listing',
     data: {
+	now_template: 'product_gernal',
         product_data: [],
 	none_limit_data: [],
 	origin_data: [],
@@ -48,7 +116,6 @@ var product_listing = new Vue({
 	sort: 'a-z',
     },
     created: function(){
-try{
 	this.origin_data = JSON.parse(document.getElementById('productData').innerText)
 	origin_data = this.origin_data
 	product_data = this.product_data
@@ -70,17 +137,11 @@ try{
 	else{
 	    this.pages = total_number / numbers
 	}
-}
-catch(err){
-debugger
-}
-    },
-    components:{
-        'product': product,
     },
     methods: {
-        add: function(item_id){
-        },
+	add_to_cart: function(title, price, sale_price, url, image, uid, stock){
+	    shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
+	},
         change_page: function(page){
 	    product_data = this.product_data
 	    none_limit_data = this.none_limit_data

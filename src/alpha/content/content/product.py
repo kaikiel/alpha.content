@@ -116,6 +116,7 @@ class IProduct(model.Schema):
 
     availability = schema.Bool(
         title=(u'Availability'),
+	default=True,
         required=False
     )
 

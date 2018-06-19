@@ -56,6 +56,13 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+  <browser:page
+      name="confirm_cart"
+      for="*"
+      class=".view.ConfirmCart"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
 
   <browser:page
       name="news_folder_view"
