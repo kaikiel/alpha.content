@@ -62,7 +62,13 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
-
+  <browser:page
+      name="contact_us"
+      for="*"
+      class=".view.ContactUs"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+      />
 
 <!-- configlet -->
   <browser:page

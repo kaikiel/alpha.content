@@ -139,3 +139,8 @@ class ConfirmCart(BrowserView):
 	self.totalNumber = totalNumber
 	self.productData = productData
 	return self.template()
+
+class ContactUs(BrowserView):
+    template = ViewPageTemplateFile('templates/contact_us.pt')
+    def __call__(self):
+	return self.template()
