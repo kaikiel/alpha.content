@@ -8,6 +8,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
+import pdb
 
 
 class NewsItemView(BrowserView):
@@ -64,6 +65,8 @@ class UpdateConfiglet():
 		objAbsUrl = obj.absolute_url()
 		salePrice = obj.salePrice
 		price = obj.price
+		availability = obj.availability
+		description = obj.description
 
                 if sortList.has_key(category):
                     sortList[category][0] += 1
@@ -79,7 +82,9 @@ class UpdateConfiglet():
 		else:
 		    brandList[brand] = 1
 		img = objAbsUrl + '/@@images/cover'
-		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img]
+		uid = obj.UID()
+		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid,
+					availability, description]
 
 
             sortList = json.dumps(sortList).decode('utf-8')
@@ -107,3 +112,30 @@ class ProductListing(BrowserView):
 	self.brandList = json.loads(brandList)
 	self.productData = productData
         return self.template()
+
+
+class ConfirmCart(BrowserView):
+    template = ViewPageTemplateFile("templates/confirm_cart.pt")
+    def __call__(self):
+        request = self.request
+	shop_cart = json.loads(request.cookies['shop_cart'])
+	uidList = shop_cart.keys()
+	productData = []
+	totalNumber = 0
+	for uid in uidList:
+	    product = api.content.get(UID=uid)
+	    amount = shop_cart[str(uid)][4]
+	    title = product.title
+            price = product.price
+            salePrice = product.salePrice
+            abs_url = product.absolute_url()
+	    if salePrice:
+		totalNumber += salePrice * amount
+	    else:
+		totalNumber += price * amount
+
+	    productData.append( [title, price, salePrice, abs_url, amount, uid] )
+
+	self.totalNumber = totalNumber
+	self.productData = productData
+	return self.template()
