@@ -149,6 +149,10 @@ class ConfirmCart(BrowserView):
 	self.productData = productData
 	return self.template()
 
+class ContactUs(BrowserView):
+    template = ViewPageTemplateFile('templates/contact_us.pt')
+    def __call__(self):
+	return self.template()
 
 class NewsFolderView(FolderView, NewsItemView):
     def results (self, **kwargs):
@@ -169,4 +173,20 @@ class NewsFolderView(FolderView, NewsItemView):
 
 class SocialButtonMacro(BrowserView):
     """"""
+
+class SendMail(BrowserView):
+    def __call__(self):
+        request = self.request
+	name = request.get('name')
+	email = request.get('email')
+	message = request.get('message')
+        body_str = """Name:{}<br/>Email:{}<br/>Message:{}""".format(name, email, message)
+        mime_text = MIMEText(body_str, 'html', 'utf-8')
+        api.portal.send_email(
+            recipient="ah13441673@gmail.com",
+            sender="henry@mingtak.com.tw",
+            subject="Contact Us",
+            body=mime_text.as_string(),
+        )
+        api.portal.show_message(message='發送成功!'.decode('utf-8'), request=request)
 
