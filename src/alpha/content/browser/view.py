@@ -175,7 +175,6 @@ class NewsFolderView(FolderView, NewsItemView):
 class SocialButtonMacro(BrowserView):
     """"""
 
-
 class SendMail(BrowserView):
     def __call__(self):
         request = self.request
