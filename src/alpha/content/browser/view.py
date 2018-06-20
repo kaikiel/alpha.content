@@ -2,8 +2,11 @@
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
+from plone.app.contenttypes.browser.folder import FolderView
+from Acquisition import aq_inner
 from email.mime.text import MIMEText
 import json
+import datetime
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 from zope.globalrequest import getRequest
@@ -12,9 +15,15 @@ import pdb
 
 
 class NewsItemView(BrowserView):
-    template = ViewPageTemplateFile('templates/news_item_view.pt')
-    def __call__(self):
-        return self.template()
+    
+    def getNewsMonth(self, obj):
+        return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%B')
+
+    def getNewsYear(self, obj):
+        return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%Y')
+
+    def getNewsDay(self, obj):
+        return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%d')
 
 
 class ProductView(BrowserView):
@@ -144,3 +153,42 @@ class ContactUs(BrowserView):
     template = ViewPageTemplateFile('templates/contact_us.pt')
     def __call__(self):
 	return self.template()
+
+
+class NewsFolderView(FolderView, NewsItemView):
+    def results (self, **kwargs):
+        kwargs.update(self.request.get('contentFilter', {}))
+        if 'object_provides' not in kwargs:  # object_provides is more specific
+            kwargs.setdefault('portal_type', 'News Item')
+        kwargs.setdefault('batch', True)
+        kwargs.setdefault('b_size', self.b_size)
+        kwargs.setdefault('b_start', self.b_start)
+
+        listing = aq_inner(self.context).restrictedTraverse(
+            '@@folderListing', None)
+        if listing is None:
+            return []
+        results = listing(**kwargs)
+        return results
+
+
+class SocialButtonMacro(BrowserView):
+    """"""
+
+
+class SendMail(BrowserView):
+    def __call__(self):
+        request = self.request
+	name = request.get('name')
+	email = request.get('email')
+	message = request.get('message')
+        body_str = """Name:{}<br/>Email:{}<br/>Message:{}""".format(name, email, message)
+        mime_text = MIMEText(body_str, 'html', 'utf-8')
+        api.portal.send_email(
+            recipient="ah13441673@gmail.com",
+            sender="henry@mingtak.com.tw",
+            subject="Contact Us",
+            body=mime_text.as_string(),
+        )
+        api.portal.show_message(message='發送成功!'.decode('utf-8'), request=request)
+

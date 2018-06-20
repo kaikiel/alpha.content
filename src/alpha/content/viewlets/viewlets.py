@@ -78,7 +78,17 @@ class NewsViewlet(base.ViewletBase):
         newsItem = api.content.find(portal_type='News Item', b_size=12)
         return newsItem
 
+    def getNewsMonth(self, obj):
+        return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%B')
+
+    def getNewsYear(self, obj):
+        return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%Y')
+
+    def getNewsDay(self, obj):
+        return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%d')
+
 
 class ShopCart(base.ViewletBase):
    """"""
+
 
