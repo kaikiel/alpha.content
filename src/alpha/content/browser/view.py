@@ -154,7 +154,6 @@ class ContactUs(BrowserView):
     def __call__(self):
 	return self.template()
 
-
 class NewsFolderView(FolderView, NewsItemView):
     def results (self, **kwargs):
         kwargs.update(self.request.get('contentFilter', {}))
