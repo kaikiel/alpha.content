@@ -1,7 +1,33 @@
-<metal:block metal:define-macro="social">
-
+<metal:block metal:define-macro="social_btn_fb">
 <script>
-    data_url = document.getElementById('social-button').parentElement.getAttribute('data-url');
+    var scriptTag = document.scripts[document.scripts.length - 1];
+    var parentTag = scriptTag.parentNode;
+    data_url = parentTag.getAttribute('data-url');
+    document.write('<div style="display:inline;" class="fb-like" data-href="'+ data_url  +
+             '" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>')
+</script>
+</metal:block>
+
+<metal:block metal:define-macro="social_btn_tweet">
+<script>
+    var scriptTag = document.scripts[document.scripts.length - 1];
+    var parentTag = scriptTag.parentNode;
+    data_url = parentTag.getAttribute('data-url');
+    document.write('<div style="display:inline; top: 3px; position: relative;">' + 
+                   '<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="'+ data_url  +
+                   '" data-dnt="true" data-show-count="false">Tweet</a></div>')
+</script>
+</metal:block>
+
+<metal:block metal:define-macro="social_btn_tweet_formodal">
+<script>
+    var scriptTag = document.scripts[document.scripts.length - 1];
+    var parentTag = scriptTag.parentNode;
+    data_url = parentTag.getAttribute('data-url');
+    data_title= parentTag.getAttribute('data-title');
+    document.write('<div style="display:inline;"><a class="tweet-btn" href="https://twitter.com/intent/tweet?text='+ data_title  + 
+                                                                                   '&url=' + data_url  + '">' +
+                   '<i class="fa fa-twitter" style=""></i><span>Tweet</span></a></div>')
 </script>
 </metal:block>
 
