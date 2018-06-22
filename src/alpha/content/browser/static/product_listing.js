@@ -31,7 +31,7 @@ Vue.component(
 		  <a class="add_shop" v-if="stock" v-on:click="$emit('add_to_cart')"><i class="fa fa-shopping-cart"></i></a>
 		  <a class="out_of_stock" v-else><i class="fa fa-shopping-cart"></i></a>
 		</li>
-                <li><a v-on:click="$emit('add_to_compare')"><i class="fa fa-book"></i></a></li>
+                <li><a ><i class="fa fa-book" v-bind:data-uid="uid"></i></a></li>
                 <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
                 <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
               </ul>
@@ -84,7 +84,7 @@ Vue.component(
   			</div>
   			<div class="add-to-links">
   			  <ul>
-  			    <li><a v-on:click="$emit('add_to_compare')"><i class="fa fa-book"></i></a></li>
+  			    <li><a ><i class="fa fa-book" v-bind:data-uid="uid"></i></a></li>
   			    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
   			    <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
   			  </ul>
