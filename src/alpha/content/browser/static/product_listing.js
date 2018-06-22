@@ -31,7 +31,7 @@ Vue.component(
 		  <a class="add_shop" v-if="stock" v-on:click="$emit('add_to_cart')"><i class="fa fa-shopping-cart"></i></a>
 		  <a class="out_of_stock" v-else><i class="fa fa-shopping-cart"></i></a>
 		</li>
-                <li><a href="#"><i class="fa fa-refresh"></i></a></li>
+                <li><a v-on:click="$emit('add_to_compare')"><i class="fa fa-book"></i></a></li>
                 <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
                 <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
               </ul>
@@ -83,11 +83,11 @@ Vue.component(
 			  <a class="out_of_stock" v-else ><i class="fa fa-shopping-cart"></i>Out of cart</a>
   			</div>
   			<div class="add-to-links">
-  				<ul>
-  					<li><a href="#"><i class="fa fa-refresh"></i></a></li>
-  					<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-  					<li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
-  				</ul>
+  			  <ul>
+  			    <li><a v-on:click="$emit('add_to_compare')"><i class="fa fa-book"></i></a></li>
+  			    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+  			    <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
+  			  </ul>
   			</div>
   		</div>
   	</div>  
@@ -139,6 +139,25 @@ var product_listing = new Vue({
 	}
     },
     methods: {
+	add_to_compare: function(uid){
+	    json_compare_list = $.cookie('compare_list')
+	    if(json_compare_list){
+		compare_list = JSON.parse(json_compare_list)
+	    }else{
+		compare_list = []
+	    }
+	    if(compare_list.indexOf(uid) == -1){
+	        if(compare_list.length < 4){
+	  	    compare_list.push(uid)
+		    $.cookie('compare_list', JSON.stringify(compare_list))
+		    $.notify('Add Compare Success!!', 'success')
+	        }else{
+		    $.notify('Compare List is Full', 'error')
+	        }
+	    }else{
+		$.notify('Product Already In Compare List')
+	    }
+	},
 	add_to_cart: function(title, price, sale_price, url, image, uid, stock){
 	    shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
 	},

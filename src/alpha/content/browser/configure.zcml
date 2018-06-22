@@ -94,6 +94,13 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
   />
+  <browser:page
+      name="compare_list"
+      for="*"
+      class=".view.CompareList"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+  />
 
 <!-- configlet -->
   <browser:page

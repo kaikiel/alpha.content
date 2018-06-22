@@ -127,6 +127,11 @@ class ConfirmCart(BrowserView):
     template = ViewPageTemplateFile("templates/confirm_cart.pt")
     def __call__(self):
         request = self.request
+	abs_url = api.portal.get().absolute_url()
+	if not request.cookie['shop_cart']:
+	    api.portal.show_message(message='Shop Cart Is Empty', request=request, type='warn')
+	    request.response.redirect('%s/products' %abs_url)
+	    return
 	shop_cart = json.loads(request.cookies['shop_cart'])
 	uidList = shop_cart.keys()
 	productData = []
@@ -190,3 +195,20 @@ class SendMail(BrowserView):
         )
         api.portal.show_message(message='發送成功!'.decode('utf-8'), request=request)
 
+
+class CompareList(BrowserView):
+    template = ViewPageTemplateFile('templates/compare_list.pt')
+    def __call__(self):
+	request = self.request
+	json_compare_list = request.cookies['compare_list']
+	data = []
+	if json_compare_list:
+	    compare_list = json.loads(json_compare_list)
+	    for uid in compare_list:
+		obj = api.content.get(UID=uid)
+		data.append(obj)
+	    self.data = data
+	else:
+	    self.data = false
+
+	return self.template()
