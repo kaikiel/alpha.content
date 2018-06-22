@@ -42,12 +42,12 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
     def pdb(self):
         import pdb;pdb.set_trace()
 
-    def getBannerImg(self):
+    def getBannerPage(self):
         portal = api.portal.get()
-        bannerImg = []
+        bannerPage = []
         if portal.hasObject('banner'):
-            bannerImg = api.content.find(portal['banner'])
-        return bannerImg
+            bannerPage = api.content.find(portal['banner'], portal_type='Document')
+        return bannerPage
 
     def getAllIndexProduct(self):
         allProduct = Set()
@@ -88,7 +88,26 @@ class NewsViewlet(base.ViewletBase):
         return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%d')
 
 
+class FriendLinkViewlet(base.ViewletBase):
+    def getFriendLink(self):
+        portal = api.portal.get()
+        friendLink = []
+        if portal.hasObject('friend-link'):
+            friendLink = api.content.find(portal['friend-link'], portal_type='Link')
+        return friendLink
+
+
 class ShopCart(base.ViewletBase):
    """"""
 
+
+class AccountViewlet(base.ViewletBase):
+    def isAnonymous(self):
+        if not api.user.is_anonymous():
+            return False
+        return True
+
+    def getCurrentUser(self):
+        current = api.user.get_current()
+        return current
 

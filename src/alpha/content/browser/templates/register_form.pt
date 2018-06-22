@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="alpha.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+
+        <article id="content">
+            <tal:mailhost tal:condition="view/showForm">
+            <h1 class="documentFirstHeading"
+                tal:content="view/label | nothing" />
+            <div id="content-core">
+                <metal:block use-macro="context/@@ploneform-macros/titlelessform">
+                    <metal:bottom fill-slot="formbottom">
+                    <input tal:define="came_from request/form/came_from|nothing"
+                           tal:condition="came_from"
+                           type="hidden"
+                           name="came_from"
+                           tal:attributes="value came_from" />
+                  </metal:bottom>
+                </metal:block>
+            </div>
+            </tal:mailhost>
+
+            <tal:nomailhost tal:condition="not:view/showForm">
+
+                <h1 class="documentFirstHeading"
+                    i18n:translate=""
+                    tal:content="view/label" />
+
+                <div id="content-core">
+                  <div class="documentDescription">
+                      This site doesn't have a valid email setup, so you
+                      cannot register at this time.
+                  </div>
+                </div>
+
+            </tal:nomailhost>
+        </article>
+
+</metal:content-core>
+</metal:content-core>
+</body>
+</html>

@@ -3,6 +3,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView
+from plone.app.users.browser.register import RegistrationForm
 from Acquisition import aq_inner
 from email.mime.text import MIMEText
 import json
@@ -11,6 +12,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
+from Products.CMFCore.utils import getToolByName
 import pdb
 
 
@@ -28,8 +30,6 @@ class NewsItemView(BrowserView):
 
 class ProductView(BrowserView):
     def pdb(self):
-        request = self.request
-        alsoProvides(request, IDisableCSRFProtection)
         import pdb;pdb.set_trace()
 
     def getImg(self):
@@ -190,3 +190,13 @@ class SendMail(BrowserView):
         )
         api.portal.show_message(message='發送成功!'.decode('utf-8'), request=request)
 
+
+class LogOut(BrowserView):
+    def __call__(self):
+        mt = getToolByName(self.context, 'portal_membership')
+        mt.logoutUser(self.request)
+        portal_url = self.context.portal_url()
+        self.request.response.redirect(portal_url)
+
+class Register(RegistrationForm):
+    RegistrationForm.template = ViewPageTemplateFile('templates/register_form.pt')
