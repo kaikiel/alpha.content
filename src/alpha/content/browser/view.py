@@ -128,7 +128,7 @@ class ConfirmCart(BrowserView):
     def __call__(self):
         request = self.request
 	abs_url = api.portal.get().absolute_url()
-	if not request.cookie['shop_cart']:
+	if not request.cookies.get('shop_cart'):
 	    api.portal.show_message(message='Shop Cart Is Empty', request=request, type='warn')
 	    request.response.redirect('%s/products' %abs_url)
 	    return
