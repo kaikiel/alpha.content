@@ -341,7 +341,7 @@ var product_listing = new Vue({
             height = parseInt($('#amount1').val().split('-')[1].trim())
 	    this.product_data = this.origin_data.filter(function(value){
    	        price = product_listing.judge_price(value)
-		if(price >= low || price <= height){
+		if(price >= low && price <= height){
 		    product_listing.none_limit_data.push(value)
 		    none_limit_count ++
 		    if(count <= numbers){
