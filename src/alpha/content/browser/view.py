@@ -4,12 +4,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.users.browser.register import RegistrationForm
+from zope.interface import alsoProvides
 from Acquisition import aq_inner
 from email.mime.text import MIMEText
 import json
 import datetime
 from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
 from Products.CMFCore.utils import getToolByName
@@ -218,9 +218,45 @@ class LogOut(BrowserView):
     def __call__(self):
         mt = getToolByName(self.context, 'portal_membership')
         mt.logoutUser(self.request)
-        portal_url = self.context.portal_url()
-        self.request.response.redirect(portal_url)
+        current_url = self.context.portal_url() 
+        self.request.response.redirect(current_url)
 
 
 class Register(RegistrationForm):
     RegistrationForm.template = ViewPageTemplateFile('templates/register_form.pt')
+
+
+class PersonalDetails(BrowserView):
+    template = ViewPageTemplateFile('templates/personal_view.pt')
+    def __call__(self):
+        if not api.user.is_anonymous():
+            formdata = self.request.form
+            if formdata.has_key('email') and formdata.has_key('fName'):
+                formNameList = ['fName'   , 'lName', 'email', 'phone'  , 'fax'  , 'company', 'address1', 
+                                'address2', 'city' , 'zip'  , 'country', 'state', 'newsletter']
+                self.setProperties(formNameList)
+                current_url = self.request.URL
+                self.request.response.redirect(current_url)
+
+            return self.template()
+        else:
+            portal_url = self.context.portal_url()
+            self.request.response.redirect(portal_url+'/login')
+
+    def getCurrentUser(self):
+        return api.user.get_current()
+
+    def setProperties(self, formNameList):
+        request = self.request
+        alsoProvides(request, IDisableCSRFProtection)
+        mappingDict = {}
+        portal_memberdata = getToolByName(self.context, "portal_memberdata")
+        formdata = self.request.form
+        for name in formNameList:
+            if portal_memberdata.hasProperty(name) and formdata.has_key(name):
+                mappingDict.update({name: formdata[name]})
+
+        self.getCurrentUser().setMemberProperties(mapping=mappingDict) 
+
+    def pdb(self):
+        import pdb;pdb.set_trace()

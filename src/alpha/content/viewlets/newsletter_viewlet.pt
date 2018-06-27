@@ -1,0 +1,17 @@
+<div class="newslatter-area ptb-30">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="newslatter-content text-right">
+          <h4>Newsletter</h4>
+        </div>
+        <div class="newslatter-form">
+          <form method="post" id="email_form">
+            <input type="email" name="email_add" placeholder="Enter your e-mail" autocomplete="off" />
+            <button style="background: none; border: none;" type="submit"><i class="fa fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

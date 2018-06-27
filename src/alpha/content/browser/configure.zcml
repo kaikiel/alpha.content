@@ -106,15 +106,22 @@
   <browser:page
       name="log_out"
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
-      permission="zope.Public"
+      permission="zope2.Public"
       class=".view.LogOut"
   />
 
   <browser:page
       name="register_form"
       for="*"
-      permission="zope.Public"
+      permission="zope2.Public"
       class=".view.RegistrationForm"
+  />
+
+  <browser:page
+      name="personal_details"
+      for="*"
+      permission="zope2.View"
+      class=".view.PersonalDetails"
   />
 
 <!-- configlet -->

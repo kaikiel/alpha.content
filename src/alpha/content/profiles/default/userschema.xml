@@ -1,0 +1,103 @@
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+       xmlns:form="http://namespaces.plone.org/supermodel/form"
+       xmlns:users="http://namespaces.plone.org/supermodel/users"
+       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+       i18n:domain="plone">
+  <schema name="member-fields">
+    <field name="fName" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">First Name</title>
+    </field>
+
+    <field name="lName" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Last Name</title>
+    </field>
+
+    <field name="telephone" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Telephone</title>
+    </field>
+
+    <field name="fax" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Fax</title>
+    </field>
+
+    <field name="company" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Company</title>
+    </field>
+
+    <field name="address1" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Address1</title>
+    </field>
+
+    <field name="address2" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">address2</title>
+    </field>
+
+    <field name="city" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">City</title>
+    </field>
+
+    <field name="zip" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Zip/Post Code</title>
+    </field>
+
+    <field name="country" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Country</title>
+    </field>
+
+    <field name="state" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">State/Region</title>
+    </field>
+
+    <field name="newsletter" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">Newsletter</title>
+    </field>
+  </schema>
+</model>
