@@ -41,17 +41,17 @@ def future_date(value):
 class IProduct(model.Schema):
     title = schema.TextLine(
         title=_(u'Title'),
-        required=True
+        required=True,
     )
 
     productNo = schema.TextLine(
         title=_(u'Product Number'),
-        required=False
+        required=True,
     )
  
     rating = schema.Int(
         title=_(u'Rating'),
-        required=False,
+        required=True,
         default=4,
         constraint=rating_constraint,
     )
@@ -59,7 +59,7 @@ class IProduct(model.Schema):
     price = schema.Int(
         title=_(u'Price'),
         description=_(u'Enter USD$'),
-        required=False,
+        required=True,
     )
 
     salePrice = schema.Int(
@@ -106,7 +106,7 @@ class IProduct(model.Schema):
     fieldset('More Info', fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
     brand = schema.TextLine(
         title=_(u'Brand'),
-        required=False
+        required=True
     )
 
     productCode = schema.TextLine(
