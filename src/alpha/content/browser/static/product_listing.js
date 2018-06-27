@@ -22,9 +22,6 @@ Vue.component(
 		</template>
               </ul>
             </div>
-            <div class="availability">
-              <span v-if="!stock">Out of stock</span>
-            </div>
             <div class="add-to-links mt-15">
               <ul>
                 <li>

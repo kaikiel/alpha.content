@@ -125,11 +125,11 @@ class NewsletterViewlet(base.ViewletBase):
 
     def updateEmailList(self, email):
         newsletter = self.getNewsletter()
-        emailList = []
+        emailList = Set()
         if newsletter != None:
             emailList = newsletter.getObject().description.split('\r\n')
-            emailList = [e for e in emailList if e != '']
-            emailList.append(email)
+            emailList = Set([e for e in emailList if e != ''])
+            emailList.add(email)
             request = self.request
             alsoProvides(request, IDisableCSRFProtection)
             emailStr = ''
