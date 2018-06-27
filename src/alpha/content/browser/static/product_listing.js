@@ -13,7 +13,7 @@ Vue.component(
             <h3><a v-bind:href="url">{{title}}</a></h3>
             <div class="product-price">
               <ul>
-		<template v-if="sale_price">
+		<template v-if="sale_price == null || sale_price == ''">
                   <li class="new-price" >{{price}}</li>
 		</template>
 		<template v-else>
@@ -33,7 +33,6 @@ Vue.component(
 		</li>
                 <li><a ><i class="fa fa-book" v-bind:data-uid="uid" v-on:click="$emit('add_to_compare')"></i></a></li>
                 <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-                <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
               </ul>
             </div>
           </div>
@@ -66,7 +65,7 @@ Vue.component(
   		</div>
   		<div class="product-price">
   			<ul>
-                <template v-if="sale_price">
+                <template v-if="sale_price == null || sale_price == ''">
                   <li class="new-price" >{{price}}</li>
                 </template>
                 <template v-else>
@@ -86,7 +85,6 @@ Vue.component(
   			  <ul>
   			    <li><a ><i class="fa fa-book" v-bind:data-uid="uid"  v-on:click="$emit('add_to_compare')"></i></a></li>
   			    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
-  			    <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
   			  </ul>
   			</div>
   		</div>
@@ -182,8 +180,12 @@ var product_listing = new Vue({
             start = 0
             this.product_data = []
             while(this.product_data.length < numbers){
-                this.product_data.push(this.none_limit_data[start])
-                start ++
+		if(this.product_data.length == this.none_limit_data.length){
+                    break
+            	}else{
+                    this.product_data.push(this.none_limit_data[start])
+                    start ++
+		}
             }
 	    total_number = this.none_limit_data.length
             if (total_number % numbers != 0){
