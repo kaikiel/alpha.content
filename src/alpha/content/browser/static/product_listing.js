@@ -5,7 +5,7 @@ Vue.component(
     `<div class="single-product mb-30">
           <div class="single-img">
             <a v-bind:href="url">
-              <img v-bind:src="image"  class="first" style="width:262px;height:262px"/>
+              <img v-bind:src="image"  class="first" />
             </a>
           </div>
           <div class="product-content">
@@ -13,7 +13,7 @@ Vue.component(
             <h3><a v-bind:href="url">{{title}}</a></h3>
             <div class="product-price">
               <ul>
-		<template v-if="sale_price == null">
+		<template v-if="sale_price">
                   <li class="new-price" >{{price}}</li>
 		</template>
 		<template v-else>
@@ -31,7 +31,7 @@ Vue.component(
 		  <a class="add_shop" v-if="stock" v-on:click="$emit('add_to_cart')"><i class="fa fa-shopping-cart"></i></a>
 		  <a class="out_of_stock" v-else><i class="fa fa-shopping-cart"></i></a>
 		</li>
-                <li><a ><i class="fa fa-book" v-bind:data-uid="uid"></i></a></li>
+                <li><a ><i class="fa fa-book" v-bind:data-uid="uid" v-on:click="$emit('add_to_compare')"></i></a></li>
                 <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
                 <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
               </ul>
@@ -66,7 +66,7 @@ Vue.component(
   		</div>
   		<div class="product-price">
   			<ul>
-                <template v-if="sale_price == null">
+                <template v-if="sale_price">
                   <li class="new-price" >{{price}}</li>
                 </template>
                 <template v-else>
@@ -84,7 +84,7 @@ Vue.component(
   			</div>
   			<div class="add-to-links">
   			  <ul>
-  			    <li><a ><i class="fa fa-book" v-bind:data-uid="uid"></i></a></li>
+  			    <li><a ><i class="fa fa-book" v-bind:data-uid="uid"  v-on:click="$emit('add_to_compare')"></i></a></li>
   			    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
   			    <li><a href="#" data-toggle="modal" data-target="#mymodal"><i class="fa fa-eye"></i></a></li>
   			  </ul>
@@ -150,12 +150,12 @@ var product_listing = new Vue({
 	        if(compare_list.length < 4){
 	  	    compare_list.push(uid)
 		    $.cookie('compare_list', JSON.stringify(compare_list))
-		    $.notify('Add Compare Success!!', 'success')
+		    $.notify('Add Compare Success!!',  {globalPosition: 'bottom right',className:'success'})
 	        }else{
-		    $.notify('Compare List is Full', 'error')
+		    $.notify('Compare List is Full', {globalPosition: 'bottom right',className:'error'})
 	        }
 	    }else{
-		$.notify('Product Already In Compare List')
+		$.notify('Product Already In Compare List', {globalPosition: 'bottom right',className:'error'})
 	    }
 	},
 	add_to_cart: function(title, price, sale_price, url, image, uid, stock){
