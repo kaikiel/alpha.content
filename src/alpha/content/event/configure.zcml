@@ -6,7 +6,7 @@
 
     <subscriber
         for="alpha.content.content.product.IProduct 
-             zope.lifecycleevent.interfaces.IObjectAddedEvent"
+             Products.DCWorkflow.interfaces.IAfterTransitionEvent"
         handler=".event.add_configlet"
     />
     <subscriber
