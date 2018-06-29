@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from plone.app.layout.viewlets import common as base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 from plone import api
 from sets import Set
 import datetime
@@ -22,14 +24,14 @@ class ProductViewlet(base.ViewletBase):
 class TimeLimitViewlet(base.ViewletBase):
     def getTimeLimit(self):
         portal = api.portal.get()
-        timeLimit = []
+        timeLimitList = []
         if portal.hasObject('promotions'):
             timeLimitBrain = api.content.find(portal['promotions'], portal_type='Product')
             for item in timeLimitBrain:
-                item_timeLimit = item.getObject().timeLimit
+                item_timeLimit = item.getObject().timeLimit or datetime.datetime(1,1,1,0,0)
                 if not(item_timeLimit and not item_timeLimit >= datetime.datetime.today()):
-                    timeLimit.append(item)
-        return timeLimit
+                    timeLimitList.append(item)
+        return timeLimitList
 
 
 class BestSellersViewlet(base.ViewletBase):
@@ -42,12 +44,12 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
     def pdb(self):
         import pdb;pdb.set_trace()
 
-    def getBannerImg(self):
+    def getBannerPage(self):
         portal = api.portal.get()
-        bannerImg = []
+        bannerPage = []
         if portal.hasObject('banner'):
-            bannerImg = api.content.find(portal['banner'])
-        return bannerImg
+            bannerPage = api.content.find(portal['banner'], portal_type='Document')
+        return bannerPage
 
     def getAllIndexProduct(self):
         allProduct = Set()
@@ -88,7 +90,58 @@ class NewsViewlet(base.ViewletBase):
         return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%d')
 
 
+class FriendLinkViewlet(base.ViewletBase):
+    def getFriendLink(self):
+        portal = api.portal.get()
+        friendLink = []
+        if portal.hasObject('friend-link'):
+            friendLink = api.content.find(portal['friend-link'], portal_type='Link')
+        return friendLink
+
+
 class ShopCart(base.ViewletBase):
    """"""
 
+
+class AccountViewlet(base.ViewletBase):
+    def isAnonymous(self):
+        if not api.user.is_anonymous():
+            return False
+        return True
+
+    def getCurrentUser(self):
+        current = api.user.get_current()
+        return current
+
+
+class NewsletterViewlet(base.ViewletBase):
+    def update(self):
+        formdata = self.request.form
+        if formdata.has_key('email_add'):
+            email = formdata.pop('email_add')
+            self.updateEmailList(email)
+            current_url = self.context.absolute_url() 
+            self.request.response.redirect(current_url)
+
+    def updateEmailList(self, email):
+        newsletter = self.getNewsletter()
+        emailList = Set()
+        if newsletter != None:
+            emailList = newsletter.getObject().description.split('\r\n')
+            emailList = Set([e for e in emailList if e != ''])
+            emailList.add(email)
+            request = self.request
+            alsoProvides(request, IDisableCSRFProtection)
+            emailStr = ''
+            for email in emailList:
+                emailStr += email + '\r\n' 
+            newsletter.getObject().description = emailStr 
+
+    def getNewsletter(self):
+        portal = api.portal.get()
+        if portal.hasObject('resource'):
+            emailPage = api.content.find(portal['resource'], portal_type='Document', id='newsletter' )
+            return emailPage[0] if len(emailPage) != 0 else None
+        else:
+            return 
 

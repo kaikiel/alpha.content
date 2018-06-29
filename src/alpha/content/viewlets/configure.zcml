@@ -55,16 +55,6 @@
     />
 
     <browser:viewlet
-        name="shop_product_viewlet"
-        for="alpha.content.content.cover.ICover"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        template="shop_product_viewlet.pt"
-        class=".viewlets.ProductViewlet"
-        layer="zope.interface.Interface"
-        permission="zope2.View"
-    />
-
-    <browser:viewlet
         name="news_viewlet"
         for="alpha.content.content.cover.ICover"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
@@ -75,11 +65,51 @@
     />
 
     <browser:viewlet
+        name="friend_link_viewlet"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        template="friend_link_viewlet.pt"
+        class=".viewlets.FriendLinkViewlet"
+        layer="zope.interface.Interface"
+        permission="zope2.View"
+    />
+
+    <browser:viewlet
+        name="shop_product_viewlet"
+        for="alpha.content.content.cover.ICover"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        template="shop_product_viewlet.pt"
+        class=".viewlets.ProductViewlet"
+        layer="zope.interface.Interface"
+        permission="zope2.View"
+    />
+
+    <browser:viewlet
         name="shop_cart"
         for="*"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
         template="shop_cart.pt"
         class=".viewlets.ShopCart"
+        layer="zope.interface.Interface"
+        permission="zope2.View"
+    />
+
+    <browser:viewlet
+        name="account_viewlet"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        template="account_viewlet.pt"
+        class=".viewlets.AccountViewlet"
+        layer="zope.interface.Interface"
+        permission="zope2.View"
+    />
+
+    <browser:viewlet
+        name="newsletter_viewlet"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.NewsletterViewlet"
+        template="newsletter_viewlet.pt"
         layer="zope.interface.Interface"
         permission="zope2.View"
     />

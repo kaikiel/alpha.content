@@ -87,6 +87,7 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
   />
+
   <browser:page
       name="send_mail"
       for="*"
@@ -100,6 +101,27 @@
       class=".view.CompareList"
       layer="zope.interface.Interface"
       permission="zope2.View"
+  />
+
+  <browser:page
+      name="log_out"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      permission="zope2.Public"
+      class=".view.LogOut"
+  />
+
+  <browser:page
+      name="register_form"
+      for="*"
+      permission="zope2.Public"
+      class=".view.RegistrationForm"
+  />
+
+  <browser:page
+      name="personal_details"
+      for="*"
+      permission="zope2.View"
+      class=".view.PersonalDetails"
   />
 
 <!-- configlet -->
