@@ -20,7 +20,7 @@ def add_configlet(item, event):
             update_configlet()
         except Exception as e:
 	   print e
-    else action == 'retract' or action == 'reject':
+    elif action == 'retract' or action == 'reject':
         request = getRequest()
         abs_url = api.portal.get().absolute_url()
         update_configlet = UpdateConfiglet()

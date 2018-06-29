@@ -11,6 +11,13 @@ Vue.component(
           <div class="product-content">
             <span>{{product_number}}</span>
             <h3><a v-bind:href="url">{{title}}</a></h3>
+	  <template v-for="n in rating">
+	      <i class="fa fa-star" style="color:yellow"></i>
+	  </template>
+          <template v-for="n in 5-rating">
+              <i class="fa fa-star" style="color:#ccc"></i>
+          </template>
+
             <div class="product-price">
               <ul>
 		<template v-if="sale_price == null || sale_price == ''">
@@ -37,7 +44,7 @@ Vue.component(
             </div>
           </div>
       </div>`,
-    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'stock']
+    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'stock', 'rating']
 })
 Vue.component(
     'product_detail',
@@ -57,11 +64,13 @@ Vue.component(
             <div class="product-details-2">
   		<h3><a v-bind:href="url">{{title}}</a></h3>
   		<div class="product-rating mb-10 color">
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
+              <template v-for="n in rating">
+                  <i class="fa fa-star" style="color:yellow"></i>
+              </template>
+              <template v-for="n in 5-rating">
+        	      <i class="fa fa-star" style="color:#ccc"></i>
+	      </template>
+
   		</div>
   		<div class="product-price">
   			<ul>
@@ -95,7 +104,7 @@ Vue.component(
   	<!-- single-details-end -->
   </div>
 </div>`,
-        props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'description', 'stock']
+        props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'description', 'stock', 'rating']
     }
 )
 Vue.component('paginate', VuejsPaginate)
@@ -156,8 +165,8 @@ var product_listing = new Vue({
 		$.notify('Product Already In Compare List', {globalPosition: 'bottom right',className:'error'})
 	    }
 	},
-	add_to_cart: function(title, price, sale_price, url, image, uid, stock){
-	    shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
+	add_to_cart: function(translationGroup, amount){
+	    shop_cart.add_shop(translationGroup, amount)
 	},
         change_page: function(page){
 	    product_data = this.product_data
@@ -252,10 +261,10 @@ var product_listing = new Vue({
             }
 	},
         judge_price: function(product){
-            if(product[1][4]){
-                return parseInt(product[1][4])
+            if(product[5]){
+                return parseInt(product[5])
             }else{
-                return parseInt(product[1][3])
+                return parseInt(product[4])
             }
         },
 	change_category: function(category, subject){
@@ -269,8 +278,7 @@ var product_listing = new Vue({
             height = parseInt($('#amount1').val().split('-')[1].trim())
 	    this.product_data = origin_data.filter(function(value){
 		price = product_listing.judge_price(value)
-
-		if(value[1][0] == category && value[1][1] == subject && price >= low && price <= height){
+		if(value[1] == category && value[2] == subject && price >= low && price <= height){
 		    none_limit_count ++
 		    product_listing.none_limit_data.push(value)
 		    if(count <= numbers){
@@ -296,7 +304,7 @@ var product_listing = new Vue({
             height = parseInt($('#amount1').val().split('-')[1].trim())
             this.product_data = origin_data.filter(function(value){
 		price = product_listing.judge_price(value)
-		if(value[1][2] == brand && price >= low && price <= height){
+		if(value[3] == brand && price >= low && price <= height){
 		    none_limit_count ++
                     product_listing.none_limit_data.push(value)
 	            if(count <= numbers){
