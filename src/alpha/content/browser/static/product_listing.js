@@ -125,21 +125,30 @@ var product_listing = new Vue({
 	product_data = this.product_data
 	this.none_limit_data = origin_data
 	numbers = this.numbers
-	count = 0
-	while (product_data.length < numbers){
-	    if(product_data.length == this.none_limit_data.length){
-		break
-	    }else{
-	        product_data.push(origin_data[count])
-	        count ++
+	pre_brand = document.getElementById('pre_brand').innerText
+	pre_category = document.getElementById('pre_category').innerText
+	pre_subject = document.getElementById('pre_subject').innerText
+	if(pre_brand){
+	    this.change_brand(pre_brand)
+	}else if(pre_category && pre_subject){
+	    this.change_category(pre_category, pre_subject)
+	}else{
+	    count = 0
+	    while (product_data.length < numbers){
+	        if(product_data.length == this.none_limit_data.length){
+		    break
+	        }else{
+	            product_data.push(origin_data[count])
+	            count ++
+	        }
 	    }
-	}
-	total_number = origin_data.length
-	if (total_number % numbers != 0){
-	    this.pages = Math.floor(total_number / numbers) +1
-	}
-	else{
-	    this.pages = total_number / numbers
+	    total_number = origin_data.length
+	    if (total_number % numbers != 0){
+	        this.pages = Math.floor(total_number / numbers) +1
+	    }
+	    else{
+	        this.pages = total_number / numbers
+	    }
 	}
     },
     methods: {
@@ -271,19 +280,38 @@ var product_listing = new Vue({
 	    none_limit_count = 1
 
             this.none_limit_data = []
-            low = parseInt($('#amount1').val().split('-')[0].trim())
-            height = parseInt($('#amount1').val().split('-')[1].trim())
+	    none_limit_data = this.none_limit_data
+            try{
+                low = parseInt($('#amount1').val().split('-')[0].trim())
+                height = parseInt($('#amount1').val().split('-')[1].trim())
+            }
+            catch{
+                low = 0
+                height = 20000
+            }
+
 	    this.product_data = origin_data.filter(function(value){
-		price = product_listing.judge_price(value)
+                if(value[5]){
+                    price = parseInt(value[5])
+                }else{
+                    price = parseInt(value[4])
+                }
+
 		if(value[1] == category && value[2] == subject && price >= low && price <= height){
 		    none_limit_count ++
-		    product_listing.none_limit_data.push(value)
+		    none_limit_data.push(value)
 		    if(count <= numbers){
 		         count ++
 		         return value
 		    }
 		}
 	    })
+            $('.change_category').each(function(){
+                if($(this).data('category') == category && $(this).data('subject') == subject){
+                    $(this).addClass('activity')
+                }
+            })
+
             if (none_limit_count % numbers != 0){
                 this.pages = Math.floor(none_limit_count / numbers) +1
             }
@@ -297,13 +325,24 @@ var product_listing = new Vue({
 	    count = 1
 	    none_limit_count = 1
             this.none_limit_data = []
-            low = parseInt($('#amount1').val().split('-')[0].trim())
-            height = parseInt($('#amount1').val().split('-')[1].trim())
+	    none_limit_data = this.none_limit_data
+	    try{
+                low = parseInt($('#amount1').val().split('-')[0].trim())
+                height = parseInt($('#amount1').val().split('-')[1].trim())
+	    }
+	    catch{
+		low = 0
+		height = 20000
+	    }
             this.product_data = origin_data.filter(function(value){
-		price = product_listing.judge_price(value)
+	        if(value[5]){
+                    price = parseInt(value[5])
+                }else{
+                    price = parseInt(value[4])
+                }
 		if(value[3] == brand && price >= low && price <= height){
 		    none_limit_count ++
-                    product_listing.none_limit_data.push(value)
+                    none_limit_data.push(value)
 	            if(count <= numbers){
                         count ++
                         return value
@@ -316,6 +355,11 @@ var product_listing = new Vue({
             else{
                 this.pages = none_limit_count / numbers
             }
+	    $('.change_brand').each(function(){
+		if($(this).data('brand') == brand){
+		    $(this).addClass('activity')
+		}
+	    })
 	    $('.page_list:nth-child(2)').addClass('active')
 	},
         change_price_range: function(low, height){

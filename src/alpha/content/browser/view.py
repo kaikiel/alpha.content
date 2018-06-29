@@ -109,9 +109,7 @@ class UpdateConfiglet():
 class ProductListing(BrowserView):
     template = ViewPageTemplateFile("templates/product_listing.pt")
     def __call__(self):
-	sortList = api.portal.get_registry_record("sortList", interface=IDict)
-	brandList = api.portal.get_registry_record('brandList', interface=IDict)
-
+	request = self.request
 	productData = []
         sortList = {}
         brandList = {}
@@ -152,6 +150,10 @@ class ProductListing(BrowserView):
 	self.productData = json.dumps(productData)
 	self.sortList = sortList
 	self.brandList = brandList
+        self.pre_category = request.get('category', '')
+        self.pre_subject = request.get('subject', '')
+        self.pre_brand = request.get('brand', '')
+
         return self.template()
 
 
@@ -232,7 +234,7 @@ class CompareList(BrowserView):
     template = ViewPageTemplateFile('templates/compare_list.pt')
     def __call__(self):
 	request = self.request
-	json_compare_list = request.cookies['compare_list']
+	json_compare_list = request.cookies.get('compare_list')
 	data = []
 	if json_compare_list:
 	    compare_list = json.loads(json_compare_list)
@@ -241,7 +243,7 @@ class CompareList(BrowserView):
 		data.append(obj)
 	    self.data = data
 	else:
-	    self.data = false
+	    self.data = False
 
 	return self.template()
 
