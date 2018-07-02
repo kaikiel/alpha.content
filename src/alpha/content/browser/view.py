@@ -17,6 +17,12 @@ from sets import Set
 import pdb
 
 
+class ExchangeRate(BrowserView):
+    def getRMBRate(self):
+        rmbRate = api.portal.get_registry_record('exchange', interface=alpha.content.browser.currency_configlet.IExchange)
+        return rmbRate
+
+
 class NewsItemView(BrowserView):
     
     def getNewsMonth(self, obj):
@@ -29,7 +35,7 @@ class NewsItemView(BrowserView):
         return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%d')
 
 
-class ProductView(BrowserView):
+class ProductView(ExchangeRate):
     def pdb(self):
         import pdb;pdb.set_trace()
 
@@ -94,7 +100,6 @@ class UpdateConfiglet():
 		    brandList[brand] += 1
 		else:
 		    brandList[brand] = 1
-	    import pdb;pdb.set_trace()
             sortList = json.dumps(sortList).decode('utf-8')
             api.portal.set_registry_record('sortList', sortList, interface=IDict)
 

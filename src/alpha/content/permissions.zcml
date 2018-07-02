@@ -7,6 +7,24 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="alpha.content.AddLllll"
+        title="alpha.content: Add Lllll"
+    />
+
+        
+    <permission
+        id="alpha.content.AddAaaaa"
+        title="alpha.content: Add Aaaaa"
+    />
+
+        
+    <permission
+        id="alpha.content.AddTest"
+        title="alpha.content: Add Test"
+    />
+
+        
+    <permission
         id="alpha.content.AddCover"
         title="alpha.content: Add Cover"
     />

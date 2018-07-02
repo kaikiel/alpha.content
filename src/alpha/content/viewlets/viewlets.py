@@ -2,31 +2,42 @@
 from plone.app.layout.viewlets import common as base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import alsoProvides
+from alpha.content.browser.view import ExchangeRate
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone import api
 from sets import Set
 import datetime
 
-class ProductViewlet(base.ViewletBase):
+class ProductViewlet(base.ViewletBase, ExchangeRate):
     def getMostView(self):
-        mostView = api.content.find(portal_type='Product', p_indexCategory='mostView')
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        mostView = api.content.find(context=context, portal_type='Product', p_indexCategory='mostView', depth=1)
         return mostView
 
     def getSpecial(self):
-        special = api.content.find(portal_type='Product', p_indexCategory='special')
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        special = api.content.find(context=context, portal_type='Product', p_indexCategory='special', depth=1)
         return special
 
     def getLatest(self):
-        latest = api.content.find(portal_type='Product', p_indexCategory='latest')
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        latest = api.content.find(context=context, portal_type='Product', p_indexCategory='latest', depth=1)
         return latest
 
 
-class TimeLimitViewlet(base.ViewletBase):
+class TimeLimitViewlet(base.ViewletBase, ExchangeRate):
     def getTimeLimit(self):
-        portal = api.portal.get()
+        context = api.portal.get()
         timeLimitList = []
-        if portal.hasObject('promotions'):
-            timeLimitBrain = api.content.find(portal['promotions'], portal_type='Product')
+        if self.context.getParentNode().has_key('promotions'):
+            context = self.context.getParentNode()['promotions']
+            timeLimitBrain = api.content.find(context=context, portal_type='Product', depth=1)
             for item in timeLimitBrain:
                 item_timeLimit = item.getObject().timeLimit or datetime.datetime(1,1,1,0,0)
                 if not(item_timeLimit and not item_timeLimit >= datetime.datetime.today()):
@@ -34,21 +45,25 @@ class TimeLimitViewlet(base.ViewletBase):
         return timeLimitList
 
 
-class BestSellersViewlet(base.ViewletBase):
+class BestSellersViewlet(base.ViewletBase, ExchangeRate):
     def getBestSellers(self):
-        bestSellers = api.content.find(portal_type='Product', p_bestSeller=True)
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        bestSellers = api.content.find(context=context, portal_type='Product', p_bestSeller=True, depth=1)
         return bestSellers
 
 
-class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
+class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet, ExchangeRate):
     def pdb(self):
         import pdb;pdb.set_trace()
 
     def getBannerPage(self):
-        portal = api.portal.get()
+        context = api.portal.get()
         bannerPage = []
-        if portal.hasObject('banner'):
-            bannerPage = api.content.find(portal['banner'], portal_type='Document')
+        if self.context.getParentNode().has_key('banner'):
+            context = self.context.getParentNode()['banner']
+        bannerPage = api.content.find(context=context, portal_type='Document', depth=1)
         return bannerPage
 
     def getAllIndexProduct(self):
@@ -71,13 +86,16 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
         return allProduct
     
     def getObjectImg(self, obj):
-        objectImg = api.content.find(context=obj, depth=1, b_size=4)
+        objectImg = api.content.find(context=obj, portal_type='productimg', depth=1, b_size=4)
         return objectImg
 
 
 class NewsViewlet(base.ViewletBase):
     def getNewsItem(self):
-        newsItem = api.content.find(portal_type='News Item', b_size=12)
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('news'):
+            context = self.context.getParentNode()['news']
+        newsItem = api.content.find(context=context, portal_type='News Item', b_size=12, depth=1)
         return newsItem
 
     def getNewsMonth(self, obj):
