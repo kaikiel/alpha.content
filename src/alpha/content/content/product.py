@@ -103,7 +103,7 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    fieldset('More Info', fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
+    fieldset(_('More Info'), fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
     brand = schema.TextLine(
         title=_(u'Brand'),
         required=True
@@ -130,7 +130,7 @@ class IProduct(model.Schema):
         required=False
     )
 
-    fieldset('Specification', fields=['specification'])
+    fieldset(_('Specification'), fields=['specification'])
     specification = schema.List(
         title=_(u'specification'),
         description=_(u'ex. clockspeed:100mhz'),
@@ -138,7 +138,7 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    fieldset('Index Information', fields=['indexCategory', 'bestSeller', 'timeLimit'])
+    fieldset(_('Index Information'), fields=['indexCategory', 'bestSeller', 'timeLimit'])
     indexCategory = schema.Choice(
         title=_(u"Index Category"),
         description=_(u'Select the classification of this product (Most View, Special, Latest)'),

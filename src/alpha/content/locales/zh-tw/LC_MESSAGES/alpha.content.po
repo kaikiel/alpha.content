@@ -1,6 +1,3 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -15,27 +12,27 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: alpha.content\n"
+"Domain: DOMAIN\n"
 
 #: ./content/product.py:150
 msgid "Best Seller"
-msgstr ""
+msgstr "熱門商品"
 
 #: ./content/product.py:108
 msgid "Brand"
-msgstr ""
+msgstr "品牌"
 
 #: ./content/product.py:87
 msgid "Category"
-msgstr ""
+msgstr "分類"
 
 #: ./profiles/default/types/Cover.xml
 msgid "Cover"
-msgstr ""
+msgstr "封面"
 
 #: ./content/product.py:77
 msgid "Cover Image"
-msgstr ""
+msgstr "封面圖片"
 
 #: ./browser/configlet.py:34
 #: ./profiles/default/controlpanel.xml
@@ -44,11 +41,11 @@ msgstr ""
 
 #: ./content/product.py:82
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: ./content/product.py:124
 msgid "Download File"
-msgstr ""
+msgstr "下載檔案"
 
 #: ./profiles/default/types/Cover.xml
 #: ./profiles/default/types/Product.xml
@@ -58,32 +55,32 @@ msgstr ""
 
 #: ./content/product.py:61
 msgid "Enter USD$"
-msgstr ""
+msgstr "請輸入 美金$"
 
 #: ./browser/currency_configlet.py:14
 msgid "Exchange Rate"
-msgstr ""
+msgstr "匯率轉換"
 
 #: ./browser/currency_configlet.py:25
 #: ./profiles/default/controlpanel.xml
 msgid "Exchange Rate Setting"
-msgstr ""
+msgstr "匯率轉換設定"
 
 #: ./content/product.py:129
 msgid "Feature"
-msgstr ""
+msgstr "特色"
 
 #: ./content/product.py:156
 msgid "If you want to set the time limit, you must put this product in the \"Promotions\" folder"
-msgstr ""
+msgstr "如果要設定限時商品,必須放在 '促銷' 資料夾中"
 
 #: ./content/product.py:143
 msgid "Index Category"
-msgstr ""
+msgstr "首頁商品分類"
 
 #: ./content/product.py:141
 msgid "Index Information"
-msgstr ""
+msgstr "加入首頁設定"
 
 #: ./configure.zcml:32
 msgid "Installs the alpha.content add-on."
@@ -91,27 +88,27 @@ msgstr ""
 
 #: ./content/product.py:27
 msgid "Latest"
-msgstr ""
+msgstr "最新商品"
 
 #: ./content/product.py:106
 msgid "More Info"
-msgstr ""
+msgstr "商品資訊"
 
 #: ./content/product.py:25
 msgid "Most View"
-msgstr ""
+msgstr "觀看次數最多"
 
 #: ./content/product.py:32
 msgid "Please enter 1 to 5 in the Rating field"
-msgstr ""
+msgstr "請輸入1到5的評分"
 
 #: ./content/product.py:60
 msgid "Price"
-msgstr ""
+msgstr "原價"
 
 #: ./profiles/default/types/Product.xml
 msgid "Product"
-msgstr ""
+msgstr "商品"
 
 #: ./content/product.py:113
 msgid "Product Code"
@@ -119,7 +116,7 @@ msgstr ""
 
 #: ./content/productimg.py:21
 msgid "Product Image"
-msgstr ""
+msgstr "商品圖片"
 
 #: ./content/product.py:48
 msgid "Product Number"
@@ -127,7 +124,7 @@ msgstr ""
 
 #: ./profiles/default/types/ProductImg.xml
 msgid "ProductImg"
-msgstr ""
+msgstr "商品圖片"
 
 #: ./profiles/default/types/ProductReview.xml
 msgid "ProductReview"
@@ -136,15 +133,15 @@ msgstr ""
 #: ./content/product.py:53
 #: ./content/productreview.py:26
 msgid "Rating"
-msgstr ""
+msgstr "評分"
 
 #: ./content/product.py:100
 msgid "Related"
-msgstr ""
+msgstr "相關商品"
 
 #: ./content/product.py:97
 msgid "Related Product"
-msgstr ""
+msgstr "相關商品"
 
 #: ./content/productreview.py:21
 msgid "Review"
@@ -152,45 +149,45 @@ msgstr ""
 
 #: ./content/product.py:66
 msgid "Sale Price"
-msgstr ""
+msgstr "特價"
 
 #: ./content/product.py:144
 msgid "Select the classification of this product (Most View, Special, Latest)"
-msgstr ""
+msgstr "請選擇此商品在首頁中顯示的分類"
 
 #: ./content/product.py:26
 msgid "Special"
-msgstr ""
+msgstr "特別商品"
 
 #: ./content/product.py:133
 msgid "Specification"
-msgstr ""
+msgstr "商品規格"
 
 #: ./content/product.py:92
 msgid "Subcategory"
-msgstr ""
+msgstr "子分類"
 
 #: ./content/product.py:74
 msgid "The sale price is bigger than price!"
-msgstr ""
+msgstr "原價必須大於特價"
 
 #: ./content/product.py:155
 msgid "Time Limit"
-msgstr ""
+msgstr "限時商品"
 
 #: ./content/product.py:37
 msgid "Time limit date can not be before today."
-msgstr ""
+msgstr "限時時間必須大於現在時間"
 
 #: ./content/product.py:43
 #: ./content/productimg.py:16
 #: ./content/productreview.py:16
 msgid "Title"
-msgstr ""
+msgstr "標題"
 
 #: ./browser/currency_configlet.py:15
 msgid "US dollar to RMB exchange rate"
-msgstr ""
+msgstr "美金換人名幣匯率"
 
 #: ./configure.zcml:41
 msgid "Uninstalls the alpha.content add-on."
@@ -216,7 +213,7 @@ msgstr ""
 
 #: ./content/product.py:135
 msgid "specification"
-msgstr ""
+msgstr "規格"
 
 #: ./browser/configlet.py:18
 msgid "store brand count number"

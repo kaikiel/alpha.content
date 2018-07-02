@@ -9,24 +9,34 @@ import datetime
 
 class ProductViewlet(base.ViewletBase):
     def getMostView(self):
-        mostView = api.content.find(portal_type='Product', p_indexCategory='mostView')
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        mostView = api.content.find(context=context, portal_type='Product', p_indexCategory='mostView', depth=1)
         return mostView
 
     def getSpecial(self):
-        special = api.content.find(portal_type='Product', p_indexCategory='special')
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        special = api.content.find(context=context, portal_type='Product', p_indexCategory='special', depth=1)
         return special
 
     def getLatest(self):
-        latest = api.content.find(portal_type='Product', p_indexCategory='latest')
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        latest = api.content.find(context=context, portal_type='Product', p_indexCategory='latest', depth=1)
         return latest
 
 
 class TimeLimitViewlet(base.ViewletBase):
     def getTimeLimit(self):
-        portal = api.portal.get()
+        context = api.portal.get()
         timeLimitList = []
-        if portal.hasObject('promotions'):
-            timeLimitBrain = api.content.find(portal['promotions'], portal_type='Product')
+        if self.context.getParentNode().has_key('promotions'):
+            context = self.context.getParentNode()['promotions']
+            timeLimitBrain = api.content.find(context=context, portal_type='Product', depth=1)
             for item in timeLimitBrain:
                 item_timeLimit = item.getObject().timeLimit or datetime.datetime(1,1,1,0,0)
                 if not(item_timeLimit and not item_timeLimit >= datetime.datetime.today()):
@@ -36,7 +46,10 @@ class TimeLimitViewlet(base.ViewletBase):
 
 class BestSellersViewlet(base.ViewletBase):
     def getBestSellers(self):
-        bestSellers = api.content.find(portal_type='Product', p_bestSeller=True)
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('products'):
+            context = self.context.getParentNode()['products']
+        bestSellers = api.content.find(context=context, portal_type='Product', p_bestSeller=True, depth=1)
         return bestSellers
 
 
@@ -45,10 +58,11 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
         import pdb;pdb.set_trace()
 
     def getBannerPage(self):
-        portal = api.portal.get()
+        context = api.portal.get()
         bannerPage = []
-        if portal.hasObject('banner'):
-            bannerPage = api.content.find(portal['banner'], portal_type='Document')
+        if self.context.getParentNode().has_key('banner'):
+            context = self.context.getParentNode()['banner']
+        bannerPage = api.content.find(context=context, portal_type='Document', depth=1)
         return bannerPage
 
     def getAllIndexProduct(self):
@@ -77,7 +91,10 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
 
 class NewsViewlet(base.ViewletBase):
     def getNewsItem(self):
-        newsItem = api.content.find(portal_type='News Item', b_size=12)
+        context = api.portal.get()
+        if self.context.getParentNode().has_key('news'):
+            context = self.context.getParentNode()['news']
+        newsItem = api.content.find(context=context, portal_type='News Item', b_size=12, depth=1)
         return newsItem
 
     def getNewsMonth(self, obj):
