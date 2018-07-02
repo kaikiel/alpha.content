@@ -2,12 +2,13 @@
 from plone.app.layout.viewlets import common as base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import alsoProvides
+from alpha.content.browser.view import ExchangeRate
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone import api
 from sets import Set
 import datetime
 
-class ProductViewlet(base.ViewletBase):
+class ProductViewlet(base.ViewletBase, ExchangeRate):
     def getMostView(self):
         context = api.portal.get()
         if self.context.getParentNode().has_key('products'):
@@ -30,7 +31,7 @@ class ProductViewlet(base.ViewletBase):
         return latest
 
 
-class TimeLimitViewlet(base.ViewletBase):
+class TimeLimitViewlet(base.ViewletBase, ExchangeRate):
     def getTimeLimit(self):
         context = api.portal.get()
         timeLimitList = []
@@ -44,7 +45,7 @@ class TimeLimitViewlet(base.ViewletBase):
         return timeLimitList
 
 
-class BestSellersViewlet(base.ViewletBase):
+class BestSellersViewlet(base.ViewletBase, ExchangeRate):
     def getBestSellers(self):
         context = api.portal.get()
         if self.context.getParentNode().has_key('products'):
@@ -53,7 +54,7 @@ class BestSellersViewlet(base.ViewletBase):
         return bestSellers
 
 
-class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
+class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet, ExchangeRate):
     def pdb(self):
         import pdb;pdb.set_trace()
 
@@ -85,7 +86,7 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
         return allProduct
     
     def getObjectImg(self, obj):
-        objectImg = api.content.find(context=obj, depth=1, b_size=4)
+        objectImg = api.content.find(context=obj, portal_type='productimg', depth=1, b_size=4)
         return objectImg
 
 
