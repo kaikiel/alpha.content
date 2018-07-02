@@ -49,21 +49,24 @@ class CoverView(BrowserView):
 class UpdateConfiglet():
     def __call__(self):
 	portal = api.portal.get()
-	try:
-            productBrains = api.content.find(context=portal["products"], portal_type="Product")
-	except:
-	    productBrains = []
         try:
             request = self.request
         except:
             request = getRequest()
 
+	try:
+	    lang = request.cookies.get('I18N_LANGUAGE')
+	    if lang == 'zh-tw':
+                productBrains = api.content.find(context=portal['zh-tw']['products'], portal_type="Product")
+	    elif lang == 'en-us':
+		productBrains = api.content.find(ccontext=portal['en-us']['products'], protal_type='Product')
+        except:
+            productBrains = []
         alsoProvides(request, IDisableCSRFProtection)
         # sortList[buggy] = [0,{'1/4': 0, '1/8': 5} ]
         # sortList[${cayegory}] = [${category_count}, { ${subject}: ${subject_count} }]
         sortList = {}
 	brandList = {}
-	productData = {}
         try:
             for item in productBrains:
 		obj = item.getObject()
@@ -91,36 +94,66 @@ class UpdateConfiglet():
 		    brandList[brand] += 1
 		else:
 		    brandList[brand] = 1
-		img = objAbsUrl + '/@@images/cover'
-		uid = obj.UID()
-		productData[title] = [category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid,
-					availability, description]
-
-
+	    import pdb;pdb.set_trace()
             sortList = json.dumps(sortList).decode('utf-8')
             api.portal.set_registry_record('sortList', sortList, interface=IDict)
 
 	    brandList = json.dumps(brandList).decode('utf-8')
 	    api.portal.set_registry_record('brandList', brandList, interface=IDict)
 
-	    productData = sorted(productData.items(), key=lambda x:x[0])
-            productData = json.dumps(productData).decode('utf-8')
-            api.portal.set_registry_record('productData', productData, interface=IDict)
-
         except  Exception as e:
+	    import pdb;pdb.set_trace()
             print e
 
 
 class ProductListing(BrowserView):
     template = ViewPageTemplateFile("templates/product_listing.pt")
     def __call__(self):
-	sortList = api.portal.get_registry_record("sortList", interface=IDict)
-	brandList = api.portal.get_registry_record('brandList', interface=IDict)
-	productData = api.portal.get_registry_record('productData', interface=IDict)
+	request = self.request
+	productData = []
+        sortList = {}
+        brandList = {}
 
-	self.sortList = json.loads(sortList)
-	self.brandList = json.loads(brandList)
-	self.productData = productData
+	productBrain = api.content.find(context=self.context, portal_type='Product')
+	for item in productBrain:
+	    obj = item.getObject()
+	    title = obj.title
+            category = obj.category
+            subject = obj.subcategory
+            brand = obj.brand
+            productNo = obj.productNo
+            objAbsUrl = obj.absolute_url()
+            salePrice = obj.salePrice
+            price = obj.price
+            availability = obj.availability
+            description = obj.description
+            img = objAbsUrl + '/@@images/cover'
+            uid = obj.UID()
+	    rating = obj.rating
+	    translationGroup = item.TranslationGroup
+            if sortList.has_key(category):
+                sortList[category][0] += 1
+                if sortList[category][1].has_key(subject):
+                    sortList[category][1][subject] += 1
+                else:
+                    sortList[category][1][subject] = 1
+            else:
+                sortList[category] = [1, {subject: 1}]
+            if brandList.has_key(brand):
+                brandList[brand] += 1
+            else:
+                brandList[brand] = 1
+
+	    productData.append([title, category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid,
+                                        availability, description, translationGroup, rating])
+
+	self.productData = json.dumps(productData)
+	self.sortList = sortList
+	self.brandList = brandList
+        self.pre_category = request.get('category', '')
+        self.pre_subject = request.get('subject', '')
+        self.pre_brand = request.get('brand', '')
+
         return self.template()
 
 
@@ -201,7 +234,7 @@ class CompareList(BrowserView):
     template = ViewPageTemplateFile('templates/compare_list.pt')
     def __call__(self):
 	request = self.request
-	json_compare_list = request.cookies['compare_list']
+	json_compare_list = request.cookies.get('compare_list')
 	data = []
 	if json_compare_list:
 	    compare_list = json.loads(json_compare_list)
@@ -210,7 +243,7 @@ class CompareList(BrowserView):
 		data.append(obj)
 	    self.data = data
 	else:
-	    self.data = false
+	    self.data = False
 
 	return self.template()
 
