@@ -20,3 +20,11 @@ def product_indexCategory(obj):
 def product_bestSeller(obj):
     return obj.bestSeller
 
+@indexer(IProduct)
+def price(obj):
+    return obj.price
+
+@indexer(IProduct)
+def salePrice(obj):
+    return obj.salePrice
+

@@ -20,4 +20,14 @@
   </index>
   <column value="p_bestSeller"/>
 
+  <index name="price" meta_type="FieldIndex">
+    <indexed_attr value="price" />
+  </index>
+  <column value="price"/>
+
+  <index name="salePrice" meta_type="FieldIndex">
+    <indexed_attr value="salePrice" />
+  </index>
+  <column value="salePrice"/>
+
 </object>

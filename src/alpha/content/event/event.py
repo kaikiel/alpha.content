@@ -1,6 +1,7 @@
 from plone import api
 from zope.globalrequest import getRequest
 from alpha.content.browser.view import UpdateConfiglet
+import pdb
 
 def move_to_top(item, event):
     request = getRequest()
@@ -9,14 +10,21 @@ def move_to_top(item, event):
     request.response.redirect('%s/folder_contents' %abs_url)
 
 def add_configlet(item, event):
-    try:
-	request = getRequest()
-	item.moveObjectsToTop(item.id)
+    action = event.status['action']
+    review_state = event.status['review_state']
+    if action == 'publish' and review_state == 'published':
+    	try:
+	    request = getRequest()
+	    item.moveObjectsToTop(item.id)
+            update_configlet = UpdateConfiglet()
+            update_configlet()
+        except Exception as e:
+	   print e
+    elif action == 'retract' or action == 'reject':
+        request = getRequest()
         abs_url = api.portal.get().absolute_url()
         update_configlet = UpdateConfiglet()
         update_configlet()
-    except Exception as e:
-	print e
 
 #to modify event,moveToTop will cause error
 def modify_configlet(item, event):

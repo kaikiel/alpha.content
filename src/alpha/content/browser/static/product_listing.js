@@ -11,6 +11,13 @@ Vue.component(
           <div class="product-content">
             <span>{{product_number}}</span>
             <h3><a v-bind:href="url">{{title}}</a></h3>
+	  <template v-for="n in rating">
+	      <i class="fa fa-star" style="color:yellow"></i>
+	  </template>
+          <template v-for="n in 5-rating">
+              <i class="fa fa-star" style="color:#ccc"></i>
+          </template>
+
             <div class="product-price">
               <ul>
 		<template v-if="sale_price == null || sale_price == ''">
@@ -34,7 +41,7 @@ Vue.component(
             </div>
           </div>
       </div>`,
-    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'stock']
+    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'stock', 'rating']
 })
 Vue.component(
     'product_detail',
@@ -54,11 +61,13 @@ Vue.component(
             <div class="product-details-2">
   		<h3><a v-bind:href="url">{{title}}</a></h3>
   		<div class="product-rating mb-10 color">
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
-  			<a href="#"><i class="fa fa-star"></i></a>
+              <template v-for="n in rating">
+                  <i class="fa fa-star" style="color:yellow"></i>
+              </template>
+              <template v-for="n in 5-rating">
+        	      <i class="fa fa-star" style="color:#ccc"></i>
+	      </template>
+
   		</div>
   		<div class="product-price">
   			<ul>
@@ -92,7 +101,7 @@ Vue.component(
   	<!-- single-details-end -->
   </div>
 </div>`,
-        props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'description', 'stock']
+        props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'description', 'stock', 'rating']
     }
 )
 Vue.component('paginate', VuejsPaginate)
@@ -116,21 +125,30 @@ var product_listing = new Vue({
 	product_data = this.product_data
 	this.none_limit_data = origin_data
 	numbers = this.numbers
-	count = 0
-	while (product_data.length < numbers){
-	    if(product_data.length == this.none_limit_data.length){
-		break
-	    }else{
-	        product_data.push(origin_data[count])
-	        count ++
+	pre_brand = document.getElementById('pre_brand').innerText
+	pre_category = document.getElementById('pre_category').innerText
+	pre_subject = document.getElementById('pre_subject').innerText
+	if(pre_brand){
+	    this.change_brand(pre_brand)
+	}else if(pre_category && pre_subject){
+	    this.change_category(pre_category, pre_subject)
+	}else{
+	    count = 0
+	    while (product_data.length < numbers){
+	        if(product_data.length == this.none_limit_data.length){
+		    break
+	        }else{
+	            product_data.push(origin_data[count])
+	            count ++
+	        }
 	    }
-	}
-	total_number = origin_data.length
-	if (total_number % numbers != 0){
-	    this.pages = Math.floor(total_number / numbers) +1
-	}
-	else{
-	    this.pages = total_number / numbers
+	    total_number = origin_data.length
+	    if (total_number % numbers != 0){
+	        this.pages = Math.floor(total_number / numbers) +1
+	    }
+	    else{
+	        this.pages = total_number / numbers
+	    }
 	}
     },
     methods: {
@@ -153,8 +171,8 @@ var product_listing = new Vue({
 		$.notify('Product Already In Compare List', {globalPosition: 'bottom right',className:'error'})
 	    }
 	},
-	add_to_cart: function(title, price, sale_price, url, image, uid, stock){
-	    shop_cart.add_shop(title, price, sale_price, url, image, 1, uid)
+	add_to_cart: function(translationGroup, amount){
+	    shop_cart.add_shop(translationGroup, amount)
 	},
         change_page: function(page){
 	    product_data = this.product_data
@@ -249,10 +267,10 @@ var product_listing = new Vue({
             }
 	},
         judge_price: function(product){
-            if(product[1][4]){
-                return parseInt(product[1][4])
+            if(product[5]){
+                return parseInt(product[5])
             }else{
-                return parseInt(product[1][3])
+                return parseInt(product[4])
             }
         },
 	change_category: function(category, subject){
@@ -262,20 +280,38 @@ var product_listing = new Vue({
 	    none_limit_count = 1
 
             this.none_limit_data = []
-            low = parseInt($('#amount1').val().split('-')[0].trim())
-            height = parseInt($('#amount1').val().split('-')[1].trim())
-	    this.product_data = origin_data.filter(function(value){
-		price = product_listing.judge_price(value)
+	    none_limit_data = this.none_limit_data
+            try{
+                low = parseInt($('#amount1').val().split('-')[0].trim())
+                height = parseInt($('#amount1').val().split('-')[1].trim())
+            }
+            catch{
+                low = 0
+                height = 20000
+            }
 
-		if(value[1][0] == category && value[1][1] == subject && price >= low && price <= height){
+	    this.product_data = origin_data.filter(function(value){
+                if(value[5]){
+                    price = parseInt(value[5])
+                }else{
+                    price = parseInt(value[4])
+                }
+
+		if(value[1] == category && value[2] == subject && price >= low && price <= height){
 		    none_limit_count ++
-		    product_listing.none_limit_data.push(value)
+		    none_limit_data.push(value)
 		    if(count <= numbers){
 		         count ++
 		         return value
 		    }
 		}
 	    })
+            $('.change_category').each(function(){
+                if($(this).data('category') == category && $(this).data('subject') == subject){
+                    $(this).addClass('activity')
+                }
+            })
+
             if (none_limit_count % numbers != 0){
                 this.pages = Math.floor(none_limit_count / numbers) +1
             }
@@ -289,13 +325,24 @@ var product_listing = new Vue({
 	    count = 1
 	    none_limit_count = 1
             this.none_limit_data = []
-            low = parseInt($('#amount1').val().split('-')[0].trim())
-            height = parseInt($('#amount1').val().split('-')[1].trim())
+	    none_limit_data = this.none_limit_data
+	    try{
+                low = parseInt($('#amount1').val().split('-')[0].trim())
+                height = parseInt($('#amount1').val().split('-')[1].trim())
+	    }
+	    catch{
+		low = 0
+		height = 20000
+	    }
             this.product_data = origin_data.filter(function(value){
-		price = product_listing.judge_price(value)
-		if(value[1][2] == brand && price >= low && price <= height){
+	        if(value[5]){
+                    price = parseInt(value[5])
+                }else{
+                    price = parseInt(value[4])
+                }
+		if(value[3] == brand && price >= low && price <= height){
 		    none_limit_count ++
-                    product_listing.none_limit_data.push(value)
+                    none_limit_data.push(value)
 	            if(count <= numbers){
                         count ++
                         return value
@@ -308,6 +355,11 @@ var product_listing = new Vue({
             else{
                 this.pages = none_limit_count / numbers
             }
+	    $('.change_brand').each(function(){
+		if($(this).data('brand') == brand){
+		    $(this).addClass('activity')
+		}
+	    })
 	    $('.page_list:nth-child(2)').addClass('active')
 	},
         change_price_range: function(low, height){
