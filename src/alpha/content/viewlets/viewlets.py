@@ -11,22 +11,22 @@ import datetime
 class ProductViewlet(base.ViewletBase, ExchangeRate):
     def getMostView(self):
         context = api.portal.get()
-        if self.context.getParentNode().has_key('products'):
-            context = self.context.getParentNode()['products']
+        if context.hasObject('products'):
+            context = context['products']
         mostView = api.content.find(context=context, portal_type='Product', p_indexCategory='mostView', depth=1)
         return mostView
 
     def getSpecial(self):
         context = api.portal.get()
-        if self.context.getParentNode().has_key('products'):
-            context = self.context.getParentNode()['products']
+        if context.hasObject('products'):
+            context = context['products']
         special = api.content.find(context=context, portal_type='Product', p_indexCategory='special', depth=1)
         return special
 
     def getLatest(self):
         context = api.portal.get()
-        if self.context.getParentNode().has_key('products'):
-            context = self.context.getParentNode()['products']
+        if context.hasObject('products'):
+            context = context['products']
         latest = api.content.find(context=context, portal_type='Product', p_indexCategory='latest', depth=1)
         return latest
 
@@ -35,8 +35,8 @@ class TimeLimitViewlet(base.ViewletBase, ExchangeRate):
     def getTimeLimit(self):
         context = api.portal.get()
         timeLimitList = []
-        if self.context.getParentNode().has_key('promotions'):
-            context = self.context.getParentNode()['promotions']
+        if context.hasObject('promotions'):
+            context = context['promotions']
             timeLimitBrain = api.content.find(context=context, portal_type='Product', depth=1)
             for item in timeLimitBrain:
                 item_timeLimit = item.getObject().timeLimit or datetime.datetime(1,1,1,0,0)
@@ -48,8 +48,8 @@ class TimeLimitViewlet(base.ViewletBase, ExchangeRate):
 class BestSellersViewlet(base.ViewletBase, ExchangeRate):
     def getBestSellers(self):
         context = api.portal.get()
-        if self.context.getParentNode().has_key('products'):
-            context = self.context.getParentNode()['products']
+        if context.hasObject('products'):
+            context = context['products']
         bestSellers = api.content.find(context=context, portal_type='Product', p_bestSeller=True, depth=1)
         return bestSellers
 
@@ -61,8 +61,8 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet, ExchangeR
     def getBannerPage(self):
         context = api.portal.get()
         bannerPage = []
-        if self.context.getParentNode().has_key('banner'):
-            context = self.context.getParentNode()['banner']
+        if context.hasObject('banner'):
+            context = context['banner']
         bannerPage = api.content.find(context=context, portal_type='Document', depth=1)
         return bannerPage
 
@@ -93,8 +93,8 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet, ExchangeR
 class NewsViewlet(base.ViewletBase):
     def getNewsItem(self):
         context = api.portal.get()
-        if self.context.getParentNode().has_key('news'):
-            context = self.context.getParentNode()['news']
+        if context.hasObject('news'):
+            context = context['news']
         newsItem = api.content.find(context=context, portal_type='News Item', b_size=12, depth=1)
         return newsItem
 
