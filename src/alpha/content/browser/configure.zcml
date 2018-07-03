@@ -124,6 +124,19 @@
       class=".view.PersonalDetails"
   />
 
+  <browser:page
+      name="site_map"
+      for="*"
+      permission="zope2.View"
+      class=".view.SiteMap"
+  />
+  <browser:page
+      name="brands"
+      for="*"
+      permission="zope2.View"
+      class=".view.Brands"
+  />
+
 <!-- configlet -->
   <browser:page
     name="categoriesControlPanel"
