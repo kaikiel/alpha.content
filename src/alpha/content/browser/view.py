@@ -17,6 +17,30 @@ from Products.CMFCore.utils import getToolByName
 from sets import Set
 import pdb
 
+class Brands(BrowserView):
+    template = ViewPageTemplateFile('templates/brands.pt')
+    def __call__(self):
+	brandList = {}
+	productBrains = api.content.find(context=api.portal.get()['products'], portal_type='Product')
+	for item in productBrains:
+            obj = item.getObject()
+            brand = obj.brand
+	    firstLetter = brand[0]
+	    if brandList.has_key(firstLetter) and brand not in brandList[firstLetter]:
+                brandList[firstLetter].append(brand)
+	    else:
+	        brandList[firstLetter] = [brand]
+	self.brandList = brandList
+	return self.template()
+
+
+class SiteMap(BrowserView):
+    template = ViewPageTemplateFile('templates/site_map.pt')
+    def __call__(self):
+	site_map = api.content.find(context=api.portal.get(), depth=1)
+	self.site_map = site_map
+        return self.template()
+
 
 class ExchangeRate(BrowserView):
     def getRMBRate(self):
@@ -25,7 +49,6 @@ class ExchangeRate(BrowserView):
 
 
 class NewsItemView(BrowserView):
-    
     def getNewsMonth(self, obj):
         return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%B')
 
