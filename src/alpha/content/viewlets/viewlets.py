@@ -7,6 +7,8 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone import api
 from sets import Set
 import datetime
+from alpha.content.browser.currency_configlet import IExchange
+
 
 class ProductViewlet(base.ViewletBase, ExchangeRate):
     def getMostView(self):
@@ -118,7 +120,8 @@ class FriendLinkViewlet(base.ViewletBase):
 
 
 class ShopCart(base.ViewletBase):
-   """"""
+   def getRmbRate(self):
+        return api.portal.get_registry_record('exchange', interface=IExchange)
 
 
 class AccountViewlet(base.ViewletBase):
