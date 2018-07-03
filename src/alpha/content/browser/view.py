@@ -136,7 +136,6 @@ class ProductListing(BrowserView):
             img = objAbsUrl + '/@@images/cover'
             uid = obj.UID()
 	    rating = obj.rating
-	    translationGroup = item.TranslationGroup
             if sortList.has_key(category):
                 sortList[category][0] += 1
                 if sortList[category][1].has_key(subject):
@@ -151,7 +150,7 @@ class ProductListing(BrowserView):
                 brandList[brand] = 1
 
 	    productData.append([title, category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid,
-                                        availability, description, translationGroup, rating])
+                                        availability, description, rating])
 
 	self.productData = json.dumps(productData)
 	self.sortList = sortList
@@ -248,13 +247,11 @@ class CompareList(BrowserView):
 	json_compare_list = request.cookies.get('compare_list')
 	data = []
 	if json_compare_list:
-	    lang = request.cookies.get('I18N_LANGUAGE')
 	    compare_list = json.loads(json_compare_list)
 	    for item in compare_list:
-	        contents = api.content.find(TranslationGroup = item)
+	        contents = api.content.find(UID = item)
  	        for brain in contents:
-		    if brain.Language == lang:
-		        data.append(brain)
+	            data.append(brain)
 	    self.data = data
 	else:
 	    self.data = False
