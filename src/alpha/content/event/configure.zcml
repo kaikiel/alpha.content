@@ -12,4 +12,8 @@
         for="Products.PlonePAS.events.IUserLoggedInEvent"
         handler=".event.back_to_cover"
     />
+    <subscriber
+        for="Products.PlonePAS.events.IUserInitialLoginInEvent"
+        handler=".event.initPromoCode"
+    />
 </configure>

@@ -139,4 +139,11 @@
     class=".currency_configlet.ExchangeRateControlPanelForm"
     />
 
+  <browser:page
+    name="UserControlPanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    permission="cmf.ManagePortal"
+    class=".user_configlet.UserControlPanelForm"
+    />
+
 </configure>

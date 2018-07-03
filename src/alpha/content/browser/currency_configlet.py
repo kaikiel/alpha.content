@@ -13,6 +13,7 @@ class IExchange(Form.Schema):
     exchange = schema.Float(
         title=_(u'Exchange Rate'),
         description=_(u'US dollar to RMB exchange rate'),
+        default=5.0,
         required=True,
     )
 
