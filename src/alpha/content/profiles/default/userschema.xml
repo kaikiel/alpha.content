@@ -4,7 +4,7 @@
        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
        i18n:domain="plone">
   <schema name="member-fields">
-    <field name="fName" type="zope.schema.URI"
+    <field name="fName" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -12,7 +12,7 @@
       <title i18n:translate="">First Name</title>
     </field>
 
-    <field name="lName" type="zope.schema.URI"
+    <field name="lName" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -20,7 +20,7 @@
       <title i18n:translate="">Last Name</title>
     </field>
 
-    <field name="telephone" type="zope.schema.URI"
+    <field name="telephone" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -28,7 +28,7 @@
       <title i18n:translate="">Telephone</title>
     </field>
 
-    <field name="fax" type="zope.schema.URI"
+    <field name="fax" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -36,7 +36,7 @@
       <title i18n:translate="">Fax</title>
     </field>
 
-    <field name="company" type="zope.schema.URI"
+    <field name="company" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -44,7 +44,7 @@
       <title i18n:translate="">Company</title>
     </field>
 
-    <field name="address1" type="zope.schema.URI"
+    <field name="address1" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -52,7 +52,7 @@
       <title i18n:translate="">Address1</title>
     </field>
 
-    <field name="address2" type="zope.schema.URI"
+    <field name="address2" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -60,7 +60,7 @@
       <title i18n:translate="">address2</title>
     </field>
 
-    <field name="city" type="zope.schema.URI"
+    <field name="city" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -68,7 +68,7 @@
       <title i18n:translate="">City</title>
     </field>
 
-    <field name="zip" type="zope.schema.URI"
+    <field name="zip" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -76,7 +76,7 @@
       <title i18n:translate="">Zip/Post Code</title>
     </field>
 
-    <field name="country" type="zope.schema.URI"
+    <field name="country" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -84,7 +84,7 @@
       <title i18n:translate="">Country</title>
     </field>
 
-    <field name="state" type="zope.schema.URI"
+    <field name="state" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -92,7 +92,7 @@
       <title i18n:translate="">State/Region</title>
     </field>
 
-    <field name="newsletter" type="zope.schema.URI"
+    <field name="newsletter" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
@@ -100,15 +100,16 @@
       <title i18n:translate="">Newsletter</title>
     </field>
 
-    <field name="promoCode" type="zope.schema.URI"
+    <field name="promoCode" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
       <required>False</required>
+      <readonly>True</readonly>
       <title i18n:translate="">promoCode</title>
     </field>
 
-    <field name="promoCodeLog" type="zope.schema.URI"
+    <field name="promoCodeLog" type="zope.schema.TextLine"
       users:forms="In User Profile">
       <description i18n:translate="">
       </description>
