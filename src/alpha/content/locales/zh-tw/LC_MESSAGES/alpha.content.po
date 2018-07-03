@@ -187,7 +187,7 @@ msgstr "標題"
 
 #: ./browser/currency_configlet.py:15
 msgid "US dollar to RMB exchange rate"
-msgstr "美金換人名幣匯率"
+msgstr "美金換人民幣匯率"
 
 #: ./configure.zcml:41
 msgid "Uninstalls the alpha.content add-on."

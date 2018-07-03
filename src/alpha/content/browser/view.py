@@ -12,6 +12,7 @@ import datetime
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
+from alpha.content.browser.currency_configlet import IExchange
 from Products.CMFCore.utils import getToolByName
 from sets import Set
 import pdb
@@ -19,7 +20,7 @@ import pdb
 
 class ExchangeRate(BrowserView):
     def getRMBRate(self):
-        rmbRate = api.portal.get_registry_record('exchange', interface=alpha.content.browser.currency_configlet.IExchange)
+        rmbRate = api.portal.get_registry_record('exchange', interface=IExchange)
         return rmbRate
 
 

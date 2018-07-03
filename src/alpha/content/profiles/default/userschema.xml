@@ -99,5 +99,21 @@
       <required>False</required>
       <title i18n:translate="">Newsletter</title>
     </field>
+
+    <field name="promoCode" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">promoCode</title>
+    </field>
+
+    <field name="promoCodeLog" type="zope.schema.URI"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <title i18n:translate="">promoCodeLog</title>
+    </field>
   </schema>
 </model>

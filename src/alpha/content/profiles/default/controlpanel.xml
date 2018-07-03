@@ -29,4 +29,16 @@
         i18n:attributes="title">
             <permission>Manage portal</permission>
     </configlet>
+
+    <configlet
+        title="User PromoCode"
+        action_id="alpha.connect.User"
+        appId="alpha.connect"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@UserControlPanel"
+        icon_expr="string:/favicon.ico"
+        visible="False">
+            <permission>Manage portal</permission>
+    </configlet>
 </object>

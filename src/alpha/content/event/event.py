@@ -1,6 +1,7 @@
 from plone import api
 from zope.globalrequest import getRequest
 from alpha.content.browser.view import UpdateConfiglet
+from random import randint
 import pdb
 
 def move_to_top(item, event):
@@ -58,3 +59,12 @@ def back_to_cover(event):
     portal = api.portal.get()
     request.response.redirect(portal.absolute_url())
 
+def initPromoCode(event):
+    promoCode = str(randint(0,99999)).zfill(5)
+    existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
+    while promoCode in existCode:
+        promoCode = str(randint(0,99999)).zfill(5)
+    currentUser = event.object
+    currentUser.setProperties({'promoCode':promoCode})
+    existCode.update({promoCode: currentUser.getUserName()})
+    api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
