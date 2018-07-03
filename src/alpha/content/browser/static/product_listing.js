@@ -35,13 +35,13 @@ Vue.component(
 		  <a class="add_shop" v-if="stock" v-on:click="$emit('add_to_cart')"><i class="fa fa-shopping-cart"></i></a>
 		  <a class="out_of_stock" v-else><i class="fa fa-shopping-cart"></i></a>
 		</li>
-                <li><a ><i class="fa fa-book" v-bind:data-uid="uid" v-on:click="$emit('add_to_compare')"></i></a></li>
+                <li><a ><i class="fa fa-book" v-bind:data-translationgroup="translationgroup" v-on:click="$emit('add_to_compare')"></i></a></li>
                 <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
               </ul>
             </div>
           </div>
       </div>`,
-    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'stock', 'rating']
+    props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'stock', 'rating', 'translationgroup']
 })
 Vue.component(
     'product_detail',
@@ -89,7 +89,7 @@ Vue.component(
   			</div>
   			<div class="add-to-links">
   			  <ul>
-  			    <li><a ><i class="fa fa-book" v-bind:data-uid="uid"  v-on:click="$emit('add_to_compare')"></i></a></li>
+  			    <li><a ><i class="fa fa-book" v-bind:data-translationgroup="translationgroup"  v-on:click="$emit('add_to_compare')"></i></a></li>
   			    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
   			  </ul>
   			</div>
@@ -101,7 +101,7 @@ Vue.component(
   	<!-- single-details-end -->
   </div>
 </div>`,
-        props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'description', 'stock', 'rating']
+        props: ['title','product_number','price', 'sale_price', 'url', 'image', 'uid', 'description', 'stock', 'rating', 'translationgroup']
     }
 )
 Vue.component('paginate', VuejsPaginate)
@@ -128,6 +128,9 @@ var product_listing = new Vue({
 	pre_brand = document.getElementById('pre_brand').innerText
 	pre_category = document.getElementById('pre_category').innerText
 	pre_subject = document.getElementById('pre_subject').innerText
+	rmbRate = parseFloat(document.getElementById('rmbRate').innerText)
+	lang = $.cookie('I18N_LANGUAGE')
+
 	if(pre_brand){
 	    this.change_brand(pre_brand)
 	}else if(pre_category && pre_subject){
@@ -138,6 +141,10 @@ var product_listing = new Vue({
 	        if(product_data.length == this.none_limit_data.length){
 		    break
 	        }else{
+		    if(lang == 'zh-tw'){
+			origin_data[count][4] = origin_data[count][4] * rmbRate
+			origin_data[count][5] = origin_data[count][5] * rmbRate
+		    }
 	            product_data.push(origin_data[count])
 	            count ++
 	        }
@@ -162,7 +169,9 @@ var product_listing = new Vue({
 	    if(compare_list.indexOf(uid) == -1){
 	        if(compare_list.length < 4){
 	  	    compare_list.push(uid)
-		    $.cookie('compare_list', JSON.stringify(compare_list))
+		    var date = new Date()
+                    date.setTime(date.getTime() + (60 * 60 * 1000))
+		    $.cookie('compare_list', JSON.stringify(compare_list),  {expires: date, path:'/'})
 		    $.notify('Add Compare Success!!',  {globalPosition: 'bottom right',className:'success'})
 	        }else{
 		    $.notify('Compare List is Full', {globalPosition: 'bottom right',className:'error'})

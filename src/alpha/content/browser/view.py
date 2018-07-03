@@ -159,6 +159,7 @@ class ProductListing(BrowserView):
         self.pre_category = request.get('category', '')
         self.pre_subject = request.get('subject', '')
         self.pre_brand = request.get('brand', '')
+	self.rmbRate = api.portal.get_registry_record('exchange', interface=IExchange)
 
         return self.template()
 
@@ -168,7 +169,8 @@ class ConfirmCart(BrowserView):
     def __call__(self):
         request = self.request
 	abs_url = api.portal.get().absolute_url()
-	if not request.cookies.get('shop_cart'):
+	cookie_shop_cart = requesty.cookiesget('shop_cart')
+	if not cookie_shop_cart or json.loads(cookie_shop_cart):
 	    api.portal.show_message(message='Shop Cart Is Empty', request=request, type='warn')
 	    request.response.redirect('%s/products' %abs_url)
 	    return
@@ -194,10 +196,12 @@ class ConfirmCart(BrowserView):
 	self.productData = productData
 	return self.template()
 
+
 class ContactUs(BrowserView):
     template = ViewPageTemplateFile('templates/contact_us.pt')
     def __call__(self):
 	return self.template()
+
 
 class NewsFolderView(FolderView, NewsItemView):
     def results (self, **kwargs):
@@ -218,6 +222,7 @@ class NewsFolderView(FolderView, NewsItemView):
 
 class SocialButtonMacro(BrowserView):
     """"""
+
 
 class SendMail(BrowserView):
     def __call__(self):
@@ -243,10 +248,13 @@ class CompareList(BrowserView):
 	json_compare_list = request.cookies.get('compare_list')
 	data = []
 	if json_compare_list:
+	    lang = request.cookies.get('I18N_LANGUAGE')
 	    compare_list = json.loads(json_compare_list)
-	    for uid in compare_list:
-		obj = api.content.get(UID=uid)
-		data.append(obj)
+	    for item in compare_list:
+	        contents = api.content.find(TranslationGroup = item)
+ 	        for brain in contents:
+		    if brain.Language == lang:
+		        data.append(brain)
 	    self.data = data
 	else:
 	    self.data = False
