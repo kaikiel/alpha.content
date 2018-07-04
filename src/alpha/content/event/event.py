@@ -65,6 +65,7 @@ def initPromoCode(event):
     while promoCode in existCode:
         promoCode = str(randint(0,99999)).zfill(5)
     currentUser = event.object
-    currentUser.setProperties({'promoCode':promoCode})
-    existCode.update({promoCode: currentUser.getUserName()})
-    api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
+    if hasattr(currentUser, 'setProperties'):
+        currentUser.setProperties({'promoCode':promoCode})
+        existCode.update({promoCode: currentUser.getUserName()})
+        api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)

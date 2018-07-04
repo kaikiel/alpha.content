@@ -35,6 +35,7 @@
       layer="zope.interface.Interface" 
       permission="zope2.View" 
       />
+
   <browser:page
       name="cover_view"
       for="alpha.content.content.cover.ICover"
@@ -42,6 +43,7 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+
   <browser:page
       name="update_configlet"
       for="*"
@@ -49,6 +51,7 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+
   <browser:page
       name="product_listing"
       for="plone.app.contenttypes.interfaces.IFolder"
@@ -56,6 +59,7 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+
   <browser:page
       name="confirm_cart"
       for="*"
@@ -63,6 +67,7 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+
   <browser:page
       name="contact_us"
       for="*"
@@ -70,6 +75,7 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
+
   <browser:page
       name="news_folder_view"
       for="plone.app.contenttypes.interfaces.IFolder"
@@ -95,6 +101,7 @@
       layer="zope.interface.Interface"
       permission="zope2.View"
   />
+
   <browser:page
       name="compare_list"
       for="*"
@@ -130,6 +137,7 @@
       permission="zope2.View"
       class=".view.SiteMap"
   />
+
   <browser:page
       name="brands"
       for="*"
@@ -143,6 +151,14 @@
       class=".view.ReturnProduct"
   />
 
+  <browser:page
+      name="coverListing"
+      for="Products.CMFCore.interfaces.IFolderish"
+      class=".search_view.CoverListing"
+      permission="zope2.View"
+  />
+ 
+ 
 <!-- configlet -->
   <browser:page
     name="categoriesControlPanel"
