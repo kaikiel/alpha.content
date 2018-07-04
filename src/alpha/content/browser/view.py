@@ -15,7 +15,38 @@ from alpha.content.browser.configlet import IDict
 from alpha.content.browser.currency_configlet import IExchange
 from Products.CMFCore.utils import getToolByName
 from sets import Set
-import pdb
+from email.mime.text import MIMEText
+
+
+class ReturnProduct(BrowserView):
+    template = ViewPageTemplateFile('templates/return_product.pt')
+    def __call__(self):
+	request = self.request
+	first_name = request.get('first_name')
+ 	last_name = request.get('last_name')
+        phone = request.get('phone')
+        product_name = request.get('product_name')
+        product_code = request.get('product_code')
+        date = request.get('date')
+        opened = request.get('opened')
+        order_id = request.get('order_id')
+        reason = request.get('reason')
+        amount = request.get('amount')
+        detail = request.get('detail')
+
+	if first_name and last_name:
+	    body_str = """fisrst_name:%s<br>last_name:%s<br>phone:%s<br>date:%s<br>order_id:%s<br>product_name:%s<br>product_code:%s<br>
+			amount:%s<br>reason:%s<br>opened:%s<br>detail:%s<br>
+                    """ %(first_name, last_name, phone, date, order_id, product_name, product_code, amount, reason, opened, detail)
+            mime_text = MIMEText(body_str, 'html', 'utf-8')
+            api.portal.send_email(
+                recipient="ah13441673@gmail.com",
+                sender="henry@mingtak.com.tw",
+                subject="退貨申請" ,
+               body=mime_text.as_string(),
+            )
+        return self.template()
+
 
 class Brands(BrowserView):
     template = ViewPageTemplateFile('templates/brands.pt')
@@ -191,8 +222,8 @@ class ConfirmCart(BrowserView):
     def __call__(self):
         request = self.request
 	abs_url = api.portal.get().absolute_url()
-	cookie_shop_cart = requesty.cookiesget('shop_cart')
-	if not cookie_shop_cart or json.loads(cookie_shop_cart):
+	cookie_shop_cart = request.cookies.get('shop_cart')
+	if not cookie_shop_cart or not json.loads(cookie_shop_cart):
 	    api.portal.show_message(message='Shop Cart Is Empty', request=request, type='warn')
 	    request.response.redirect('%s/products' %abs_url)
 	    return
@@ -202,7 +233,7 @@ class ConfirmCart(BrowserView):
 	totalNumber = 0
 	for uid in uidList:
 	    product = api.content.get(UID=uid)
-	    amount = shop_cart[str(uid)][4]
+	    amount = shop_cart[str(uid)]
 	    title = product.title
             price = product.price
             salePrice = product.salePrice

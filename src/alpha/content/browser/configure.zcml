@@ -136,6 +136,12 @@
       permission="zope2.View"
       class=".view.Brands"
   />
+  <browser:page
+      name="return_product"
+      for="*"
+      permission="zope2.View"
+      class=".view.ReturnProduct"
+  />
 
 <!-- configlet -->
   <browser:page
