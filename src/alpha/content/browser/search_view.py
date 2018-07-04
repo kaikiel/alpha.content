@@ -8,10 +8,21 @@ from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.contentlisting.interfaces import IContentListing
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
-from sets import Set
 import ast
 import random
 import json
+
+
+MULTISPACE = u'\u3000'.encode('utf-8')
+def quote_chars(s):
+    # We need to quote parentheses when searching text indices
+    if '(' in s:
+        s = s.replace('(', '"("')
+    if ')' in s:
+        s = s.replace(')', '")"')
+    if MULTISPACE in s:
+        s = s.replace(MULTISPACE, ' ')
+    return s
 
 
 class CoverListing(BrowserView):
@@ -26,7 +37,7 @@ class CoverListing(BrowserView):
 
 
 
-class FolderProductView(FolderView):
+class SearchView(FolderView):
 
     def pdb(self):
         import pdb;pdb.set_trace()
@@ -36,6 +47,11 @@ class FolderProductView(FolderView):
         b_size = getattr(self.request, 'b_size', None)\
             or getattr(self.request, 'limit_display', None) or 12
         return int(b_size)
+
+    @property
+    def searchableText(self):
+        searchableText = getattr(self.request, 'searchableText', '')
+        return searchableText
 
     @property
     def sort_on(self):
@@ -89,6 +105,8 @@ class FolderProductView(FolderView):
         kwargs.setdefault('b_start', self.b_start)
         kwargs.setdefault('sort_on', self.sort_on)
         kwargs.setdefault('sort_order', self.sort_order)
+        kwargs.setdefault('SearchableText', self.searchableText)
+        
         if self.p_subject != '':
             kwargs.setdefault('p_subject', self.p_subject)
         if self.p_category != '':

@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="alpha.content">
+<body>
+<metal:content-core fill-slot="content-core">
+<metal:content-core define-macro="content-core"
+                    tal:define="toc context/table_of_contents|nothing;">
+  <metal:listingmacro define-macro="listing">
+    <tal:results define="batch view/batch;">
+      <tal:listing condition="batch">
+        <div class="entries" metal:define-slot="entries"
+            tal:define="portal context/@@plone_portal_state/portal;
+                        image_scale portal/@@image_scale">
+          <tal:repeat repeat="item batch" metal:define-macro="entries">
+            <tal:block tal:define="obj item/getObject;
+                item_url item/getURL;
+                item_title item/Title;
+                item_type item/PortalType;
+                item_link python:item_type in view.use_view_action and item_url+'/view' or item_url;
+                ">
+              <metal:block define-slot="entry">
+                <article class="entry">
+                  <header metal:define-macro="listitem" >
+                    <span tal:condition="python:item_type == 'Product'" class="summary" tal:attributes="title item_type">
+                      <a tal:attributes="href item_link;
+                                            title item_type"
+                         tal:content="item_title">
+                      </a>
+                      <a tal:attributes="href item_link;"
+                         tal:condition="item/cover">
+                         <img tal:attributes="src string:${item_url}/@@images/cover/thumb"/>
+                      </a>
+                    </span>
+                  </header>
+                </article>              
+              </metal:block>
+            </tal:block>
+          </tal:repeat>
+        </div>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+      </tal:listing>
+
+      <metal:empty metal:define-slot="no_items_in_listing">
+        <p class="discreet"
+            tal:condition="not: view/batch"
+            tal:content="view/no_items_message">
+          There are currently no items in this folder.
+        </p>
+      </metal:empty>
+
+    </tal:results>
+  </metal:listingmacro>
+
+
+</metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

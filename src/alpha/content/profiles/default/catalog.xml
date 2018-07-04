@@ -5,10 +5,10 @@
   </index>
   <column value="p_category"/>
 
-  <index name="p_subject" meta_type="FieldIndex">
-    <indexed_attr value="p_subject" />
+  <index name="p_subcategory" meta_type="FieldIndex">
+    <indexed_attr value="p_subcategory" />
   </index>
-  <column value="p_subject"/>
+  <column value="p_subcategory"/>
 
   <index name="p_indexCategory" meta_type="FieldIndex">
     <indexed_attr value="p_indexCategory" />
