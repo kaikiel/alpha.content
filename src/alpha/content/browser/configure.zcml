@@ -157,6 +157,12 @@
       class=".search_view.CoverListing"
       permission="zope2.View"
   />
+  <browser:page
+      name="use_coupon"
+      for="*"
+      class=".view.UseCoupon"
+      permission="zope2.View"
+  />
  
  
 <!-- configlet -->

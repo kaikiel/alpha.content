@@ -13,6 +13,7 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
 from alpha.content.browser.currency_configlet import IExchange
+from alpha.content.browser.user_configlet import IUser
 from Products.CMFCore.utils import getToolByName
 from sets import Set
 from email.mime.text import MIMEText
@@ -223,9 +224,12 @@ class ConfirmCart(BrowserView):
         request = self.request
 	abs_url = api.portal.get().absolute_url()
 	cookie_shop_cart = request.cookies.get('shop_cart')
+	if api.user.is_anonymous():
+	    request.response.redirect('%s/login' %abs_url)
+	    return
 	if not cookie_shop_cart or not json.loads(cookie_shop_cart):
 	    api.portal.show_message(message='Shop Cart Is Empty', request=request, type='warn')
-	    request.response.redirect('%s/products' %abs_url)
+	    request.response.redirect('%s/prodcuts' %abs_url)
 	    return
 	shop_cart = json.loads(request.cookies['shop_cart'])
 	uidList = shop_cart.keys()
@@ -248,6 +252,31 @@ class ConfirmCart(BrowserView):
 	self.totalNumber = totalNumber
 	self.productData = productData
 	return self.template()
+
+
+class UseCoupon(BrowserView):
+    def __call__(self):
+        request = self.request
+	coupon_code = request.get('coupon_code')
+	currency = request.get('currency')
+	total = request.get('total')
+	promoCode = api.portal.get_registry_record('promoCode', interface=IUser)
+	try:
+	    username = promoCode[coupon_code]
+	except:
+	    return
+	user = api.user.get(username=username)
+	current_name = api.user.get_current().getUserName()
+	promoCodeLog = user.getProperty('promoCodeLog')
+	if promoCodeLog:
+	    promoCodeLog = json.loads(promoCodeLog)
+	else:
+	    promoCodeLog = []
+	now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+	promoCodeLog.append([current_name, currency, total,now])
+	user.setMemberProperties(mapping={'promoCodeLog': json.dumps(promoCodeLog)})
+	return
+
 
 
 class ContactUs(BrowserView):
