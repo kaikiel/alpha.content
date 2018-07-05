@@ -57,7 +57,10 @@ def toFolderContents(obj, event):
 def back_to_cover(event):
     request = getRequest()
     portal = api.portal.get()
-    request.response.redirect(portal.absolute_url())
+    if 'Manager' in api.user.get_current().getRoles():
+        request.response.redirect('%s/folder_contents' %portal.absolute_url())
+    else:
+        request.response.redirect(portal.absolute_url())
 
 def initPromoCode(event):
     promoCode = str(randint(0,99999)).zfill(5)
