@@ -157,6 +157,15 @@
       class=".search_view.CoverListing"
       permission="zope2.View"
   />
+
+  <browser:page
+      name="search_view"
+      for="*"
+      permission="zope2.View"
+      class=".search_view.SearchView"
+      template="templates/search_view.pt"
+  />
+
   <browser:page
       name="use_coupon"
       for="*"

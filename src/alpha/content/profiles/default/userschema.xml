@@ -114,7 +114,17 @@
       <description i18n:translate="">
       </description>
       <required>False</required>
+      <readonly>True</readonly>
       <title i18n:translate="">promoCodeLog</title>
+    </field>
+
+    <field name="wishList" type="zope.schema.TextLine"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <readonly>True</readonly>
+      <title i18n:translate="">wishList</title>
     </field>
   </schema>
 </model>

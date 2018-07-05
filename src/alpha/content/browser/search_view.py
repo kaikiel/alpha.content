@@ -15,6 +15,8 @@ import re
 
 
 MULTISPACE = u'\u3000'.encode('utf-8')
+BAD_CHARS = ('?', '-', '+', '*', MULTISPACE)
+
 def quote_chars(s):
     # We need to quote parentheses when searching text indices
     if '(' in s:
@@ -25,6 +27,12 @@ def quote_chars(s):
         s = s.replace(MULTISPACE, ' ')
     return s
 
+def quote(term):
+    # The terms and, or and not must be wrapped in quotes to avoid
+    # being parsed as logical query atoms.
+    if term.lower() in ('and', 'or', 'not'):
+        term = '"%s"' % term
+    return term
 
 class CoverListing(BrowserView):
     
@@ -43,6 +51,14 @@ class SearchView(FolderView):
     def pdb(self):
         import pdb;pdb.set_trace()
 
+    def munge_search_term(self, q):
+        for char in BAD_CHARS:
+            q = q.replace(char, ' ')
+        r = map(quote, q.split())
+        r = " AND ".join(r)
+        r = quote_chars(r) + '*'
+        return r
+
     @property
     def b_size(self):
         b_size = getattr(self.request, 'b_size', None)\
@@ -52,8 +68,6 @@ class SearchView(FolderView):
     @property
     def searchableText(self):
         searchableText = getattr(self.request, 'searchableText', '')
-        if searchableText:
-            searchableText = quote_chars(searchableText)
         return searchableText
 
     @property
@@ -113,10 +127,8 @@ class SearchView(FolderView):
         kwargs.setdefault('sort_order', self.sort_order)
         kwargs.setdefault('SearchableText', self.searchableText)
         
-        if self.p_subject != '':
-            kwargs.setdefault('p_subject', self.p_subject)
-        if self.p_category != '':
-            kwargs.setdefault('p_category', self.p_category)
+        if self.searchableText:
+            kwargs['SearchableText'] = self.munge_search_term(self.searchableText)
 
         listing = aq_inner(self.context).restrictedTraverse(
             '@@coverListing', None)

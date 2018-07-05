@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="alpha.content">
+
+    <!-- /@user_wishlist?username=*** -->
+    <plone:service
+      method="GET"
+      name="@user_wishlist"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      factory=".user.UserGetWishList"
+      permission="zope2.View"
+    />
+
+    <!-- /@user_wishlist?username=***&wishItemUID=*** -->
+    <plone:service
+      method="POST"
+      name="@user_wishlist"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      factory=".user.UserSetWishList"
+      permission="zope2.View"
+    />
+
+</configure>

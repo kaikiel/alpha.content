@@ -413,3 +413,13 @@ class PersonalDetails(BrowserView):
             return
 
 
+class WishListVew(BrowserView):
+    def getWishList(self):
+        user = api.user.get_current()
+        if user:
+            wishList = user.getProperty('wishList')
+        if wishList:
+            return ast.literal_eval(wishList)
+        else:
+            return []
+

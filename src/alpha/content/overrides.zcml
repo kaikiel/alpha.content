@@ -1,17 +1,16 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="alpha.content">
 
 
-  <browser:page
-      name="search_view"
-      for="*"
-      permission="zope2.View"
-      class=".browser.search_view.SearchView"
-      template="browser/templates/search_view.pt"
-  />
+    <browser:page
+        name="search"
+        for="*"
+        permission="zope2.View"
+        class=".browser.search_view.SearchView"
+        template="browser/templates/search_view.pt"
+        />
 
 </configure>

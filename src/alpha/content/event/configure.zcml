@@ -16,4 +16,12 @@
         for="Products.PlonePAS.events.IUserInitialLoginInEvent"
         handler=".event.initPromoCode"
     />
+    <subscriber
+        for="Products.PlonePAS.events.IUserLoggedInEvent"
+        handler=".event.setCookieCurrentUser"
+    />
+    <subscriber
+        for="Products.PlonePAS.events.IUserLoggedOutEvent"
+        handler=".event.clearCookieCurrentUser"
+    />
 </configure>
