@@ -144,11 +144,23 @@
       permission="zope2.View"
       class=".view.Brands"
   />
+  <browser:page
+      name="return_product"
+      for="*"
+      permission="zope2.View"
+      class=".view.ReturnProduct"
+  />
 
   <browser:page
       name="coverListing"
       for="Products.CMFCore.interfaces.IFolderish"
       class=".search_view.CoverListing"
+      permission="zope2.View"
+  />
+  <browser:page
+      name="use_coupon"
+      for="*"
+      class=".view.UseCoupon"
       permission="zope2.View"
   />
  
