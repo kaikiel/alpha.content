@@ -6,7 +6,6 @@ from alpha.content.content.product import IProduct
 
 @indexer(IProduct)
 def product_subcategory(obj):
-    import pdb;pdb.set_trace()
     return obj.subcategory
 
 @indexer(IProduct)
