@@ -11,6 +11,7 @@ from Products.Five import BrowserView
 import ast
 import random
 import json
+import re
 
 
 MULTISPACE = u'\u3000'.encode('utf-8')
@@ -51,33 +52,33 @@ class SearchView(FolderView):
     @property
     def searchableText(self):
         searchableText = getattr(self.request, 'searchableText', '')
+        if searchableText:
+            searchableText = quote_chars(searchableText)
         return searchableText
 
     @property
     def sort_on(self):
-        sort_on = getattr(self.request, 'sort_on', 'sortable_title')
+        sort_on = filter(None, re.split('sort_on:(.*),sort_order:(.*)', self.sort_by))[0]
         return sort_on
 
     @property
     def sort_order(self):
-        sort_order = getattr(self.request, 'sort_order', 'ascending')
+        sort_order = filter(None, re.split('sort_on:(.*),sort_order:(.*)', self.sort_by))[1]
         return sort_order
 
     @property
     def sort_by(self):
-        sort_by = "sort_on:{},sort_order:{}".format(self.sort_on, self.sort_order) 
+        sort_by = getattr(self.request, 'sort_by', 'sort_on:sortable_title,sort_order:ascending') 
         return sort_by 
 
     @property
     def p_category(self):
         p_category = getattr(self.request, 'p_category', '')
-        p_category = p_category if p_category != 'No Category' else None
         return p_category
 
     @property
     def p_subject(self):
         p_subject = getattr(self.request, 'p_subject', '')
-        p_subject = p_subject if p_subject != 'No Subject' else None
         return p_subject
     
     def categoryDict(self):
@@ -100,6 +101,11 @@ class SearchView(FolderView):
         kwargs.update(self.request.get('contentFilter', {}))
         if 'object_provides' not in kwargs:  # object_provides is more specific
             kwargs.setdefault('portal_type', 'Product')
+        portal = api.portal.get()
+        context = self.context
+        if portal.hasObject('products'):
+            context = portal['products']
+        kwargs.setdefault('path', context.absolute_url_path())
         kwargs.setdefault('batch', True)
         kwargs.setdefault('b_size', self.b_size)
         kwargs.setdefault('b_start', self.b_start)
@@ -128,6 +134,15 @@ class SearchView(FolderView):
         )
         return batch
 
-    def getNewProduct(self):
-        top3Product = api.content.find(portal_type='Product', sort_on='created', sort_order='descending', b_size='3')
-        return top3Product
+    def getRandProduct(self):
+        portal = api.portal.get()
+        context = self.context
+        if portal.hasObject('products'):
+            context = portal['products']
+        randProduct = api.content.find(portal_type='Product', context=context)
+        randProductLen = len(randProduct)
+        randProductSet = set()
+        while len(randProductSet) < 8:
+            randnum = random.randint(0, randProductLen-1)
+            randProductSet.add(randProduct[randnum])
+        return randProductSet
