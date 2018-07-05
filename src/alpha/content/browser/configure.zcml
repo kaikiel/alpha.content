@@ -163,7 +163,18 @@
       class=".view.UseCoupon"
       permission="zope2.View"
   />
- 
+  <browser:page
+      name="use_coupon_status"
+      for="*"
+      class=".view.UseCouponStatus"
+      permission="zope2.View"
+  />
+  <browser:page
+      name="companys"
+      for="*"
+      class=".view.Companys"
+      permission="zope2.View"
+  />
  
 <!-- configlet -->
   <browser:page
