@@ -25,5 +25,6 @@
     <element value="tabular_view"/>
     <element value="product_listing"/>
     <element value="news_folder_view"/>
+    <element value="companys"/>
   </property>
 </object>

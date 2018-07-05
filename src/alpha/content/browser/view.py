@@ -19,6 +19,30 @@ from sets import Set
 from email.mime.text import MIMEText
 
 
+class Companys(BrowserView):
+    template = ViewPageTemplateFile('templates/companys.pt')
+    def __call__(self):
+        companyBrains = api.content.find(context=self.context, portal_type='Document')
+	self.companyBrains = companyBrains
+	return self.template()
+
+
+class UseCouponStatus(BrowserView):
+    template = ViewPageTemplateFile('templates/use_coupon_status.pt')
+    def __call__(self):
+        request = self.request
+        users = api.user.get_users()
+        data = []
+	for user in users:
+            promoCodeLog = json.loads(user.getProperty('promoCodeLog'))
+            username = user.getUserName()
+            for item in promoCodeLog:
+                item.append(username)
+                data.append(item)
+	self.data = data
+
+	return self.template()
+
 class ReturnProduct(BrowserView):
     template = ViewPageTemplateFile('templates/return_product.pt')
     def __call__(self):
