@@ -185,6 +185,29 @@
       permission="zope2.View"
   />
  
+  <browser:page
+      name="wishlist"
+      for="*"
+      class=".view.WishListView"
+      template="templates/wishlist_view.pt"
+      permission="zope2.View"
+  />
+ 
+  <browser:page
+      name="addwishlist"
+      for="*"
+      class=".view.AddWishList"
+      permission="zope2.View"
+  />
+ 
+  <browser:page
+      name="delwishlist"
+      for="*"
+      class=".view.DelWishList"
+      permission="zope2.View"
+  />
+  
+ 
 <!-- configlet -->
   <browser:page
     name="categoriesControlPanel"
