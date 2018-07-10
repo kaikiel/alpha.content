@@ -7,6 +7,7 @@ from plone.app.users.browser.register import RegistrationForm
 from zope.interface import alsoProvides
 from Acquisition import aq_inner
 from email.mime.text import MIMEText
+import ast
 import json
 import datetime
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -253,7 +254,7 @@ class ConfirmCart(BrowserView):
 	    return
 	if not cookie_shop_cart or not json.loads(cookie_shop_cart):
 	    api.portal.show_message(message='Shop Cart Is Empty', request=request, type='warn')
-	    request.response.redirect('%s/prodcuts' %abs_url)
+	    request.response.redirect('%s/products' %abs_url)
 	    return
 	shop_cart = json.loads(request.cookies['shop_cart'])
 	uidList = shop_cart.keys()
@@ -437,13 +438,80 @@ class PersonalDetails(BrowserView):
             return
 
 
-class WishListVew(BrowserView):
-    def getWishList(self):
+class WishListView(BrowserView):
+    def getUserProperty_wishList(self):
         user = api.user.get_current()
         if user:
             wishList = user.getProperty('wishList')
-        if wishList:
-            return ast.literal_eval(wishList)
+            if wishList:
+                return wishList.split(', ')
+            else:
+                return []
         else:
-            return []
+            self.request.response.redirect(portal_url+'/login')
 
+    def getWishList(self):
+        wishUIDList = self.getUserProperty_wishList()
+        wishList = []
+        for uid in wishUIDList:
+            wishList.append(api.content.get(UID=uid))
+        return wishList
+
+class AddWishList(BrowserView):
+    def setWishList(self, wishItemUID):
+        user  = api.user.get_current()
+        wishList = user.getProperty('wishList')
+        checkUID = api.content.find(portal_type='Product', UID=wishItemUID)
+        if len(checkUID) > 0:
+            if wishList:
+                if wishItemUID not in wishList:
+                    wishList = wishList.split(', ')
+                    wishList.append(wishItemUID)
+                    wishList = ', '.join(wishList) 
+                else:
+                    return json.dumps({'error':'Add WishList Repeat!!'})
+            else: 
+                wishList = str(wishItemUID)
+            alsoProvides(self.request, IDisableCSRFProtection)
+            user.setMemberProperties(mapping={'wishList': wishList})
+            return json.dumps({'success':'Add WishList Success!!'})
+        else:
+            return json.dumps({'error':'wishItemUID is not valid!!'})
+
+    def __call__(self):
+        query = self.request.form.copy()
+        if not api.user.is_anonymous():
+            if query.has_key('wishItemUID'):
+                wishItemUID  = query['wishItemUID']
+                return self.setWishList(wishItemUID)
+            else:
+                return json.dumps({'error':'Query string supplied is not valid'})
+        else: 
+            return json.dumps({'error':'Add WishList Must Be Login!!'})
+
+
+class DelWishList(BrowserView):
+    def delWishList(self, wishItemUID):
+        user  = api.user.get_current()
+        wishList = user.getProperty('wishList').split(', ')
+        checkUID = api.content.find(portal_type='Product', UID=wishItemUID)
+        if len(checkUID) > 0:
+            if wishList:
+                if wishItemUID in wishList:
+                    wishList.remove(wishItemUID)
+                    wishList = ', '.join(wishList) 
+                    alsoProvides(self.request, IDisableCSRFProtection)
+                    user.setMemberProperties(mapping={'wishList': wishList})
+                    return json.dumps({'success':'Delete WishList Success!!'})
+        return json.dumps({'error':'wishItemUID is not valid!!'})
+
+    def __call__(self):
+        query = self.request.form.copy()
+        if not api.user.is_anonymous():
+            if query.has_key('wishItemUID'):
+                wishItemUID  = query['wishItemUID']
+                return self.delWishList(wishItemUID)
+            else:
+                return json.dumps({'error':'Query string supplied is not valid'})
+        else: 
+            return json.dumps({'error':'Add WishList Must Be Login!!'})
