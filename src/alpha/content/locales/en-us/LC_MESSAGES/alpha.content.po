@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-02 02:06+0000\n"
+"POT-Creation-Date: 2018-07-06 01:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,9 +61,13 @@ msgstr ""
 msgid "Exchange Rate"
 msgstr ""
 
-#: ./browser/currency_configlet.py:25
+#: ./browser/currency_configlet.py:26
 #: ./profiles/default/controlpanel.xml
 msgid "Exchange Rate Setting"
+msgstr ""
+
+#: ./browser/user_configlet.py:14
+msgid "Exist PromoCode"
 msgstr ""
 
 #: ./content/product.py:129
@@ -82,7 +86,7 @@ msgstr ""
 msgid "Index Information"
 msgstr ""
 
-#: ./configure.zcml:32
+#: ./configure.zcml:33
 msgid "Installs the alpha.content add-on."
 msgstr ""
 
@@ -189,8 +193,12 @@ msgstr ""
 msgid "US dollar to RMB exchange rate"
 msgstr ""
 
-#: ./configure.zcml:41
+#: ./configure.zcml:42
 msgid "Uninstalls the alpha.content add-on."
+msgstr ""
+
+#: ./browser/user_configlet.py:26
+msgid "User PromoCode"
 msgstr ""
 
 #: ./profiles/default/types/Cover.xml
@@ -199,11 +207,11 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ./configure.zcml:32
+#: ./configure.zcml:33
 msgid "alpha.content"
 msgstr ""
 
-#: ./configure.zcml:41
+#: ./configure.zcml:42
 msgid "alpha.content (uninstall)"
 msgstr ""
 
