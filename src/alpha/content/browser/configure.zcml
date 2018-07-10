@@ -217,13 +217,6 @@
     />
 
   <browser:page
-    name="ExchangeRateControlPanel"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    permission="cmf.ManagePortal"
-    class=".currency_configlet.ExchangeRateControlPanelForm"
-    />
-
-  <browser:page
     name="UserControlPanel"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
     permission="cmf.ManagePortal"

@@ -2,6 +2,5 @@
 <registry>
 <!-- -*- extra stuff goes here -*- -->
     <records interface="alpha.content.browser.configlet.IDict" />
-    <records interface="alpha.content.browser.currency_configlet.IExchange" />
     <records interface="alpha.content.browser.user_configlet.IUser" />
 </registry>
