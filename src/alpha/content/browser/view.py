@@ -262,17 +262,18 @@ class ConfirmCart(BrowserView):
 	totalNumber = 0
 	for uid in uidList:
 	    product = api.content.get(UID=uid)
-	    amount = shop_cart[str(uid)]
-	    title = product.title
-            price = product.price
-            salePrice = product.salePrice
-            abs_url = product.absolute_url()
-	    if salePrice:
-		totalNumber += salePrice * amount
-	    else:
-		totalNumber += price * amount
+            if product:
+	        amount = shop_cart[str(uid)]
+	        title = product.title
+                price = product.price
+                salePrice = product.salePrice
+                abs_url = product.absolute_url()
+	        if salePrice:
+		    totalNumber += salePrice * amount
+	        else:
+		    totalNumber += price * amount
 
-	    productData.append( [title, price, salePrice, abs_url, amount, uid] )
+	        productData.append( [title, price, salePrice, abs_url, amount, uid] )
 
 	self.totalNumber = totalNumber
 	self.productData = productData
