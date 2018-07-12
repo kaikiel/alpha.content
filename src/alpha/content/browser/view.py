@@ -13,8 +13,6 @@ import datetime
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
-from alpha.content.browser.currency_configlet import IExchange
-from alpha.content.browser.user_configlet import IUser
 from Products.CMFCore.utils import getToolByName
 from sets import Set
 from email.mime.text import MIMEText
@@ -99,12 +97,6 @@ class SiteMap(BrowserView):
         return self.template()
 
 
-class ExchangeRate(BrowserView):
-    def getRMBRate(self):
-        rmbRate = api.portal.get_registry_record('exchange', interface=IExchange)
-        return rmbRate
-
-
 class NewsItemView(BrowserView):
     def getNewsMonth(self, obj):
         return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%B')
@@ -116,7 +108,7 @@ class NewsItemView(BrowserView):
         return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%d')
 
 
-class ProductView(ExchangeRate):
+class ProductView(BrowserView):
     def pdb(self):
         import pdb;pdb.set_trace()
 
@@ -238,7 +230,6 @@ class ProductListing(BrowserView):
         self.pre_category = request.get('category', '')
         self.pre_subject = request.get('subject', '')
         self.pre_brand = request.get('brand', '')
-	self.rmbRate = api.portal.get_registry_record('exchange', interface=IExchange)
 
         return self.template()
 

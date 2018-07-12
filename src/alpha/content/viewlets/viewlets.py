@@ -2,15 +2,13 @@
 from plone.app.layout.viewlets import common as base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import alsoProvides
-from alpha.content.browser.view import ExchangeRate
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone import api
 from sets import Set
 import datetime
-from alpha.content.browser.currency_configlet import IExchange
 
 
-class ProductViewlet(base.ViewletBase, ExchangeRate):
+class ProductViewlet(base.ViewletBase):
     def getMostView(self):
         context = api.portal.get()
         if context.hasObject('products'):
@@ -33,7 +31,7 @@ class ProductViewlet(base.ViewletBase, ExchangeRate):
         return latest
 
 
-class TimeLimitViewlet(base.ViewletBase, ExchangeRate):
+class TimeLimitViewlet(base.ViewletBase):
     def getTimeLimit(self):
         context = api.portal.get()
         timeLimitList = []
@@ -47,7 +45,7 @@ class TimeLimitViewlet(base.ViewletBase, ExchangeRate):
         return timeLimitList
 
 
-class BestSellersViewlet(base.ViewletBase, ExchangeRate):
+class BestSellersViewlet(base.ViewletBase):
     def getBestSellers(self):
         context = api.portal.get()
         if context.hasObject('products'):
@@ -56,7 +54,7 @@ class BestSellersViewlet(base.ViewletBase, ExchangeRate):
         return bestSellers
 
 
-class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet, ExchangeRate):
+class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
     def pdb(self):
         import pdb;pdb.set_trace()
 
@@ -120,9 +118,7 @@ class FriendLinkViewlet(base.ViewletBase):
 
 
 class ShopCart(base.ViewletBase):
-   def getRmbRate(self):
-        return api.portal.get_registry_record('exchange', interface=IExchange)
-
+    """"""
 
 class AccountViewlet(base.ViewletBase):
     def isAnonymous(self):

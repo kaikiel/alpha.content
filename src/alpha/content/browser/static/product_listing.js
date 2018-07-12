@@ -36,7 +36,7 @@ Vue.component(
 		  <a class="out_of_stock" v-else><i class="fa fa-shopping-cart"></i></a>
 		</li>
                 <li><a ><i class="fa fa-book" v-bind:data-uid="uid" v-on:click="$emit('add_to_compare')"></i></a></li>
-                <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                <li><a ><i v-bind:data-uid="uid" class="fa fa-heart-o"></i></a></li>
               </ul>
             </div>
           </div>

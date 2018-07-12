@@ -95,9 +95,14 @@ class SearchView(FolderView):
         p_subject = getattr(self.request, 'p_subject', '')
         return p_subject
     
-    def categoryDict(self):
-        categoryDict = ast.literal_eval(api.portal.get_registry_record('dict', interface=IDict))
-        return categoryDict
+    def categoryList(self):
+        files = api.content.find(context=self.context, portal_type="Product")
+        categoryList = []
+        for item in files:
+            category = item.p_category
+            if category and category not in categoryList:
+                categoryList.append(category)
+        return sorted(categoryList)
 
     def results(self, **kwargs):
         """Return a content listing based result set with contents of the
