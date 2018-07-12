@@ -113,10 +113,12 @@ class ProductView(BrowserView):
         import pdb;pdb.set_trace()
 
     def getImg(self):
-	request = self.request
-	context = self.context
-	imgBrain = api.content.find(context=context, portal_type='ProductImg', sort_limit=4)
-	return imgBrain
+        imgList = []
+        imgNameList = ['img1', 'img2', 'img3', 'img4']
+        for imgName in imgNameList:
+            if getattr(self.context, imgName):
+                imgList.append('{}/@@images/{}'.format( self.context.absolute_url(), imgName) )
+	return imgList
 
 
 class CoverView(BrowserView):
