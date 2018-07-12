@@ -230,7 +230,6 @@ class ProductListing(BrowserView):
         self.pre_category = request.get('category', '')
         self.pre_subject = request.get('subject', '')
         self.pre_brand = request.get('brand', '')
-	self.rmbRate = api.portal.get_registry_record('exchange', interface=IExchange)
 
         return self.template()
 
