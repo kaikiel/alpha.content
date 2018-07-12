@@ -28,4 +28,16 @@
         visible="False">
             <permission>Manage portal</permission>
     </configlet>
+    <configlet
+        title="Basic Inform"
+        action_id="alpha.connect.Inform"
+        appId="alpha.connect"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@basicInformControlPanel"
+        icon_expr="string:/favicon.ico"
+        visible="True">
+            <permission>Manage portal</permission>
+    </configlet>
+
 </object>

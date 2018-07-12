@@ -3,4 +3,5 @@
 <!-- -*- extra stuff goes here -*- -->
     <records interface="alpha.content.browser.configlet.IDict" />
     <records interface="alpha.content.browser.user_configlet.IUser" />
+    <records interface="alpha.content.browser.base_inform_configlet.IInform" />
 </registry>
