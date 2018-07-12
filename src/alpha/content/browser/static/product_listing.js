@@ -129,6 +129,17 @@ var product_listing = new Vue({
 	pre_category = document.getElementById('pre_category').innerText
 	pre_subject = document.getElementById('pre_subject').innerText
 
+	origin_data.sort(function(a,b){
+            a_title = a[0].toUpperCase()
+            b_title = b[0].toUpperCase()
+            if(a_title > b_title){
+                return 1
+            }
+            if(a_title < b_title){
+                return -1
+            }
+            return 0
+        })
 	if(pre_brand){
 	    this.change_brand(pre_brand)
 	}else if(pre_category && pre_subject){

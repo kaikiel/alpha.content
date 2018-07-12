@@ -113,5 +113,14 @@
         layer="zope.interface.Interface"
         permission="zope2.View"
     />
+    <browser:viewlet
+        name="new_footer"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".viewlets.NewFooter"
+        template="new_footer.pt"
+        layer="zope.interface.Interface"
+        permission="zope2.View"
+    />
 
 </configure>

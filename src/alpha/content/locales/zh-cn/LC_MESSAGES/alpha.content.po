@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-02 02:06+0000\n"
+"POT-Creation-Date: 2018-07-06 01:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,10 +61,14 @@ msgstr "請輸入 美金$"
 msgid "Exchange Rate"
 msgstr "匯率轉換"
 
-#: ./browser/currency_configlet.py:25
+#: ./browser/currency_configlet.py:26
 #: ./profiles/default/controlpanel.xml
 msgid "Exchange Rate Setting"
 msgstr "匯率轉換設定"
+
+#: ./browser/user_configlet.py:14
+msgid "Exist PromoCode"
+msgstr ""
 
 #: ./content/product.py:129
 msgid "Feature"
@@ -82,7 +86,7 @@ msgstr "首頁商品分類"
 msgid "Index Information"
 msgstr "加入首頁設定"
 
-#: ./configure.zcml:32
+#: ./configure.zcml:33
 msgid "Installs the alpha.content add-on."
 msgstr ""
 
@@ -189,8 +193,12 @@ msgstr "標題"
 msgid "US dollar to RMB exchange rate"
 msgstr "美金換人名幣匯率"
 
-#: ./configure.zcml:41
+#: ./configure.zcml:42
 msgid "Uninstalls the alpha.content add-on."
+msgstr ""
+
+#: ./browser/user_configlet.py:26
+msgid "User PromoCode"
 msgstr ""
 
 #: ./profiles/default/types/Cover.xml
@@ -199,11 +207,11 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ./configure.zcml:32
+#: ./configure.zcml:33
 msgid "alpha.content"
 msgstr ""
 
-#: ./configure.zcml:41
+#: ./configure.zcml:42
 msgid "alpha.content (uninstall)"
 msgstr ""
 

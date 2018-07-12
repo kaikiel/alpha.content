@@ -13,6 +13,7 @@ import datetime
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.globalrequest import getRequest
 from alpha.content.browser.configlet import IDict
+from alpha.content.browser.base_inform_configlet import IInform
 from Products.CMFCore.utils import getToolByName
 from sets import Set
 from email.mime.text import MIMEText
@@ -253,17 +254,18 @@ class ConfirmCart(BrowserView):
 	totalNumber = 0
 	for uid in uidList:
 	    product = api.content.get(UID=uid)
-	    amount = shop_cart[str(uid)]
-	    title = product.title
-            price = product.price
-            salePrice = product.salePrice
-            abs_url = product.absolute_url()
-	    if salePrice:
-		totalNumber += salePrice * amount
-	    else:
-		totalNumber += price * amount
+            if product:
+	        amount = shop_cart[str(uid)]
+	        title = product.title
+                price = product.price
+                salePrice = product.salePrice
+                abs_url = product.absolute_url()
+	        if salePrice:
+		    totalNumber += salePrice * amount
+	        else:
+		    totalNumber += price * amount
 
-	    productData.append( [title, price, salePrice, abs_url, amount, uid] )
+	        productData.append( [title, price, salePrice, abs_url, amount, uid] )
 
 	self.totalNumber = totalNumber
 	self.productData = productData
@@ -298,6 +300,9 @@ class UseCoupon(BrowserView):
 class ContactUs(BrowserView):
     template = ViewPageTemplateFile('templates/contact_us.pt')
     def __call__(self):
+	self.address = api.portal.get_registry_record('address', interface=IInform)
+	self.cellphone = api.portal.get_registry_record('cellphone', interface=IInform)
+
 	return self.template()
 
 
