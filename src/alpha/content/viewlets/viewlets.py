@@ -6,7 +6,14 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone import api
 from sets import Set
 import datetime
+from alpha.content.browser.base_inform_configlet import IInform
+import datetime
 
+class NewFooter(base.ViewletBase):
+    def update(self):
+        self.address = api.portal.get_registry_record('address', interface=IInform)
+        self.cellphone = api.portal.get_registry_record('cellphone', interface=IInform)
+        self.email = api.portal.get_registry_record('email', interface=IInform)
 
 class ProductViewlet(base.ViewletBase):
     def getMostView(self):

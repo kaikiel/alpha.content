@@ -223,4 +223,11 @@
     class=".user_configlet.UserControlPanelForm"
     />
 
+  <browser:page
+    name="basicInformControlPanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    permission="cmf.ManagePortal"
+    class=".base_inform_configlet.BasicInformControlPanelForm"
+    />
+
 </configure>
