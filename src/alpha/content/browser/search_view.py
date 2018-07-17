@@ -96,7 +96,11 @@ class SearchView(FolderView):
         return p_subject
     
     def categoryList(self):
-        files = api.content.find(context=self.context, portal_type="Product")
+        portal = api.portal.get()
+        context = self.context
+        if portal.hasObject('Products'):
+            context = portal['Products']
+        files = api.content.find(context=context, portal_type="Product")
         categoryList = []
         for item in files:
             category = item.p_category
