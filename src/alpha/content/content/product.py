@@ -7,6 +7,7 @@ from plone.supermodel import model
 from plone.supermodel.directives import fieldset
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+from plone.namedfile.field import NamedBlobImage, NamedBlobFile, NamedImage
 from plone.app.vocabularies.catalog import CatalogSource
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from z3c.form import validator
@@ -19,7 +20,6 @@ from zope import schema
 from zope.interface import implementer
 from alpha.content import _
 import datetime
-
 
 categoryVocabulary = SimpleVocabulary(
     [SimpleTerm(value=u'mostView', title=_(u'Most View')),
@@ -155,6 +155,27 @@ class IProduct(model.Schema):
         title=_(u'Time Limit'),
         description=_(u'If you want to set the time limit, you must put this product in the "Promotions" folder'),
         constraint=future_date,
+        required=False,
+    )
+
+    fieldset(_('Slider'), fields=['img1', 'img2', 'img3', 'img4'])
+    img1 = NamedBlobImage(
+        title=_(u"Slider Image1"),
+        required=False,
+    )
+
+    img2 = NamedBlobImage(
+        title=_(u"Slider Image2"),
+        required=False,
+    )
+
+    img3 = NamedBlobImage(
+        title=_(u"Slider Image3"),
+        required=False,
+    )
+
+    img4 = NamedBlobImage(
+        title=_(u"Slider Image4"),
         required=False,
     )
     

@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone import api
 from plone.app.contenttypes.browser.folder import FolderView
-from plone.app.users.browser.register import RegistrationForm
+from alpha.content import _
 from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.utils import getToolByName
+from zope.globalrequest import getRequest
 from Acquisition import aq_inner
 from email.mime.text import MIMEText
+from plone.app.users.browser.register import RegistrationForm
+from alpha.content.browser.configlet import IDict
+from alpha.content.browser.base_inform_configlet import IInform
+from email.mime.text import MIMEText
+from sets import Set
 import ast
 import json
 import datetime
-from plone.protect.interfaces import IDisableCSRFProtection
-from zope.globalrequest import getRequest
-from alpha.content.browser.configlet import IDict
-from alpha.content.browser.base_inform_configlet import IInform
-from Products.CMFCore.utils import getToolByName
-from sets import Set
-from email.mime.text import MIMEText
 
 
 class Companys(BrowserView):
@@ -46,6 +47,7 @@ class UseCouponStatus(BrowserView):
 class ReturnProduct(BrowserView):
     template = ViewPageTemplateFile('templates/return_product.pt')
     def __call__(self):
+        self.viewTitle = _(u'Return')
 	request = self.request
 	first_name = request.get('first_name')
  	last_name = request.get('last_name')
@@ -76,14 +78,16 @@ class ReturnProduct(BrowserView):
 class Brands(BrowserView):
     template = ViewPageTemplateFile('templates/brands.pt')
     def __call__(self):
+        self.viewTitle = _('Brands')
 	brandList = {}
 	productBrains = api.content.find(context=api.portal.get()['products'], portal_type='Product')
 	for item in productBrains:
             obj = item.getObject()
             brand = obj.brand
 	    firstLetter = brand[0]
-	    if brandList.has_key(firstLetter) and brand not in brandList[firstLetter]:
-                brandList[firstLetter].append(brand)
+	    if brandList.has_key(firstLetter):
+                if brand not in brandList[firstLetter]:
+                    brandList[firstLetter].append(brand)
 	    else:
 	        brandList[firstLetter] = [brand]
 	self.brandList = brandList
@@ -93,6 +97,7 @@ class Brands(BrowserView):
 class SiteMap(BrowserView):
     template = ViewPageTemplateFile('templates/site_map.pt')
     def __call__(self):
+        self.viewTitle = _(u'Site Map')
 	site_map = api.content.find(context=api.portal.get(), depth=1)
 	self.site_map = site_map
         return self.template()
@@ -114,10 +119,12 @@ class ProductView(BrowserView):
         import pdb;pdb.set_trace()
 
     def getImg(self):
-	request = self.request
-	context = self.context
-	imgBrain = api.content.find(context=context, portal_type='ProductImg', sort_limit=4)
-	return imgBrain
+        imgList = []
+        imgNameList = ['img1', 'img2', 'img3', 'img4']
+        for imgName in imgNameList:
+            if getattr(self.context, imgName):
+                imgList.append('{}/@@images/{}'.format( self.context.absolute_url(), imgName) )
+	return imgList
 
 
 class CoverView(BrowserView):
@@ -238,6 +245,7 @@ class ProductListing(BrowserView):
 class ConfirmCart(BrowserView):
     template = ViewPageTemplateFile("templates/confirm_cart.pt")
     def __call__(self):
+        self.viewTitle = _(u'Confirm Cart')
         request = self.request
 	abs_url = api.portal.get().absolute_url()
 	cookie_shop_cart = request.cookies.get('shop_cart')
@@ -300,6 +308,7 @@ class UseCoupon(BrowserView):
 class ContactUs(BrowserView):
     template = ViewPageTemplateFile('templates/contact_us.pt')
     def __call__(self):
+        self.viewTitle = _(u'Contact Us')
 	self.address = api.portal.get_registry_record('address', interface=IInform)
 	self.cellphone = api.portal.get_registry_record('cellphone', interface=IInform)
 
@@ -347,6 +356,7 @@ class SendMail(BrowserView):
 class CompareList(BrowserView):
     template = ViewPageTemplateFile('templates/compare_list.pt')
     def __call__(self):
+        self.viewTitle = _(u'Compare List')
 	request = self.request
 	json_compare_list = request.cookies.get('compare_list')
 	data = []
@@ -373,11 +383,13 @@ class LogOut(BrowserView):
 
 class Register(RegistrationForm):
     RegistrationForm.template = ViewPageTemplateFile('templates/register_form.pt')
+    RegistrationForm.viewTitle = _(u'Register')
 
 
 class PersonalDetails(BrowserView):
     template = ViewPageTemplateFile('templates/personal_view.pt')
     def __call__(self):
+        self.viewTitle = _(u'Personal Details')
         if not api.user.is_anonymous():
             formdata = self.request.form
             if formdata.has_key('email') and formdata.has_key('fName'):
@@ -435,6 +447,11 @@ class PersonalDetails(BrowserView):
 
 
 class WishListView(BrowserView):
+    @property
+    def viewTitle(self):
+        viewTitle = _(u'Wish List')
+        return viewTitle
+
     def getUserProperty_wishList(self):
         user = api.user.get_current()
         if user:

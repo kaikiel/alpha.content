@@ -21,7 +21,7 @@
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <element value="ProductImg" />
+    <element value="Image"/>
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">alpha.content.AddProduct</property>
@@ -33,6 +33,7 @@
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
     <element value="plone.app.content.interfaces.INameFromTitle"/>
+    <element value="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"/>
   </property>
 
   <!-- View information -->

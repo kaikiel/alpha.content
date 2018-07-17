@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-06 01:14+0000\n"
+"POT-Creation-Date: 2018-07-16 07:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: alpha.content\n"
 
+#: ./browser/base_inform_configlet.py:32
+msgid "Basic Inform"
+msgstr ""
+
 #: ./content/product.py:150
 msgid "Best Seller"
 msgstr ""
@@ -25,8 +29,24 @@ msgstr ""
 msgid "Brand"
 msgstr ""
 
+#: ./browser/view.py:81
+msgid "Brands"
+msgstr ""
+
 #: ./content/product.py:87
 msgid "Category"
+msgstr ""
+
+#: ./browser/view.py:359
+msgid "Compare List"
+msgstr ""
+
+#: ./browser/view.py:248
+msgid "Confirm Cart"
+msgstr ""
+
+#: ./browser/view.py:311
+msgid "Contact Us"
 msgstr ""
 
 #: ./profiles/default/types/Cover.xml
@@ -58,15 +78,6 @@ msgstr ""
 
 #: ./content/product.py:61
 msgid "Enter USD$"
-msgstr ""
-
-#: ./browser/currency_configlet.py:14
-msgid "Exchange Rate"
-msgstr ""
-
-#: ./browser/currency_configlet.py:26
-#: ./profiles/default/controlpanel.xml
-msgid "Exchange Rate Setting"
 msgstr ""
 
 #: ./browser/user_configlet.py:14
@@ -103,6 +114,10 @@ msgstr ""
 
 #: ./content/product.py:25
 msgid "Most View"
+msgstr ""
+
+#: ./browser/view.py:392
+msgid "Personal Details"
 msgstr ""
 
 #: ./content/product.py:32
@@ -142,12 +157,20 @@ msgstr ""
 msgid "Rating"
 msgstr ""
 
+#: ./browser/view.py:386
+msgid "Register"
+msgstr ""
+
 #: ./content/product.py:100
 msgid "Related"
 msgstr ""
 
 #: ./content/product.py:97
 msgid "Related Product"
+msgstr ""
+
+#: ./browser/view.py:50
+msgid "Return"
 msgstr ""
 
 #: ./content/productreview.py:21
@@ -160,6 +183,30 @@ msgstr ""
 
 #: ./content/product.py:144
 msgid "Select the classification of this product (Most View, Special, Latest)"
+msgstr ""
+
+#: ./browser/view.py:100
+msgid "Site Map"
+msgstr ""
+
+#: ./content/product.py:161
+msgid "Slider"
+msgstr ""
+
+#: ./content/product.py:163
+msgid "Slider Image1"
+msgstr ""
+
+#: ./content/product.py:168
+msgid "Slider Image2"
+msgstr ""
+
+#: ./content/product.py:173
+msgid "Slider Image3"
+msgstr ""
+
+#: ./content/product.py:178
+msgid "Slider Image4"
 msgstr ""
 
 #: ./content/product.py:26
@@ -192,10 +239,6 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ./browser/currency_configlet.py:15
-msgid "US dollar to RMB exchange rate"
-msgstr ""
-
 #: ./configure.zcml:42
 msgid "Uninstalls the alpha.content add-on."
 msgstr ""
@@ -210,12 +253,28 @@ msgstr ""
 msgid "View"
 msgstr ""
 
+#: ./browser/view.py:452
+msgid "Wish List"
+msgstr ""
+
+#: ./browser/base_inform_configlet.py:22
+msgid "address"
+msgstr ""
+
 #: ./configure.zcml:33
 msgid "alpha.content"
 msgstr ""
 
 #: ./configure.zcml:42
 msgid "alpha.content (uninstall)"
+msgstr ""
+
+#: ./browser/base_inform_configlet.py:18
+msgid "cellphone"
+msgstr ""
+
+#: ./browser/base_inform_configlet.py:14
+msgid "email"
 msgstr ""
 
 #: ./content/product.py:136

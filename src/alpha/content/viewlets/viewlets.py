@@ -97,10 +97,14 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
             allProduct.add(item.getObject())
 
         return allProduct
-    
+
     def getObjectImg(self, obj):
-        objectImg = api.content.find(context=obj, portal_type='productimg', depth=1, b_size=4)
-        return objectImg
+        imgList = []
+        imgNameList = ['img1', 'img2', 'img3', 'img4']
+        for imgName in imgNameList:
+            if getattr(obj, imgName):
+                imgList.append('{}/@@images/{}'.format( obj.absolute_url(), imgName) )
+        return imgList
 
 
 class NewsViewlet(base.ViewletBase):
