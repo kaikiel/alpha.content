@@ -48,6 +48,11 @@ class CoverListing(BrowserView):
 
 class SearchView(FolderView):
 
+    @property
+    def viewTitle(self):
+        viewTitle = _(u'Search')
+        return viewTitle
+
     def pdb(self):
         import pdb;pdb.set_trace()
 
@@ -167,3 +172,11 @@ class SearchView(FolderView):
             randnum = random.randint(0, randProductLen-1)
             randProductSet.add(randProduct[randnum])
         return randProductSet
+
+    def getObjectImg(self, obj):
+        imgList = []
+        imgNameList = ['img1', 'img2', 'img3', 'img4']
+        for imgName in imgNameList:
+            if getattr(obj, imgName):
+                imgList.append('{}/@@images/{}'.format( obj.absolute_url(), imgName) )
+        return imgList

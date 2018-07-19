@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-16 07:34+0000\n"
+"POT-Creation-Date: 2018-07-19 03:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,18 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: alpha.content\n"
+
+#: ./browser/view.py:506
+msgid "Add WishList Must Be Login!!"
+msgstr ""
+
+#: ./browser/view.py:486
+msgid "Add WishList Repeat!!"
+msgstr ""
+
+#: ./browser/view.py:491
+msgid "Add WishList Success!!"
+msgstr ""
 
 #: ./browser/base_inform_configlet.py:32
 msgid "Basic Inform"
@@ -60,6 +72,10 @@ msgstr ""
 #: ./browser/configlet.py:34
 #: ./profiles/default/controlpanel.xml
 msgid "Custom Related Setting"
+msgstr ""
+
+#: ./browser/view.py:521
+msgid "Delete WishList Success!!"
 msgstr ""
 
 #: ./content/product.py:82
@@ -152,6 +168,10 @@ msgstr ""
 msgid "ProductReview"
 msgstr ""
 
+#: ./browser/view.py:504
+msgid "Query string supplied is not valid"
+msgstr ""
+
 #: ./content/product.py:53
 #: ./content/productreview.py:26
 msgid "Rating"
@@ -179,6 +199,10 @@ msgstr ""
 
 #: ./content/product.py:66
 msgid "Sale Price"
+msgstr ""
+
+#: ./browser/search_view.py:53
+msgid "Search"
 msgstr ""
 
 #: ./content/product.py:144
@@ -295,4 +319,8 @@ msgstr ""
 
 #: ./browser/configlet.py:22
 msgid "store full product data"
+msgstr ""
+
+#: ./browser/view.py:493
+msgid "wishItemUID is not valid!!"
 msgstr ""

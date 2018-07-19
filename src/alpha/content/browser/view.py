@@ -482,14 +482,21 @@ class AddWishList(BrowserView):
                     wishList.append(wishItemUID)
                     wishList = ', '.join(wishList) 
                 else:
-                    return json.dumps({'error':'Add WishList Repeat!!'})
+                    msg = _(u'Add WishList Repeat!!')
+                    trans_msg = api.portal.translate(msg, lang=self.context.Language())
+                    return json.dumps({'error': trans_msg})
             else: 
                 wishList = str(wishItemUID)
             alsoProvides(self.request, IDisableCSRFProtection)
             user.setMemberProperties(mapping={'wishList': wishList})
-            return json.dumps({'success':'Add WishList Success!!'})
+
+            msg = _(u'Add WishList Success!!')
+            trans_msg = api.portal.translate(msg, lang=self.context.Language())
+            return json.dumps({'success': trans_msg})
         else:
-            return json.dumps({'error':'wishItemUID is not valid!!'})
+            msg = _(u'wishItemUID is not valid!!')
+            trans_msg = api.portal.translate(msg, lang=self.context.Language())
+            return json.dumps({'error': trans_msg})
 
     def __call__(self):
         query = self.request.form.copy()
@@ -498,9 +505,13 @@ class AddWishList(BrowserView):
                 wishItemUID  = query['wishItemUID']
                 return self.setWishList(wishItemUID)
             else:
-                return json.dumps({'error':'Query string supplied is not valid'})
+                msg = _(u'Query string supplied is not valid')
+                trans_msg = api.portal.translate(msg, lang=self.context.Language())
+                return json.dumps({'error': trans_msg})
         else: 
-            return json.dumps({'error':'Add WishList Must Be Login!!'})
+            msg = _(u'Add WishList Must Be Login!!')
+            trans_msg = api.portal.translate(msg, lang=self.context.Language())
+            return json.dumps({'error': trans_msg})
 
 
 class DelWishList(BrowserView):
@@ -515,8 +526,14 @@ class DelWishList(BrowserView):
                     wishList = ', '.join(wishList) 
                     alsoProvides(self.request, IDisableCSRFProtection)
                     user.setMemberProperties(mapping={'wishList': wishList})
-                    return json.dumps({'success':'Delete WishList Success!!'})
-        return json.dumps({'error':'wishItemUID is not valid!!'})
+
+                    msg = _(u'Delete WishList Success!!')
+                    trans_msg = api.portal.translate(msg, lang=self.context.Language())
+                    return json.dumps({'success': trans_msg})
+
+        msg = _(u'wishItemUID is not valid!!')
+        trans_msg = api.portal.translate(msg, lang=self.context.Language())
+        return json.dumps({'error': trans_msg})
 
     def __call__(self):
         query = self.request.form.copy()
@@ -525,6 +542,10 @@ class DelWishList(BrowserView):
                 wishItemUID  = query['wishItemUID']
                 return self.delWishList(wishItemUID)
             else:
-                return json.dumps({'error':'Query string supplied is not valid'})
+                msg = _(u'Query string supplied is not valid')
+                trans_msg = api.portal.translate(msg, lang=self.context.Language())
+                return json.dumps({'error': trans_msg})
         else: 
-            return json.dumps({'error':'Add WishList Must Be Login!!'})
+            msg = _(u'Add WishList Must Be Login!!')
+            trans_msg = api.portal.translate(msg, lang=self.context.Language())
+            return json.dumps({'error': trans_msg})
