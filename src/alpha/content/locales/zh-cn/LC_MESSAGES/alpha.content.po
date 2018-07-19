@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-16 07:34+0000\n"
+"POT-Creation-Date: 2018-07-19 03:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,9 +14,21 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./browser/view.py:506
+msgid "Add WishList Must Be Login!!"
+msgstr "新增愿望清单必须先登入"
+
+#: ./browser/view.py:486
+msgid "Add WishList Repeat!!"
+msgstr "新增愿望清单项目重复"
+
+#: ./browser/view.py:491
+msgid "Add WishList Success!!"
+msgstr "新增愿望清单成功"
+
 #: ./browser/base_inform_configlet.py:32
 msgid "Basic Inform"
-msgstr ""
+msgstr "公司资讯"
 
 #: ./content/product.py:150
 msgid "Best Seller"
@@ -59,13 +71,17 @@ msgstr "封面图片"
 msgid "Custom Related Setting"
 msgstr ""
 
+#: ./browser/view.py:521
+msgid "Delete WishList Success!!"
+msgstr "删除愿望清单成功"
+
 #: ./content/product.py:82
 msgid "Description"
 msgstr "描述"
 
 #: ./content/product.py:124
 msgid "Download File"
-msgstr "下載檔案"
+msgstr "下载档案"
 
 #: ./profiles/default/types/Cover.xml
 #: ./profiles/default/types/Product.xml
@@ -75,7 +91,7 @@ msgstr "编辑"
 
 #: ./content/product.py:61
 msgid "Enter USD$"
-msgstr "請輸入 人民币¥"
+msgstr "请输入 人民币¥"
 
 #: ./browser/user_configlet.py:14
 msgid "Exist PromoCode"
@@ -149,6 +165,10 @@ msgstr "商品图片"
 msgid "ProductReview"
 msgstr ""
 
+#: ./browser/view.py:504
+msgid "Query string supplied is not valid"
+msgstr ""
+
 #: ./content/product.py:53
 #: ./content/productreview.py:26
 msgid "Rating"
@@ -177,6 +197,10 @@ msgstr ""
 #: ./content/product.py:66
 msgid "Sale Price"
 msgstr "特价"
+
+#: ./browser/search_view.py:53
+msgid "Search"
+msgstr "搜寻"
 
 #: ./content/product.py:144
 msgid "Select the classification of this product (Most View, Special, Latest)"
@@ -292,4 +316,8 @@ msgstr ""
 
 #: ./browser/configlet.py:22
 msgid "store full product data"
+msgstr ""
+
+#: ./browser/view.py:493
+msgid "wishItemUID is not valid!!"
 msgstr ""
