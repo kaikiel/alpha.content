@@ -192,56 +192,6 @@ class UpdateConfiglet():
             print e
 
 
-class ProductListing(BrowserView):
-    template = ViewPageTemplateFile("templates/product_listing.pt")
-    def __call__(self):
-	request = self.request
-	productData = []
-        sortList = {}
-        brandList = {}
-
-	productBrain = api.content.find(context=self.context, portal_type='Product')
-	for item in productBrain:
-	    obj = item.getObject()
-	    title = obj.title
-            category = obj.category
-            subject = obj.subcategory
-            brand = obj.brand
-            productNo = obj.productNo
-            objAbsUrl = obj.absolute_url()
-            salePrice = obj.salePrice
-            price = obj.price
-            availability = obj.availability
-            description = obj.description
-            img = objAbsUrl + '/@@images/cover'
-            uid = obj.UID()
-	    rating = obj.rating
-            if sortList.has_key(category):
-                sortList[category][0] += 1
-                if sortList[category][1].has_key(subject):
-                    sortList[category][1][subject] += 1
-                else:
-                    sortList[category][1][subject] = 1
-            else:
-                sortList[category] = [1, {subject: 1}]
-            if brandList.has_key(brand):
-                brandList[brand] += 1
-            else:
-                brandList[brand] = 1
-
-	    productData.append([title, category, subject, brand, price, salePrice, objAbsUrl, productNo, img, uid,
-                                        availability, description, rating])
-
-	self.productData = json.dumps(productData)
-	self.sortList = sortList
-	self.brandList = brandList
-        self.pre_category = request.get('category', '')
-        self.pre_subject = request.get('subject', '')
-        self.pre_brand = request.get('brand', '')
-
-        return self.template()
-
-
 class ConfirmCart(BrowserView):
     template = ViewPageTemplateFile("templates/confirm_cart.pt")
     def __call__(self):

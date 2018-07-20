@@ -34,24 +34,18 @@ def quote(term):
         term = '"%s"' % term
     return term
 
+
 class CoverListing(BrowserView):
     
     def __call__(self,**kw):
         query = {}
         query.update(**kw)
-        query.setdefault('portal_type', 'Product')
         catalog = getToolByName(self.context, 'portal_catalog')
         results = catalog(query)
         return IContentListing(results)
 
 
-
-class SearchView(FolderView):
-
-    @property
-    def viewTitle(self):
-        viewTitle = _(u'Search')
-        return viewTitle
+class CustomFolderView(FolderView):
 
     def pdb(self):
         import pdb;pdb.set_trace()
@@ -139,10 +133,15 @@ class SearchView(FolderView):
         kwargs.setdefault('b_start', self.b_start)
         kwargs.setdefault('sort_on', self.sort_on)
         kwargs.setdefault('sort_order', self.sort_order)
-        kwargs.setdefault('SearchableText', self.searchableText)
         
         if self.searchableText:
             kwargs['SearchableText'] = self.munge_search_term(self.searchableText)
+
+        if self.p_category:
+            kwargs['p_category'] = self.p_category
+
+        if self.p_subject:
+            kwargs['p_subject'] = self.p_subject
 
         listing = aq_inner(self.context).restrictedTraverse(
             '@@coverListing', None)
@@ -160,6 +159,22 @@ class SearchView(FolderView):
         )
         return batch
 
+    def getObjectImg(self, obj):
+        imgList = []
+        imgNameList = ['img1', 'img2', 'img3', 'img4']
+        for imgName in imgNameList:
+            if getattr(obj, imgName):
+                imgList.append('{}/@@images/{}'.format( obj.absolute_url(), imgName) )
+        return imgList
+
+
+class SearchView(CustomFolderView):
+
+    @property
+    def viewTitle(self):
+        viewTitle = _(u'Search')
+        return viewTitle
+
     def getRandProduct(self):
         portal = api.portal.get()
         context = self.context
@@ -173,10 +188,34 @@ class SearchView(FolderView):
             randProductSet.add(randProduct[randnum])
         return randProductSet
 
-    def getObjectImg(self, obj):
-        imgList = []
-        imgNameList = ['img1', 'img2', 'img3', 'img4']
-        for imgName in imgNameList:
-            if getattr(obj, imgName):
-                imgList.append('{}/@@images/{}'.format( obj.absolute_url(), imgName) )
-        return imgList
+
+class ProductListing(CustomFolderView):
+
+    def getBrandList(self):
+        brandList = {}
+	productBrain = api.content.find(context=self.context, portal_type='Product')
+	for item in productBrain:
+	    obj = item.getObject()
+            brand = obj.brand
+            if brandList.has_key(brand):
+                brandList[brand] += 1
+            else:
+                brandList[brand] = 1
+	return brandList
+
+    def getCategoryList(self):
+        categoryList = {}
+	productBrain = api.content.find(context=self.context, portal_type='Product')
+	for item in productBrain:
+	    obj = item.getObject()
+            category = obj.category
+            subject = obj.subcategory
+            if categoryList.has_key(category):
+                categoryList[category][0] += 1
+                if categoryList[category][1].has_key(subject):
+                    categoryList[category][1][subject] += 1
+                else:
+                    categoryList[category][1][subject] = 1
+            else:
+                categoryList[category] = [1, {subject: 1}]
+	return categoryList
