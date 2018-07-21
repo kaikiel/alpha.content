@@ -13,6 +13,7 @@ from email.mime.text import MIMEText
 from plone.app.users.browser.register import RegistrationForm
 from alpha.content.browser.configlet import IDict
 from alpha.content.browser.base_inform_configlet import IInform
+from alpha.content.browser.user_configlet import IUser
 from email.mime.text import MIMEText
 from sets import Set
 import ast
@@ -35,11 +36,13 @@ class UseCouponStatus(BrowserView):
         users = api.user.get_users()
         data = []
 	for user in users:
-            promoCodeLog = json.loads(user.getProperty('promoCodeLog'))
-            username = user.getUserName()
-            for item in promoCodeLog:
-                item.append(username)
-                data.append(item)
+            promoCodeLog = user.getProperty('promoCodeLog')
+            if promoCodeLog:
+                promoCodeLog = json.loads(promoCodeLog)
+                username = user.getUserName()
+                for item in promoCodeLog:
+                    item.append(username)
+                    data.append(item)
 	self.data = data
 
 	return self.template()

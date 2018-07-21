@@ -32,11 +32,11 @@ Vue.component(
             <div class="add-to-links mt-15">
               <ul>
                 <li>
-		  <a class="add_shop" v-if="stock" v-on:click="$emit('add_to_cart')"><i class="fa fa-shopping-cart"></i></a>
+		  <a class="add_shop" v-if="stock" ><i class="fa fa-shopping-cart"></i></a>
 		  <a class="out_of_stock" v-else><i class="fa fa-shopping-cart"></i></a>
 		</li>
-                <li><a ><i class="fa fa-book" v-bind:data-uid="uid" v-on:click="$emit('add_to_compare')"></i></a></li>
-                <li><a ><i v-bind:data-uid="uid" class="fa fa-heart-o"></i></a></li>
+                <li><a ><i class="fa fa-book" v-bind:data-uid="uid" ></i></a></li>
+                <li><a ><i v-bind:data-uid="uid" class="fa fa-heart-o" ></i></a></li>
               </ul>
             </div>
           </div>
@@ -83,13 +83,13 @@ Vue.component(
   		<p>{{description}}</p>
   		<div class="action-inner mt-20">
   			<div class="product-button-3">
-  		          <a class="add_shop"  v-if="stock" v-on:click="$emit('add_to_cart')" >
+  		          <a class="add_shop"  v-if="stock"  >
 			    <i class="fa fa-shopping-cart"></i>Add to cart</a>
 			  <a class="out_of_stock" v-else ><i class="fa fa-shopping-cart"></i>Out of cart</a>
   			</div>
   			<div class="add-to-links">
   			  <ul>
-  			    <li><a ><i class="fa fa-book" v-bind:data-uid="uid"  v-on:click="$emit('add_to_compare')"></i></a></li>
+  			    <li><a ><i class="fa fa-book" ></i></a></li>
   			    <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
   			  </ul>
   			</div>
@@ -164,6 +164,22 @@ var product_listing = new Vue({
 	}
     },
     methods: {
+	add_to_wishlist: function(uid){
+            url = location.href.replace('products', 'addwishlist')
+            data = {'wishItemUID': uid}
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: data,
+            }).done(function(response) {
+                var result = $.parseJSON(response)
+                if(result.hasOwnProperty('success')){
+                    $.notify(result.success,  {globalPosition: 'bottom right',className:'success'})
+                }else if(result.hasOwnProperty('error')){
+                    $.notify(result.error,  {globalPosition: 'bottom right',className:'error'})
+                }
+            })
+        },
 	add_to_compare: function(uid){
 	    json_compare_list = $.cookie('compare_list')
 	    if(json_compare_list){
