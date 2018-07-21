@@ -55,7 +55,8 @@
   <browser:page
       name="product_listing"
       for="plone.app.contenttypes.interfaces.IFolder"
-      class=".view.ProductListing"
+      template="templates/product_listing.pt"
+      class=".folder_view.ProductListing"
       layer="zope.interface.Interface"
       permission="zope2.View"
       />
@@ -154,7 +155,7 @@
   <browser:page
       name="coverListing"
       for="Products.CMFCore.interfaces.IFolderish"
-      class=".search_view.CoverListing"
+      class=".folder_view.CoverListing"
       permission="zope2.View"
   />
 
@@ -162,7 +163,7 @@
       name="search_view"
       for="*"
       permission="zope2.View"
-      class=".search_view.SearchView"
+      class=".folder_view.SearchView"
       template="templates/search_view.pt"
   />
 
