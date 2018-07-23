@@ -20,6 +20,20 @@ import json
 import datetime
 
 
+class GeneralMethod(BrowserView):
+    def salePrice(self, obj):
+        if api.user.is_anonymous():
+            return
+
+        groupList = ['level_A', 'level_B', 'level_C', 'level_D']
+        groupDict = {'level_A': 'l_a_price', 'level_B': 'l_b_price', 'level_C': 'l_c_price', 'level_D': 'salePrice'}        
+        currentGroups = api.user.get_current().getUser().getGroups()
+        for group in groupList:
+            if group in currentGroups:
+                return getattr(obj, groupDict[group])
+        return
+
+
 class Companys(BrowserView):
     template = ViewPageTemplateFile('templates/companys.pt')
     def __call__(self):
@@ -114,10 +128,7 @@ class NewsItemView(BrowserView):
         return datetime.datetime.strptime(obj.CreationDate(), '%Y-%m-%dT%H:%M:%S+00:00').strftime('%d')
 
 
-class ProductView(BrowserView):
-    def pdb(self):
-        import pdb;pdb.set_trace()
-
+class ProductView(GeneralMethod):
     def getImg(self):
         imgList = []
         imgNameList = ['img1', 'img2', 'img3', 'img4']
@@ -192,7 +203,7 @@ class UpdateConfiglet():
             print e
 
 
-class ConfirmCart(BrowserView):
+class ConfirmCart(GeneralMethod):
     template = ViewPageTemplateFile("templates/confirm_cart.pt")
     def __call__(self):
         self.viewTitle = _(u'Confirm Cart')
@@ -223,7 +234,7 @@ class ConfirmCart(BrowserView):
 	        else:
 		    totalNumber += price * amount
 
-	        productData.append( [title, price, salePrice, abs_url, amount, uid] )
+	        productData.append( [title, price, salePrice, abs_url, amount, uid, product] )
 
 	self.totalNumber = totalNumber
 	self.productData = productData

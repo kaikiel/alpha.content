@@ -8,6 +8,7 @@ from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.contentlisting.interfaces import IContentListing
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
+from alpha.content.browser.view import GeneralMethod
 import ast
 import random
 import json
@@ -192,7 +193,7 @@ class CustomFolderView(FolderView):
         return imgList
 
 
-class SearchView(CustomFolderView):
+class SearchView(CustomFolderView, GeneralMethod):
 
     @property
     def viewTitle(self):
@@ -213,7 +214,7 @@ class SearchView(CustomFolderView):
         return randProductSet
 
 
-class ProductListing(CustomFolderView):
+class ProductListing(CustomFolderView, GeneralMethod):
 
     def getBrandList(self):
         brandList = {}

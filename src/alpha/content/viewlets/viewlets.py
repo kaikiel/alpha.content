@@ -3,6 +3,7 @@ from plone.app.layout.viewlets import common as base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
+from alpha.content.browser.view import GeneralMethod
 from plone import api
 from sets import Set
 import datetime
@@ -16,7 +17,7 @@ class NewFooter(base.ViewletBase):
         self.email = api.portal.get_registry_record('email', interface=IInform)
 
 
-class ProductViewlet(base.ViewletBase):
+class ProductViewlet(base.ViewletBase, GeneralMethod):
     def getMostView(self):
         context = api.portal.get()
         if context.hasObject('products'):
@@ -39,7 +40,7 @@ class ProductViewlet(base.ViewletBase):
         return latest
 
 
-class TimeLimitViewlet(base.ViewletBase):
+class TimeLimitViewlet(base.ViewletBase, GeneralMethod):
     def getTimeLimit(self):
         context = api.portal.get()
         timeLimitList = []
@@ -53,7 +54,7 @@ class TimeLimitViewlet(base.ViewletBase):
         return timeLimitList
 
 
-class BestSellersViewlet(base.ViewletBase):
+class BestSellersViewlet(base.ViewletBase, GeneralMethod):
     def getBestSellers(self):
         context = api.portal.get()
         if context.hasObject('products'):
