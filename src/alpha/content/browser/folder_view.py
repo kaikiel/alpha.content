@@ -107,6 +107,21 @@ class CustomFolderView(FolderView):
                 categoryList.append(category)
         return sorted(categoryList)
 
+    @property
+    def price_min(self):
+        price_min = getattr(self.request, 'price_min', 0)
+        return int(price_min)
+
+    @property
+    def price_max(self):
+        price_max = getattr(self.request, 'price_max', 20000)
+        return int(price_max)
+
+    @property
+    def price(self):
+        price = range(self.price_min, self.price_max+1)
+        return price
+
     def results(self, **kwargs):
         """Return a content listing based result set with contents of the
         folder.
@@ -133,6 +148,7 @@ class CustomFolderView(FolderView):
         kwargs.setdefault('b_start', self.b_start)
         kwargs.setdefault('sort_on', self.sort_on)
         kwargs.setdefault('sort_order', self.sort_order)
+        kwargs.setdefault('price', self.price)
         
         if self.searchableText:
             kwargs['SearchableText'] = self.munge_search_term(self.searchableText)

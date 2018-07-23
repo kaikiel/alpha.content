@@ -22,7 +22,10 @@ def product_bestSeller(obj):
 
 @indexer(IProduct)
 def price(obj):
-    return obj.price
+    if obj.salePrice:
+        return obj.salePrice
+    else :
+        return obj.price
 
 @indexer(IProduct)
 def salePrice(obj):

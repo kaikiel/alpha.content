@@ -24,4 +24,12 @@
         for="Products.PlonePAS.events.IUserLoggedOutEvent"
         handler=".event.clearCookieCurrentUser"
     />
+    <subscriber
+        for="Products.PluggableAuthService.interfaces.events.IPrincipalCreatedEvent"
+        handler=".event.addUserDefaultGroup"
+    />
+    <subscriber
+        for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
+        handler=".event.delUserPromoCodeConfiglet"
+    />
 </configure>

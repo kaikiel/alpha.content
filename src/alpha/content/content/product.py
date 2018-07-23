@@ -56,23 +56,6 @@ class IProduct(model.Schema):
         constraint=rating_constraint,
     )
 
-    price = schema.Int(
-        title=_(u'Price'),
-        description=_(u'Enter USD$'),
-        required=True,
-    )
-
-    salePrice = schema.Int(
-        title=_(u'Sale Price'),
-        description=_(u'Enter USD$'),
-        required=False
-    )
-
-    @invariant
-    def price_invariant(data):
-        if data.price < data.salePrice:
-            raise Invalid(_(u'The sale price is bigger than price!'))
-
     cover = namedfile.NamedBlobImage(
         title=_(u'Cover Image'),
         required=True,
@@ -101,6 +84,43 @@ class IProduct(model.Schema):
             source=CatalogSource(portal_type='Product')
         ),
         required=False,
+    )
+
+    fieldset(_('Product Price'), fields=['price', 'salePrice', 'l_a_price', 'l_b_price', 'l_c_price'])
+
+    price = schema.Int(
+        title=_(u'Price'),
+        description=_(u'Enter USD$'),
+        required=True,
+    )
+
+    salePrice = schema.Int(
+        title=_(u'Sale Price'),
+        description=_(u'Enter USD$'),
+        required=False
+    )
+
+    @invariant
+    def price_invariant(data):
+        if data.price < data.salePrice:
+            raise Invalid(_(u'The sale price is bigger than price!'))
+
+    l_a_price = schema.Int(
+        title=_(u'Level A Group Price'),
+        description=_(u'Enter USD$'),
+        required=False
+    )
+
+    l_b_price = schema.Int(
+        title=_(u'Level B Group Price'),
+        description=_(u'Enter USD$'),
+        required=False
+    )
+
+    l_c_price = schema.Int(
+        title=_(u'Level C Group Price'),
+        description=_(u'Enter USD$'),
+        required=False
     )
 
     fieldset(_('More Info'), fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
