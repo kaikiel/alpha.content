@@ -10,6 +10,11 @@
   </index>
   <column value="p_subject"/>
 
+  <index name="brands" meta_type="FieldIndex">
+    <indexed_attr value="brands" />
+  </index>
+  <column value="brands"/>
+
   <index name="p_indexCategory" meta_type="FieldIndex">
     <indexed_attr value="p_indexCategory" />
   </index>

@@ -85,6 +85,11 @@ class CustomFolderView(FolderView):
         return sort_by 
 
     @property
+    def brands(self):
+        brands = getattr(self.request, 'brands', '')
+        return brands
+
+    @property
     def p_category(self):
         p_category = getattr(self.request, 'p_category', '')
         return p_category
@@ -152,6 +157,9 @@ class CustomFolderView(FolderView):
         
         if self.searchableText:
             kwargs['SearchableText'] = self.munge_search_term(self.searchableText)
+
+        if self.brands:
+            kwargs['brands'] = self.brands
 
         if self.p_category:
             kwargs['p_category'] = self.p_category

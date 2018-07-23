@@ -5,6 +5,10 @@ from plone.indexer.decorator import indexer
 from alpha.content.content.product import IProduct
 
 @indexer(IProduct)
+def product_brand(obj):
+    return obj.brand
+
+@indexer(IProduct)
 def product_subject(obj):
     return obj.subcategory
 
