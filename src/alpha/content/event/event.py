@@ -81,3 +81,13 @@ def initPromoCode(event):
         currentUser.setProperties({'promoCode':promoCode})
         existCode.update({promoCode: currentUser.getUserName()})
         api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
+
+def addUserDefaultGroup(event):
+    username = event.principal.getUserName()
+    api.group.add_user(groupname="level_D", username=username)
+
+def delUserPromoCodeConfiglet(event):
+    username = event.principal
+    existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
+    existCode = {key:val for key, val in existCode.items() if val != username}
+    api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
