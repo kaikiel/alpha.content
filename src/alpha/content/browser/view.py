@@ -27,12 +27,28 @@ class GeneralMethod(BrowserView):
             return
 
         groupList = ['level_A', 'level_B', 'level_C', 'level_D']
-        groupDict = {'level_A': 'l_a_price', 'level_B': 'l_b_price', 'level_C': 'l_c_price', 'level_D': 'salePrice'}        
+        groupDict = {'level_A': 'l_a_price', 'level_B': 'l_b_price', 'level_C': 'l_c_price', 'level_D': 'salePrice'}
         currentGroups = api.user.get_current().getUser().getGroups()
         for group in groupList:
             if group in currentGroups:
                 return getattr(obj, groupDict[group])
         return
+
+
+class GetProductData(GeneralMethod):
+    def __call__(self):
+        request = self.request
+        uid = request.get('uid', '')
+        if uid:
+            content = api.content.get(UID=uid)
+            title = content.title
+            contentUrl = content.absolute_url()
+            price = self.salePrice(content)
+            img = contentUrl + '/@@images/cover'
+            data = [str(title), contentUrl, price, img]
+            return json.dumps(data)
+        else:
+            return 'error'
 
 
 class Companys(BrowserView):

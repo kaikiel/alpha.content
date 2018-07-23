@@ -9,6 +9,6 @@
       <adapter name="p_indexCategory"  factory=".indexers.product_indexCategory" />
       <adapter name="p_bestSeller" factory=".indexers.product_bestSeller" />
       <adapter name="price" factory=".indexers.price" />
-      <adapter name="salePrice" factory=".indexers.salePrice" />      
+      <adapter name="salePrice" factory=".indexers.salePrice" />
 </configure>
 
