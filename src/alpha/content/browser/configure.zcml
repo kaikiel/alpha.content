@@ -177,7 +177,7 @@
       name="use_coupon_status"
       for="*"
       class=".view.UseCouponStatus"
-      permission="zope2.View"
+      permission="cmf.ListFolderContents"
   />
   <browser:page
       name="companys"
@@ -215,7 +215,14 @@
       permission="zope2.View"
   />
   
- 
+   <browser:page
+      name="get_product_data"
+      for="*"
+      class=".view.GetProductData"
+      permission="zope2.View"
+  />
+
+
 <!-- configlet -->
   <browser:page
     name="categoriesControlPanel"

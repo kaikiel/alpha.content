@@ -244,3 +244,11 @@ class ProductListing(CustomFolderView, GeneralMethod):
             else:
                 categoryList[category] = [1, {subject: 1}]
 	return categoryList
+
+    def getProductAD(self):
+        portal = api.portal.get()
+        context = self.context
+        if portal.hasObject('resource'):
+            context = portal['resource']
+        productAD = api.content.find(context=context, id="product-ad")
+        return productAD
