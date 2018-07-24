@@ -208,6 +208,13 @@
       permission="zope2.View"
   />
   
+  <browser:page
+      name="checkpromocode"
+      for="*"
+      class=".view.CheckPromoCode"
+      permission="zope2.View"
+  />
+  
  
 <!-- configlet -->
   <browser:page

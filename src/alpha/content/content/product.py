@@ -86,7 +86,7 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    fieldset(_('Product Price'), fields=['price', 'salePrice', 'l_a_price', 'l_b_price', 'l_c_price'])
+    fieldset(_('Product Price'), fields=['price', 'salePrice', 'l_a_price', 'l_b_price', 'l_c_price', 'disc_amount'])
 
     price = schema.Int(
         title=_(u'Price'),
@@ -99,11 +99,6 @@ class IProduct(model.Schema):
         description=_(u'Enter USD$'),
         required=False
     )
-
-    @invariant
-    def price_invariant(data):
-        if data.price < data.salePrice:
-            raise Invalid(_(u'The sale price is bigger than price!'))
 
     l_a_price = schema.Int(
         title=_(u'Level A Group Price'),
@@ -122,6 +117,21 @@ class IProduct(model.Schema):
         description=_(u'Enter USD$'),
         required=False
     )
+    
+    disc_amount = schema.Int(
+        title=_(u'Discount Amount'),
+        description=_(u'Enter USD$'),
+        default=0,
+        min=0,
+        required=False
+    )
+
+    @invariant
+    def price_invariant(data):
+        if data.price < data.salePrice:
+            raise Invalid(_(u'The sale price is bigger than price!'))
+        if data.price < data.disc_amount:
+            raise Invalid(_(u'The Discount Amount is bigger than price!'))
 
     fieldset(_('More Info'), fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
     brand = schema.TextLine(

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-23 03:08+0000\n"
+"POT-Creation-Date: 2018-07-23 10:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,15 +14,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/view.py:462
+#: ./browser/view.py:473
 msgid "Add WishList Must Be Login!!"
 msgstr "新增愿望清单必须先登入"
 
-#: ./browser/view.py:435
+#: ./browser/view.py:446
 msgid "Add WishList Repeat!!"
 msgstr "新增愿望清单项目重复"
 
-#: ./browser/view.py:443
+#: ./browser/view.py:454
 msgid "Add WishList Success!!"
 msgstr "新增愿望清单成功"
 
@@ -30,15 +30,15 @@ msgstr "新增愿望清单成功"
 msgid "Basic Inform"
 msgstr "公司资讯"
 
-#: ./content/product.py:170
+#: ./content/product.py:180
 msgid "Best Seller"
 msgstr "热门商品"
 
-#: ./content/product.py:128
+#: ./content/product.py:138
 msgid "Brand"
 msgstr "品牌"
 
-#: ./browser/view.py:81
+#: ./browser/view.py:95
 msgid "Brands"
 msgstr "品牌"
 
@@ -46,15 +46,15 @@ msgstr "品牌"
 msgid "Category"
 msgstr "分类"
 
-#: ./browser/view.py:309
+#: ./browser/view.py:320
 msgid "Compare List"
 msgstr "比较表"
 
-#: ./browser/view.py:198
+#: ./browser/view.py:209
 msgid "Confirm Cart"
 msgstr "购物车"
 
-#: ./browser/view.py:261
+#: ./browser/view.py:272
 msgid "Contact Us"
 msgstr "联络我们"
 
@@ -71,7 +71,7 @@ msgstr "封面图片"
 msgid "Custom Related Setting"
 msgstr ""
 
-#: ./browser/view.py:480
+#: ./browser/view.py:491
 msgid "Delete WishList Success!!"
 msgstr "删除愿望清单成功"
 
@@ -79,7 +79,11 @@ msgstr "删除愿望清单成功"
 msgid "Description"
 msgstr "描述"
 
-#: ./content/product.py:144
+#: ./content/product.py:122
+msgid "Discount Amount"
+msgstr "折扣金额"
+
+#: ./content/product.py:154
 msgid "Download File"
 msgstr "下载档案"
 
@@ -97,19 +101,19 @@ msgstr "请输入 人民币¥"
 msgid "Exist PromoCode"
 msgstr ""
 
-#: ./content/product.py:149
+#: ./content/product.py:159
 msgid "Feature"
 msgstr "特色"
 
-#: ./content/product.py:176
+#: ./content/product.py:186
 msgid "If you want to set the time limit, you must put this product in the \"Promotions\" folder"
 msgstr "如果要设定限时商品,必须放在 '促销' 资料夹中"
 
-#: ./content/product.py:163
+#: ./content/product.py:173
 msgid "Index Category"
 msgstr "首页商品分类"
 
-#: ./content/product.py:161
+#: ./content/product.py:171
 msgid "Index Information"
 msgstr "加入首页设定"
 
@@ -121,19 +125,19 @@ msgstr ""
 msgid "Latest"
 msgstr "最新商品"
 
-#: ./content/product.py:109
+#: ./content/product.py:104
 msgid "Level A Group Price"
 msgstr "Level A 会员价格"
 
-#: ./content/product.py:115
+#: ./content/product.py:110
 msgid "Level B Group Price"
 msgstr "Level B 会员价格"
 
-#: ./content/product.py:121
+#: ./content/product.py:116
 msgid "Level C Group Price"
 msgstr "Level C 会员价格"
 
-#: ./content/product.py:126
+#: ./content/product.py:136
 msgid "More Info"
 msgstr "商品资讯"
 
@@ -141,7 +145,7 @@ msgstr "商品资讯"
 msgid "Most View"
 msgstr "观看次数最多"
 
-#: ./browser/view.py:342
+#: ./browser/view.py:353
 msgid "Personal Details"
 msgstr "我的帐户"
 
@@ -157,7 +161,7 @@ msgstr "原价"
 msgid "Product"
 msgstr "商品"
 
-#: ./content/product.py:133
+#: ./content/product.py:143
 msgid "Product Code"
 msgstr ""
 
@@ -181,7 +185,7 @@ msgstr "商品图片"
 msgid "ProductReview"
 msgstr ""
 
-#: ./browser/view.py:458
+#: ./browser/view.py:469
 msgid "Query string supplied is not valid"
 msgstr ""
 
@@ -190,7 +194,7 @@ msgstr ""
 msgid "Rating"
 msgstr "评分"
 
-#: ./browser/view.py:336
+#: ./browser/view.py:347
 msgid "Register"
 msgstr "注册"
 
@@ -202,7 +206,7 @@ msgstr "相关商品"
 msgid "Related Product"
 msgstr "相关商品"
 
-#: ./browser/view.py:50
+#: ./browser/view.py:64
 msgid "Return"
 msgstr "退货商品"
 
@@ -214,35 +218,35 @@ msgstr ""
 msgid "Sale Price"
 msgstr "特价"
 
-#: ./browser/folder_view.py:191
+#: ./browser/folder_view.py:200
 msgid "Search"
 msgstr "搜寻"
 
-#: ./content/product.py:164
+#: ./content/product.py:174
 msgid "Select the classification of this product (Most View, Special, Latest)"
 msgstr "请选择此商品在首页中显示的分类"
 
-#: ./browser/view.py:100
+#: ./browser/view.py:114
 msgid "Site Map"
 msgstr "网站地图"
 
-#: ./content/product.py:181
+#: ./content/product.py:191
 msgid "Slider"
 msgstr "商品图片"
 
-#: ./content/product.py:183
+#: ./content/product.py:193
 msgid "Slider Image1"
 msgstr "商品图片1"
 
-#: ./content/product.py:188
+#: ./content/product.py:198
 msgid "Slider Image2"
 msgstr "商品图片2"
 
-#: ./content/product.py:193
+#: ./content/product.py:203
 msgid "Slider Image3"
 msgstr "商品图片3"
 
-#: ./content/product.py:198
+#: ./content/product.py:208
 msgid "Slider Image4"
 msgstr "商品图片4"
 
@@ -250,7 +254,7 @@ msgstr "商品图片4"
 msgid "Special"
 msgstr "特別商品"
 
-#: ./content/product.py:153
+#: ./content/product.py:163
 msgid "Specification"
 msgstr "商品规格"
 
@@ -258,11 +262,15 @@ msgstr "商品规格"
 msgid "Subcategory"
 msgstr "子分类"
 
-#: ./content/product.py:106
+#: ./content/product.py:134
+msgid "The Discount Amount is bigger than price!"
+msgstr "原价必须大于折扣金额"
+
+#: ./content/product.py:132
 msgid "The sale price is bigger than price!"
 msgstr "原价必须大于特价"
 
-#: ./content/product.py:175
+#: ./content/product.py:185
 msgid "Time Limit"
 msgstr "限时商品"
 
@@ -290,7 +298,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ./browser/view.py:402
+#: ./browser/view.py:413
 msgid "Wish List"
 msgstr "愿望清单"
 
@@ -314,11 +322,11 @@ msgstr "电话"
 msgid "email"
 msgstr ""
 
-#: ./content/product.py:156
+#: ./content/product.py:166
 msgid "ex. clockspeed:100mhz"
 msgstr ""
 
-#: ./content/product.py:155
+#: ./content/product.py:165
 msgid "specification"
 msgstr "规格"
 
@@ -334,6 +342,6 @@ msgstr ""
 msgid "store full product data"
 msgstr ""
 
-#: ./browser/view.py:447
+#: ./browser/view.py:458
 msgid "wishItemUID is not valid!!"
 msgstr ""

@@ -23,7 +23,7 @@ import datetime
 class GeneralMethod(BrowserView):
     def salePrice(self, obj):
         if api.user.is_anonymous():
-            return
+            return obj.price
 
         groupList = ['level_A', 'level_B', 'level_C', 'level_D']
         groupDict = {'level_A': 'l_a_price', 'level_B': 'l_b_price', 'level_C': 'l_c_price', 'level_D': 'salePrice'}        
@@ -31,7 +31,7 @@ class GeneralMethod(BrowserView):
         for group in groupList:
             if group in currentGroups:
                 return getattr(obj, groupDict[group])
-        return
+        return obj.price
 
 
 class Companys(BrowserView):
@@ -229,8 +229,8 @@ class ConfirmCart(GeneralMethod):
                 price = product.price
                 salePrice = product.salePrice
                 abs_url = product.absolute_url()
-	        if salePrice:
-		    totalNumber += salePrice * amount
+	        if self.salePrice(product):
+		    totalNumber += self.salePrice(product) * amount
 	        else:
 		    totalNumber += price * amount
 
@@ -510,3 +510,13 @@ class DelWishList(BrowserView):
             msg = _(u'Add WishList Must Be Login!!')
             trans_msg = api.portal.translate(msg, lang=self.context.Language())
             return json.dumps({'error': trans_msg})
+
+
+class CheckPromoCode(BrowserView):
+    def __call__(self):
+        promoCode = getattr(self.request, 'promoCode', '')
+        existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
+        if str(promoCode in existCode:
+            return '1'
+        else:
+            return '0'
