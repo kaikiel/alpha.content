@@ -13,6 +13,7 @@ from email.mime.text import MIMEText
 from plone.app.users.browser.register import RegistrationForm
 from alpha.content.browser.configlet import IDict
 from alpha.content.browser.base_inform_configlet import IInform
+from alpha.content.browser.user_configlet import IUser
 from email.mime.text import MIMEText
 from sets import Set
 import ast
@@ -26,12 +27,28 @@ class GeneralMethod(BrowserView):
             return
 
         groupList = ['level_A', 'level_B', 'level_C', 'level_D']
-        groupDict = {'level_A': 'l_a_price', 'level_B': 'l_b_price', 'level_C': 'l_c_price', 'level_D': 'salePrice'}        
+        groupDict = {'level_A': 'l_a_price', 'level_B': 'l_b_price', 'level_C': 'l_c_price', 'level_D': 'salePrice'}
         currentGroups = api.user.get_current().getUser().getGroups()
         for group in groupList:
             if group in currentGroups:
                 return getattr(obj, groupDict[group])
         return
+
+
+class GetProductData(GeneralMethod):
+    def __call__(self):
+        request = self.request
+        uid = request.get('uid', '')
+        if uid:
+            content = api.content.get(UID=uid)
+            title = content.title
+            contentUrl = content.absolute_url()
+            price = self.salePrice(content)
+            img = contentUrl + '/@@images/cover'
+            data = [str(title), contentUrl, price, img]
+            return json.dumps(data)
+        else:
+            return 'error'
 
 
 class Companys(BrowserView):
@@ -49,11 +66,13 @@ class UseCouponStatus(BrowserView):
         users = api.user.get_users()
         data = []
 	for user in users:
-            promoCodeLog = json.loads(user.getProperty('promoCodeLog'))
-            username = user.getUserName()
-            for item in promoCodeLog:
-                item.append(username)
-                data.append(item)
+            promoCodeLog = user.getProperty('promoCodeLog')
+            if promoCodeLog:
+                promoCodeLog = json.loads(promoCodeLog)
+                username = user.getUserName()
+                for item in promoCodeLog:
+                    item.append(username)
+                    data.append(item)
 	self.data = data
 
 	return self.template()
