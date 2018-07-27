@@ -27,21 +27,21 @@ class ProductViewlet(base.ViewletBase, GeneralMethod):
         context = api.portal.get()
         if context.hasObject('products'):
             context = context['products']
-        mostView = api.content.find(context=context, portal_type='Product', p_indexCategory='mostView', depth=1)
+        mostView = api.content.find(context=context, portal_type='Product', p_indexCategory='mostView', depth=1, sort_on="getObjPositionInParent", b_size=12)
         return mostView
 
     def getSpecial(self):
         context = api.portal.get()
         if context.hasObject('products'):
             context = context['products']
-        special = api.content.find(context=context, portal_type='Product', p_indexCategory='special', depth=1)
+        special = api.content.find(context=context, portal_type='Product', p_indexCategory='special', depth=1, sort_on="getObjPositionInParent", b_size=12)
         return special
 
     def getLatest(self):
         context = api.portal.get()
         if context.hasObject('products'):
             context = context['products']
-        latest = api.content.find(context=context, portal_type='Product', p_indexCategory='latest', depth=1)
+        latest = api.content.find(context=context, portal_type='Product', p_indexCategory='latest', depth=1, sort_on="getObjPositionInParent", b_size=12)
         return latest
 
 
@@ -51,7 +51,7 @@ class TimeLimitViewlet(base.ViewletBase, GeneralMethod):
         timeLimitList = []
         if context.hasObject('promotions'):
             context = context['promotions']
-            timeLimitBrain = api.content.find(context=context, portal_type='Product', depth=1)
+            timeLimitBrain = api.content.find(context=context, portal_type='Product', depth=1, sort_on="getObjPositionInParent")
             for item in timeLimitBrain:
                 item_timeLimit = item.getObject().timeLimit or datetime.datetime(1,1,1,0,0)
                 if not(item_timeLimit and not item_timeLimit >= datetime.datetime.today()):
@@ -64,7 +64,7 @@ class BestSellersViewlet(base.ViewletBase, GeneralMethod):
         context = api.portal.get()
         if context.hasObject('products'):
             context = context['products']
-        bestSellers = api.content.find(context=context, portal_type='Product', p_bestSeller=True, depth=1)
+        bestSellers = api.content.find(context=context, portal_type='Product', p_bestSeller=True, depth=1, sort_on="getObjPositionInParent", b_size=16)
         return bestSellers
 
 
@@ -77,7 +77,7 @@ class MainBanner(ProductViewlet, TimeLimitViewlet, BestSellersViewlet):
         bannerPage = []
         if context.hasObject('banner'):
             context = context['banner']
-        bannerPage = api.content.find(context=context, portal_type='Document', depth=1)
+        bannerPage = api.content.find(context=context, portal_type='Document', depth=1, sort_on="getObjPositionInParent")
         return bannerPage
 
     def getAllIndexProduct(self):
@@ -113,7 +113,7 @@ class NewsViewlet(base.ViewletBase):
         context = api.portal.get()
         if context.hasObject('news'):
             context = context['news']
-        newsItem = api.content.find(context=context, portal_type='News Item', b_size=12, depth=1)
+        newsItem = api.content.find(context=context, portal_type='News Item', b_size=12, depth=1, sort_on="getObjPositionInParent")
         return newsItem
 
     def getNewsMonth(self, obj):
@@ -131,7 +131,7 @@ class FriendLinkViewlet(base.ViewletBase):
         portal = api.portal.get()
         friendLink = []
         if portal.hasObject('friend-link'):
-            friendLink = api.content.find(portal['friend-link'], portal_type='Link')
+            friendLink = api.content.find(portal['friend-link'], portal_type='Link', sort_on="getObjPositionInParent")
         return friendLink
 
 

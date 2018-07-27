@@ -37,18 +37,21 @@ class GeneralMethod(BrowserView):
 
 class GetProductData(GeneralMethod):
     def __call__(self):
-        request = self.request
-        uid = request.get('uid', '')
-        if uid:
-            content = api.content.get(UID=uid)
-            title = content.title
-            contentUrl = content.absolute_url()
-            price = self.salePrice(content)
-            img = contentUrl + '/@@images/cover'
-            data = [str(title), contentUrl, price, img]
-            return json.dumps(data)
-        else:
-            return 'error'
+        try:
+            request = self.request
+            uid = request.get('uid', '')
+            if uid:
+                content = api.content.get(UID=uid)
+                title = content.title
+                contentUrl = content.absolute_url()
+                price = self.salePrice(content)
+                img = contentUrl + '/@@images/cover'
+                data = [str(title), contentUrl, price, img]
+                return json.dumps(data)
+            else:
+                return 'error'
+        except Exception as e:
+            import pdb;pdb.set_trace()
 
 
 class Companys(BrowserView):
@@ -330,7 +333,7 @@ class SendMail(BrowserView):
         api.portal.show_message(message='發送成功!'.decode('utf-8'), request=request)
 
 
-class CompareList(BrowserView):
+class CompareList(GeneralMethod):
     template = ViewPageTemplateFile('templates/compare_list.pt')
     def __call__(self):
         self.viewTitle = _(u'Compare List')

@@ -60,6 +60,15 @@ class CustomFolderView(FolderView):
         return r
 
     @property
+    def path(self):
+        portal = api.portal.get()
+        context = self.context
+        if portal.hasObject('products'):
+            context = portal['products']
+        path = getattr(self.request, 'context_path', context.absolute_url_path())
+        return path
+
+    @property
     def b_size(self):
         b_size = getattr(self.request, 'b_size', None)\
             or getattr(self.request, 'limit_display', None) or 12
@@ -144,17 +153,10 @@ class CustomFolderView(FolderView):
         kwargs.update(self.request.get('contentFilter', {}))
         if 'object_provides' not in kwargs:  # object_provides is more specific
             kwargs.setdefault('portal_type', 'Product')
-        portal = api.portal.get()
-        context = self.context
-        if portal.hasObject('products'):
-            context = portal['products']
-        kwargs.setdefault('path', context.absolute_url_path())
+        kwargs.setdefault('path', self.path)
         kwargs.setdefault('batch', True)
-        kwargs.setdefault('b_size', self.b_size)
-        kwargs.setdefault('b_start', self.b_start)
         kwargs.setdefault('sort_on', self.sort_on)
         kwargs.setdefault('sort_order', self.sort_order)
-        kwargs.setdefault('price', self.price)
         
         if self.searchableText:
             kwargs['SearchableText'] = self.munge_search_term(self.searchableText)
@@ -173,6 +175,9 @@ class CustomFolderView(FolderView):
         if listing is None:
             return []
         results = listing(**kwargs)
+
+        # in diff user price is different
+        results = [item for item in results if self.salePrice(item.getObject()) in self.price]
         return results
 
     def batch(self):
@@ -215,6 +220,11 @@ class SearchView(CustomFolderView, GeneralMethod):
 
 
 class ProductListing(CustomFolderView, GeneralMethod):
+
+    @property
+    def path(self):
+        path = getattr(self.request, 'context_path', self.context.absolute_url_path())
+        return path
 
     def getBrandList(self):
         brandList = {}
