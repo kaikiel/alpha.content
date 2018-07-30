@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="alpha.content">
+
+    <!-- -*- extra stuff goes here -*- -->
+
+    <utility
+        component=".map_category.MapCategoryFactory"
+        name="alpha.content.MapCategory"
+    />
+
+        
+</configure>
