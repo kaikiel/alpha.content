@@ -25,8 +25,13 @@ class MapCategory(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u'sony-a7r-iii', _(u'Sony Aplha 7R III')),
-            VocabItem(u'canon-5d-iv', _(u'Canon 5D IV')),
+            VocabItem(u'map-na', _(u'North America')),
+            VocabItem(u'map-sa', _(u'South America')),
+            VocabItem(u'map-eu', _(u'Europe')),
+            VocabItem(u'map-af', _(u'Africa')),
+            VocabItem(u'map-asia', _(u'Asia')),
+            VocabItem(u'map-sp', _(u'South Pacific')),
+            VocabItem(u'map-me', _(u'Middle East')),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
