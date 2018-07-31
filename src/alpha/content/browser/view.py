@@ -57,7 +57,7 @@ class GetProductData(GeneralMethod):
 class Companys(BrowserView):
     template = ViewPageTemplateFile('templates/companys.pt')
     def __call__(self):
-        companyBrains = api.content.find(context=self.context, portal_type='Document')
+        companyBrains = api.content.find(context=self.context, portal_type='Document', sort_on="getObjPositionInParent")
 	self.companyBrains = companyBrains
 	return self.template()
 

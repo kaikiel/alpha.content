@@ -97,17 +97,17 @@ class CustomFolderView(FolderView):
     @property
     def brands(self):
         brands = getattr(self.request, 'brands', '')
-        return brands
+        return brands.decode("utf8")
 
     @property
     def p_category(self):
         p_category = getattr(self.request, 'p_category', '')
-        return p_category
+        return p_category.decode("utf8")
 
     @property
     def p_subject(self):
         p_subject = getattr(self.request, 'p_subject', '')
-        return p_subject
+        return p_subject.decode("utf8")
     
     def categoryList(self):
         portal = api.portal.get()

@@ -5,12 +5,4 @@
     i18n_domain="alpha.content">
 
 
-    <browser:page
-        name="search"
-        for="*"
-        permission="zope2.View"
-        class=".browser.search_view.SearchView"
-        template="browser/templates/search_view.pt"
-        />
-
 </configure>

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-07-23 10:23+0000\n"
+"POT-Creation-Date: 2018-07-31 04:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,334 +17,366 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: alpha.content\n"
 
-#: ./browser/view.py:473
+#: ../browser/view.py:492
 msgid "Add WishList Must Be Login!!"
 msgstr ""
 
-#: ./browser/view.py:446
+#: ../browser/view.py:465
 msgid "Add WishList Repeat!!"
 msgstr ""
 
-#: ./browser/view.py:454
+#: ../browser/view.py:473
 msgid "Add WishList Success!!"
 msgstr ""
 
-#: ./browser/base_inform_configlet.py:32
+#: ../vocabularies/map_category.py:31
+msgid "Africa"
+msgstr ""
+
+#: ../vocabularies/map_category.py:32
+msgid "Asia"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:32
 msgid "Basic Inform"
 msgstr ""
 
-#: ./content/product.py:180
+#: ../content/product.py:201
 msgid "Best Seller"
 msgstr ""
 
-#: ./content/product.py:138
+#: ../content/product.py:139
 msgid "Brand"
 msgstr ""
 
-#: ./browser/view.py:95
+#: ../browser/view.py:117
 msgid "Brands"
 msgstr ""
 
-#: ./content/product.py:70
+#: ../content/product.py:71
 msgid "Category"
 msgstr ""
 
-#: ./browser/view.py:320
+#: ../browser/view.py:339
 msgid "Compare List"
 msgstr ""
 
-#: ./browser/view.py:209
+#: ../browser/view.py:231
 msgid "Confirm Cart"
 msgstr ""
 
-#: ./browser/view.py:272
+#: ../browser/view.py:291
 msgid "Contact Us"
 msgstr ""
 
-#: ./profiles/default/types/Cover.xml
+#: ../profiles/default/types/Cover.xml
 msgid "Cover"
 msgstr ""
 
-#: ./content/product.py:60
+#: ../content/product.py:61
 msgid "Cover Image"
 msgstr ""
 
-#: ./browser/configlet.py:34
-#: ./profiles/default/controlpanel.xml
+#: ../browser/configlet.py:34
+#: ../profiles/default/controlpanel.xml
 msgid "Custom Related Setting"
 msgstr ""
 
-#: ./browser/view.py:491
+#: ../browser/view.py:510
 msgid "Delete WishList Success!!"
 msgstr ""
 
-#: ./content/product.py:65
+#: ../content/product.py:66
 msgid "Description"
 msgstr ""
 
-#: ./content/product.py:122
+#: ../content/product.py:123
 msgid "Discount Amount"
 msgstr ""
 
-#: ./content/product.py:154
+#: ../content/product.py:155
 msgid "Download File"
 msgstr ""
 
-#: ./profiles/default/types/Cover.xml
-#: ./profiles/default/types/Product.xml
-#: ./profiles/default/types/ProductImg.xml
+#: ../profiles/default/types/Cover.xml
+#: ../profiles/default/types/Product.xml
+#: ../profiles/default/types/ProductImg.xml
 msgid "Edit"
 msgstr ""
 
-#: ./content/product.py:93
+#: ../content/product.py:94
 msgid "Enter USD$"
 msgstr ""
 
-#: ./browser/user_configlet.py:14
+#: ../vocabularies/map_category.py:30
+msgid "Europe"
+msgstr ""
+
+#: ../browser/user_configlet.py:14
 msgid "Exist PromoCode"
 msgstr ""
 
-#: ./content/product.py:159
+#: ../content/product.py:160
 msgid "Feature"
 msgstr ""
 
-#: ./content/product.py:186
+#: ../content/product.py:207
 msgid "If you want to set the time limit, you must put this product in the \"Promotions\" folder"
 msgstr ""
 
-#: ./content/product.py:173
+#: ../content/product.py:194
 msgid "Index Category"
 msgstr ""
 
-#: ./content/product.py:171
+#: ../content/product.py:192
 msgid "Index Information"
 msgstr ""
 
-#: ./configure.zcml:33
+#: ../configure.zcml:33
 msgid "Installs the alpha.content add-on."
 msgstr ""
 
-#: ./content/product.py:27
+#: ../content/product.py:27
 msgid "Latest"
 msgstr ""
 
-#: ./content/product.py:104
+#: ../content/product.py:117
 msgid "Level A Group Price"
 msgstr ""
 
-#: ./content/product.py:110
+#: ../content/product.py:111
 msgid "Level B Group Price"
 msgstr ""
 
-#: ./content/product.py:116
+#: ../content/product.py:105
 msgid "Level C Group Price"
 msgstr ""
 
-#: ./content/product.py:136
+#: ../behaviors/map_category.py:19
+msgid "Map Category"
+msgstr ""
+
+#: ../vocabularies/map_category.py:34
+msgid "Middle East"
+msgstr ""
+
+#: ../content/product.py:137
 msgid "More Info"
 msgstr ""
 
-#: ./content/product.py:25
+#: ../content/product.py:25
 msgid "Most View"
 msgstr ""
 
-#: ./browser/view.py:353
+#: ../vocabularies/map_category.py:28
+msgid "North America"
+msgstr ""
+
+#: ../browser/view.py:372
 msgid "Personal Details"
 msgstr ""
 
-#: ./content/product.py:32
+#: ../content/product.py:32
 msgid "Please enter 1 to 5 in the Rating field"
 msgstr ""
 
-#: ./content/product.py:92
+#: ../content/product.py:93
 msgid "Price"
 msgstr ""
 
-#: ./profiles/default/types/Product.xml
+#: ../profiles/default/types/Product.xml
 msgid "Product"
 msgstr ""
 
-#: ./content/product.py:143
+#: ../content/product.py:144
 msgid "Product Code"
 msgstr ""
 
-#: ./content/productimg.py:21
+#: ../content/productimg.py:21
 msgid "Product Image"
 msgstr ""
 
-#: ./content/product.py:48
+#: ../content/product.py:42
+msgid "Product Info"
+msgstr ""
+
+#: ../content/product.py:49
 msgid "Product Number"
 msgstr ""
 
-#: ./content/product.py:89
+#: ../content/product.py:90
 msgid "Product Price"
 msgstr ""
 
-#: ./profiles/default/types/ProductImg.xml
+#: ../profiles/default/types/ProductImg.xml
 msgid "ProductImg"
 msgstr ""
 
-#: ./profiles/default/types/ProductReview.xml
+#: ../profiles/default/types/ProductReview.xml
 msgid "ProductReview"
 msgstr ""
 
-#: ./browser/view.py:469
+#: ../browser/view.py:488
 msgid "Query string supplied is not valid"
 msgstr ""
 
-#: ./content/product.py:53
-#: ./content/productreview.py:26
+#: ../content/product.py:54
+#: ../content/productreview.py:26
 msgid "Rating"
 msgstr ""
 
-#: ./browser/view.py:347
+#: ../browser/view.py:366
 msgid "Register"
 msgstr ""
 
-#: ./content/product.py:83
+#: ../content/product.py:84
 msgid "Related"
 msgstr ""
 
-#: ./content/product.py:80
+#: ../content/product.py:81
 msgid "Related Product"
 msgstr ""
 
-#: ./browser/view.py:64
+#: ../browser/view.py:86
 msgid "Return"
 msgstr ""
 
-#: ./content/productreview.py:21
+#: ../content/productreview.py:21
 msgid "Review"
 msgstr ""
 
-#: ./content/product.py:98
+#: ../content/product.py:99
 msgid "Sale Price"
 msgstr ""
 
-#: ./browser/folder_view.py:200
+#: ../browser/folder_view.py:205
 msgid "Search"
 msgstr ""
 
-#: ./content/product.py:174
+#: ../content/product.py:195
 msgid "Select the classification of this product (Most View, Special, Latest)"
 msgstr ""
 
-#: ./browser/view.py:114
+#: ../browser/view.py:136
 msgid "Site Map"
 msgstr ""
 
-#: ./content/product.py:191
+#: ../content/product.py:171
 msgid "Slider"
 msgstr ""
 
-#: ./content/product.py:193
+#: ../content/product.py:173
 msgid "Slider Image1"
 msgstr ""
 
-#: ./content/product.py:198
+#: ../content/product.py:178
 msgid "Slider Image2"
 msgstr ""
 
-#: ./content/product.py:203
+#: ../content/product.py:183
 msgid "Slider Image3"
 msgstr ""
 
-#: ./content/product.py:208
+#: ../content/product.py:188
 msgid "Slider Image4"
 msgstr ""
 
-#: ./content/product.py:26
+#: ../vocabularies/map_category.py:29
+msgid "South America"
+msgstr ""
+
+#: ../vocabularies/map_category.py:33
+msgid "South Pacific"
+msgstr ""
+
+#: ../content/product.py:26
 msgid "Special"
 msgstr ""
 
-#: ./content/product.py:163
-msgid "Specification"
-msgstr ""
-
-#: ./content/product.py:75
+#: ../content/product.py:76
 msgid "Subcategory"
 msgstr ""
 
-#: ./content/product.py:134
+#: ../content/product.py:135
 msgid "The Discount Amount is bigger than price!"
 msgstr ""
 
-#: ./content/product.py:132
+#: ../content/product.py:133
 msgid "The sale price is bigger than price!"
 msgstr ""
 
-#: ./content/product.py:185
+#: ../content/product.py:206
 msgid "Time Limit"
 msgstr ""
 
-#: ./content/product.py:37
+#: ../content/product.py:37
 msgid "Time limit date can not be before today."
 msgstr ""
 
-#: ./content/product.py:43
-#: ./content/productimg.py:16
-#: ./content/productreview.py:16
+#: ../content/product.py:44
+#: ../content/productimg.py:16
+#: ../content/productreview.py:16
 msgid "Title"
 msgstr ""
 
-#: ./configure.zcml:42
+#: ../configure.zcml:42
 msgid "Uninstalls the alpha.content add-on."
 msgstr ""
 
-#: ./browser/user_configlet.py:26
+#: ../browser/user_configlet.py:26
 msgid "User PromoCode"
 msgstr ""
 
-#: ./profiles/default/types/Cover.xml
-#: ./profiles/default/types/Product.xml
-#: ./profiles/default/types/ProductImg.xml
+#: ../profiles/default/types/Cover.xml
+#: ../profiles/default/types/Product.xml
+#: ../profiles/default/types/ProductImg.xml
 msgid "View"
 msgstr ""
 
-#: ./browser/view.py:413
+#: ../browser/view.py:432
 msgid "Wish List"
 msgstr ""
 
-#: ./browser/base_inform_configlet.py:22
+#: ../browser/base_inform_configlet.py:22
 msgid "address"
 msgstr ""
 
-#: ./configure.zcml:33
+#: ../configure.zcml:33
 msgid "alpha.content"
 msgstr ""
 
-#: ./configure.zcml:42
+#: ../configure.zcml:42
 msgid "alpha.content (uninstall)"
 msgstr ""
 
-#: ./browser/base_inform_configlet.py:18
+#: ../browser/base_inform_configlet.py:18
 msgid "cellphone"
 msgstr ""
 
-#: ./browser/base_inform_configlet.py:14
+#: ../browser/base_inform_configlet.py:14
 msgid "email"
 msgstr ""
 
-#: ./content/product.py:166
+#: ../content/product.py:166
 msgid "ex. clockspeed:100mhz"
 msgstr ""
 
-#: ./content/product.py:165
+#: ../content/product.py:165
 msgid "specification"
 msgstr ""
 
-#: ./browser/configlet.py:18
+#: ../browser/configlet.py:18
 msgid "store brand count number"
 msgstr ""
 
-#: ./browser/configlet.py:14
+#: ../browser/configlet.py:14
 msgid "store category and subject"
 msgstr ""
 
-#: ./browser/configlet.py:22
+#: ../browser/configlet.py:22
 msgid "store full product data"
 msgstr ""
 
-#: ./browser/view.py:458
+#: ../browser/view.py:477
 msgid "wishItemUID is not valid!!"
 msgstr ""

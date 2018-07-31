@@ -8,17 +8,16 @@ from plone.supermodel import model
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import provider
-
+from alpha.content.vocabularies.map_category import MapCategory, MapCategoryFactory
 
 @provider(IFormFieldProvider)
 class IMapCategory(model.Schema):
     """
     """
 
-    project = schema.TextLine(
-        title=_(u'Project'),
-        description=_(u'Give in a project name'),
-        required=False,
+    mapCategory = schema.Choice(
+        title=_(u'Map Category'),
+        vocabulary='alpha.content.MapCategory',
     )
 
 
@@ -29,11 +28,11 @@ class MapCategory(object):
         self.context = context
 
     @property
-    def project(self):
-        if hasattr(self.context, 'project'):
-            return self.context.project
+    def mapCategory(self):
+        if hasattr(self.context, 'mapCategory'):
+            return self.context.mapCategory
         return None
 
-    @project.setter
-    def project(self, value):
-        self.context.project = value
+    @mapCategory.setter
+    def mapCategory(self, value):
+        self.context.mapCategory = value

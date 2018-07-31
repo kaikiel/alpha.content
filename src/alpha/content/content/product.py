@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone.app.textfield import RichText
 from plone.autoform import directives
-from plone.dexterity.content import Container
+from plone.dexterity.content import Item
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from plone.supermodel.directives import fieldset
@@ -12,6 +12,8 @@ from plone.app.vocabularies.catalog import CatalogSource
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from z3c.form import validator
 from plone.directives import form
+from plone.autoform import directives
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 import zope.component
 import zope.interface
 from zope.interface import Invalid
@@ -39,6 +41,7 @@ def future_date(value):
 
 
 class IProduct(model.Schema):
+    fieldset(_('Product Info'), fields=['title', 'productNo', 'rating', 'cover', 'description', 'category', 'subcategory', 'relatedProduct'])
     title = schema.TextLine(
         title=_(u'Title'),
         required=True,
@@ -86,46 +89,6 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    fieldset(_('Product Price'), fields=['price', 'salePrice', 'l_a_price', 'l_b_price', 'l_c_price', 'disc_amount'])
-
-    price = schema.Int(
-        title=_(u'Price'),
-        description=_(u'Enter USD$'),
-        required=True,
-    )
-
-    salePrice = schema.Int(
-        title=_(u'Sale Price'),
-        description=_(u'Enter USD$'),
-        required=False
-    )
-
-    l_a_price = schema.Int(
-        title=_(u'Level A Group Price'),
-        description=_(u'Enter USD$'),
-        required=False
-    )
-
-    l_b_price = schema.Int(
-        title=_(u'Level B Group Price'),
-        description=_(u'Enter USD$'),
-        required=False
-    )
-
-    l_c_price = schema.Int(
-        title=_(u'Level C Group Price'),
-        description=_(u'Enter USD$'),
-        required=False
-    )
-    
-    disc_amount = schema.Int(
-        title=_(u'Discount Amount'),
-        description=_(u'Enter USD$'),
-        default=0,
-        min=0,
-        required=False
-    )
-
     @invariant
     def price_invariant(data):
         if data.price < data.salePrice:
@@ -133,7 +96,7 @@ class IProduct(model.Schema):
         if data.price < data.disc_amount:
             raise Invalid(_(u'The Discount Amount is bigger than price!'))
 
-    fieldset(_('More Info'), fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature'])
+    fieldset(_('More Info'), fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature', 'specification'])
     brand = schema.TextLine(
         title=_(u'Brand'),
         required=True
@@ -160,7 +123,6 @@ class IProduct(model.Schema):
         required=False
     )
 
-    fieldset(_('Specification'), fields=['specification'])
     specification = schema.List(
         title=_(u'specification'),
         description=_(u'ex. clockspeed:100mhz'),
@@ -168,24 +130,43 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    fieldset(_('Index Information'), fields=['indexCategory', 'bestSeller', 'timeLimit'])
-    indexCategory = schema.Choice(
-        title=_(u"Index Category"),
-        description=_(u'Select the classification of this product (Most View, Special, Latest)'),
-        vocabulary=categoryVocabulary,
-        required=False,
+    fieldset(_('Product Price'), fields=['price', 'salePrice', 'l_c_price', 'l_b_price', 'l_a_price', 'disc_amount'])
+    price = schema.Int(
+        title=_(u'Price'),
+        description=_(u'Enter USD$'),
+        required=True,
     )
 
-    bestSeller = schema.Bool(
-        title=_(u"Best Seller"),
-        required=False,
+    salePrice = schema.Int(
+        title=_(u'Sale Price'),
+        description=_(u'Enter USD$'),
+        required=False
     )
 
-    timeLimit = schema.Datetime(
-        title=_(u'Time Limit'),
-        description=_(u'If you want to set the time limit, you must put this product in the "Promotions" folder'),
-        constraint=future_date,
-        required=False,
+    l_c_price = schema.Int(
+        title=_(u'Level C Group Price'),
+        description=_(u'Enter USD$'),
+        required=False
+    )
+    
+    l_b_price = schema.Int(
+        title=_(u'Level B Group Price'),
+        description=_(u'Enter USD$'),
+        required=False
+    )
+
+    l_a_price = schema.Int(
+        title=_(u'Level A Group Price'),
+        description=_(u'Enter USD$'),
+        required=False
+    )
+
+    disc_amount = schema.Int(
+        title=_(u'Discount Amount'),
+        description=_(u'Enter USD$'),
+        default=0,
+        min=0,
+        required=False
     )
 
     fieldset(_('Slider'), fields=['img1', 'img2', 'img3', 'img4'])
@@ -209,8 +190,32 @@ class IProduct(model.Schema):
         required=False,
     )
     
+    fieldset(_('Index Information'), fields=['indexCategory', 'bestSeller', 'timeLimit'])
+    
+    directives.widget(indexCategory=CheckBoxFieldWidget)
+    indexCategory = schema.List(
+        title=_(u"Index Category"),
+        description=_(u'Select the classification of this product (Most View, Special, Latest)'),
+        value_type=schema.Choice(
+            vocabulary=categoryVocabulary,
+        ),
+        required=False,
+    )
+
+    bestSeller = schema.Bool(
+        title=_(u"Best Seller"),
+        required=False,
+    )
+
+    timeLimit = schema.Datetime(
+        title=_(u'Time Limit'),
+        description=_(u'If you want to set the time limit, you must put this product in the "Promotions" folder'),
+        constraint=future_date,
+        required=False,
+    )
+
 
 @implementer(IProduct)
-class Product(Container):
+class Product(Item):
     """
     """
