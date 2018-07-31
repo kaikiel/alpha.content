@@ -6,9 +6,8 @@
       <adapter name="brands"  factory=".indexers.product_brand" />
       <adapter name="p_subject"  factory=".indexers.product_subject" />
       <adapter name="p_category" factory=".indexers.product_category" />
+      <adapter name="p_modelNo" factory=".indexers.product_number" />
       <adapter name="p_indexCategory"  factory=".indexers.product_indexCategory" />
       <adapter name="p_bestSeller" factory=".indexers.product_bestSeller" />
-      <adapter name="price" factory=".indexers.price" />
-      <adapter name="salePrice" factory=".indexers.salePrice" />
 </configure>
 

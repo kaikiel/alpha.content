@@ -21,6 +21,7 @@
     <element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
     <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
+    <element value="alpha.content.behaviours.map_category.IMapCategory"/>
   </property>
 </object>
 

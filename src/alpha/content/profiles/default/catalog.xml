@@ -15,7 +15,12 @@
   </index>
   <column value="brands"/>
 
-  <index name="p_indexCategory" meta_type="FieldIndex">
+  <index name="p_modelNo" meta_type="FieldIndex">
+    <indexed_attr value="p_modelNo" />
+  </index>
+  <column value="p_modelNo"/>
+
+  <index name="p_indexCategory" meta_type="KeywordIndex">
     <indexed_attr value="p_indexCategory" />
   </index>
   <column value="p_indexCategory"/>
@@ -24,15 +29,5 @@
     <indexed_attr value="p_bestSeller" />
   </index>
   <column value="p_bestSeller"/>
-
-  <index name="price" meta_type="FieldIndex">
-    <indexed_attr value="price" />
-  </index>
-  <column value="price"/>
-
-  <index name="salePrice" meta_type="FieldIndex">
-    <indexed_attr value="salePrice" />
-  </index>
-  <column value="salePrice"/>
 
 </object>

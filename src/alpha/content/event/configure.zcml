@@ -5,7 +5,7 @@
     i18n_domain="alpha.content">
 
     <subscriber
-        for="* zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        for="alpha.content.content.product.IProduct zope.lifecycleevent.interfaces.IObjectAddedEvent"
         handler=".event.move_to_top"
     />
     <subscriber
