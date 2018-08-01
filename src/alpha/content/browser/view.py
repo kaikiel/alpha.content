@@ -19,6 +19,7 @@ from sets import Set
 import ast
 import json
 import datetime
+from db.connect.browser.views import SqlObj
 
 
 class GeneralMethod(BrowserView):
@@ -51,7 +52,7 @@ class GetProductData(GeneralMethod):
             else:
                 return 'error'
         except Exception as e:
-            import pdb;pdb.set_trace()
+            pass
 
 
 class Companys(BrowserView):
@@ -66,17 +67,9 @@ class UseCouponStatus(BrowserView):
     template = ViewPageTemplateFile('templates/use_coupon_status.pt')
     def __call__(self):
         request = self.request
-        users = api.user.get_users()
-        data = []
-	for user in users:
-            promoCodeLog = user.getProperty('promoCodeLog')
-            if promoCodeLog:
-                promoCodeLog = json.loads(promoCodeLog)
-                username = user.getUserName()
-                for item in promoCodeLog:
-                    item.append(username)
-                    data.append(item)
-	self.data = data
+        execSql = SqlObj()
+        execStr = """SELECT * FROM coupon_status  ORDER BY `coupon_status`.`id` DESC"""
+        self.data = execSql.execSql(execStr)
 
 	return self.template()
 
@@ -263,26 +256,16 @@ class ConfirmCart(GeneralMethod):
 class UseCoupon(BrowserView):
     def __call__(self):
         request = self.request
+        execSql = SqlObj()
 	coupon_code = request.get('coupon_code')
 	currency = request.get('currency')
 	total = request.get('total')
-	promoCode = api.portal.get_registry_record('promoCode', interface=IUser)
-	try:
-	    username = promoCode[coupon_code]
-	except:
-	    return
-	user = api.user.get(username=username)
-	current_name = api.user.get_current().getUserName()
-	promoCodeLog = user.getProperty('promoCodeLog')
-	if promoCodeLog:
-	    promoCodeLog = json.loads(promoCodeLog)
-	else:
-	    promoCodeLog = []
-	now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-	promoCodeLog.append([current_name, currency, total,now])
-	user.setMemberProperties(mapping={'promoCodeLog': json.dumps(promoCodeLog)})
-	return
-
+        detail = request.get('detail')
+        discount = request.get('discount')
+        username = api.user.get_current().getUserName()
+        execStr = """INSERT INTO `coupon_status`(`coupon_code`, `user`, `detail`, `currency`, `total`, `discount`) VALUES (%s, '%s', 
+                     '%s', '%s', %s, %s)""" %(coupon_code, username, detail, currency, total, discount)
+        execSql.execSql(execStr)
 
 
 class ContactUs(BrowserView):

@@ -8,6 +8,7 @@ from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.contentlisting.interfaces import IContentListing
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from alpha.content.browser.view import GeneralMethod
 import ast
 import random
@@ -220,11 +221,23 @@ class SearchView(CustomFolderView, GeneralMethod):
 
 
 class ProductListing(CustomFolderView, GeneralMethod):
+    test = 123
+    template =  ViewPageTemplateFile('templates/product_listing.pt')
+    def __call__(self):
+        categoryList = self.getCategoryListAll()
+        self.categoryList = categoryList.values()[0]
+        self.max_price = categoryList.keys()[0]
+        return self.template()
 
     @property
     def path(self):
         path = getattr(self.request, 'context_path', self.context.absolute_url_path())
         return path
+
+    @property
+    def price_max(self):
+        price_max = getattr(self.request, 'price_max', self.max_price)
+        return int(price_max)
 
     def getBrandList(self):
         brandList = {}
@@ -238,11 +251,14 @@ class ProductListing(CustomFolderView, GeneralMethod):
                 brandList[brand] = 1
 	return brandList
 
-    def getCategoryList(self):
+    def getCategoryListAll(self):
         categoryList = {}
+        price = 0
 	productBrain = api.content.find(context=self.context, portal_type='Product')
 	for item in productBrain:
 	    obj = item.getObject()
+            contentPrice = self.salePrice(obj)
+            price =  contentPrice if contentPrice > price else price
             category = obj.category
             subject = obj.subcategory
             if categoryList.has_key(category):
@@ -253,7 +269,7 @@ class ProductListing(CustomFolderView, GeneralMethod):
                     categoryList[category][1][subject] = 1
             else:
                 categoryList[category] = [1, {subject: 1}]
-	return categoryList
+	return {price:categoryList}
 
     def getProductAD(self):
         portal = api.portal.get()
@@ -262,3 +278,4 @@ class ProductListing(CustomFolderView, GeneralMethod):
             context = portal['resource']
         productAD = api.content.find(context=context, id="product-ad")
         return productAD
+
