@@ -4,28 +4,5 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="alpha.content">
 
-    <subscriber
-        for="alpha.content.content.product.IProduct zope.lifecycleevent.interfaces.IObjectAddedEvent"
-        handler=".event.move_to_top"
-    />
-    <subscriber
-        for="Products.PlonePAS.events.IUserInitialLoginInEvent"
-        handler=".event.initPromoCode"
-    />
-    <subscriber
-        for="Products.PlonePAS.events.IUserLoggedInEvent"
-        handler=".event.setCookieCurrentUser"
-    />
-    <subscriber
-        for="Products.PlonePAS.events.IUserLoggedOutEvent"
-        handler=".event.clearCookieCurrentUser"
-    />
-    <subscriber
-        for="Products.PluggableAuthService.interfaces.events.IPrincipalCreatedEvent"
-        handler=".event.addUserDefaultGroup"
-    />
-    <subscriber
-        for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
-        handler=".event.delUserPromoCodeConfiglet"
-    />
+
 </configure>

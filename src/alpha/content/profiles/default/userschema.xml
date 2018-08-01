@@ -105,7 +105,7 @@
       <description i18n:translate="">
       </description>
       <required>False</required>
-      <readonly>True</readonly>
+      <readonly>False</readonly>
       <title i18n:translate="">promoCode</title>
     </field>
 
