@@ -24,6 +24,12 @@ import datetime
 class GeneralMethod(BrowserView):
     def salePrice(self, obj):
         if api.user.is_anonymous():
+            if (obj.getParentNode().id == 'promotions'):
+                obj_timeLimit = obj.timeLimit or datetime.datetime(1,1,1,0,0)
+                if not(obj_timeLimit and not obj_timeLimit >= datetime.datetime.today()):
+                    return obj.salePrice
+                else:
+                    return obj.price
             return obj.price
 
         groupList = ['level_A', 'level_B', 'level_C', 'level_D']
@@ -31,8 +37,34 @@ class GeneralMethod(BrowserView):
         currentGroups = api.user.get_current().getUser().getGroups()
         for group in groupList:
             if group in currentGroups:
-                return getattr(obj, groupDict[group])
+                if group == 'level_D':
+                    if (obj.getParentNode().id == 'promotions'):
+                        obj_timeLimit = obj.timeLimit or datetime.datetime(1,1,1,0,0)
+                        if not(obj_timeLimit and not obj_timeLimit >= datetime.datetime.today()):
+                            return obj.salePrice
+                        else:
+                            return obj.price
+                return getattr(obj, groupDict[group]) or obj.salePrice
+
+        if (obj.getParentNode().id == 'promotions'):
+            obj_timeLimit = obj.timeLimit or datetime.datetime(1,1,1,0,0)
+            if not(obj_timeLimit and not obj_timeLimit >= datetime.datetime.today()):
+                return obj.salePrice
+            else:
+                return obj.price
         return obj.price
+
+    def hasSale(self):
+        if api.user.is_anonymous():
+            return False
+
+        groupList = ['level_A', 'level_B', 'level_C', 'level_D']
+        groupDict = {'level_A': False, 'level_B': False, 'level_C': False, 'level_D': True}
+        currentGroups = api.user.get_current().getUser().getGroups()
+        for group in groupList:
+            if group in currentGroups:
+                return groupDict[group]
+        return False
 
 
 class GetProductData(GeneralMethod):
@@ -51,7 +83,7 @@ class GetProductData(GeneralMethod):
             else:
                 return 'error'
         except Exception as e:
-            import pdb;pdb.set_trace()
+            print 'restful getProductData error {}'.format(e)
 
 
 class Companys(BrowserView):

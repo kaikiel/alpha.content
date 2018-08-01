@@ -89,13 +89,6 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    @invariant
-    def price_invariant(data):
-        if data.price < data.salePrice:
-            raise Invalid(_(u'The sale price is bigger than price!'))
-        if data.price < data.disc_amount:
-            raise Invalid(_(u'The Discount Amount is bigger than price!'))
-
     fieldset(_('More Info'), fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature', 'specification'])
     brand = schema.TextLine(
         title=_(u'Brand'),
@@ -140,7 +133,7 @@ class IProduct(model.Schema):
     salePrice = schema.Int(
         title=_(u'Sale Price'),
         description=_(u'Enter USD$'),
-        required=False
+        required=True,
     )
 
     l_c_price = schema.Int(
@@ -168,6 +161,13 @@ class IProduct(model.Schema):
         min=0,
         required=False
     )
+
+    @invariant
+    def price_invariant(data):
+        if data.price < data.salePrice:
+            raise Invalid(_(u'The sale price is bigger than price!'))
+        if data.price < data.disc_amount:
+            raise Invalid(_(u'The Discount Amount is bigger than price!'))
 
     fieldset(_('Slider'), fields=['img1', 'img2', 'img3', 'img4'])
     img1 = NamedBlobImage(

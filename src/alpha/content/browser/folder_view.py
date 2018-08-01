@@ -2,12 +2,13 @@
 from plone import api
 from Acquisition import aq_base
 from Acquisition import aq_inner
-from plone.app.contenttypes import _
+from alpha.content import _
 from Products.CMFPlone.PloneBatch import Batch
 from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.contentlisting.interfaces import IContentListing
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
+from Products.ZCTextIndex.ParseTree import ParseError
 from alpha.content.browser.view import GeneralMethod
 import ast
 import random
@@ -174,7 +175,10 @@ class CustomFolderView(FolderView):
             '@@coverListing', None)
         if listing is None:
             return []
-        results = listing(**kwargs)
+        try:
+            results = listing(**kwargs)
+        except ParseError:
+            return []
 
         # in diff user price is different
         results = [item for item in results if self.salePrice(item.getObject()) in self.price]
@@ -213,7 +217,8 @@ class SearchView(CustomFolderView, GeneralMethod):
         randProduct = api.content.find(portal_type='Product', context=context)
         randProductLen = len(randProduct)
         randProductSet = set()
-        while len(randProductSet) < 8:
+        times = 8 if randProductLen >=8 else randProductLen
+        while len(randProductSet) < times:
             randnum = random.randint(0, randProductLen-1)
             randProductSet.add(randProduct[randnum])
         return randProductSet
@@ -262,3 +267,49 @@ class ProductListing(CustomFolderView, GeneralMethod):
             context = portal['resource']
         productAD = api.content.find(context=context, id="product-ad")
         return productAD
+
+    def results_promo(self, **kwargs):
+        """Return a content listing based result set with contents of the
+        folder.
+
+        :param **kwargs: Any keyword argument, which can be used for catalog
+                         queries.
+        :type  **kwargs: keyword argument
+
+        :returns: plone.app.contentlisting based result set.
+        :rtype: ``plone.app.contentlisting.interfaces.IContentListing`` based
+                sequence.
+        """
+        # Extra filter
+        kwargs.update(self.request.get('contentFilter', {}))
+        if 'object_provides' not in kwargs:  # object_provides is more specific
+            kwargs.setdefault('portal_type', 'Product')
+        portal = api.portal.get()
+        context = self.context
+        if portal.hasObject('promotions'):
+            context = portal['promotions']
+        kwargs.setdefault('path', context.absolute_url_path())
+        kwargs.setdefault('sort_on', self.sort_on)
+        kwargs.setdefault('sort_order', self.sort_order)
+        
+        if self.searchableText:
+            kwargs['SearchableText'] = self.munge_search_term(self.searchableText)
+
+        if self.brands:
+            kwargs['brands'] = self.brands
+
+        if self.p_category:
+            kwargs['p_category'] = self.p_category
+
+        if self.p_subject:
+            kwargs['p_subject'] = self.p_subject
+
+        listing = aq_inner(self.context).restrictedTraverse(
+            '@@coverListing', None)
+        if listing is None:
+            return []
+        results = listing(**kwargs)
+
+        # in diff user price is different
+        results = [item for item in results if self.salePrice(item.getObject()) in self.price]
+        return results
