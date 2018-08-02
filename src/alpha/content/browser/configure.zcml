@@ -177,7 +177,7 @@
       name="use_coupon_status"
       for="*"
       class=".view.UseCouponStatus"
-      permission="cmf.ListFolderContents"
+      permission="cmf.ManagePortal"
   />
   <browser:page
       name="companys"

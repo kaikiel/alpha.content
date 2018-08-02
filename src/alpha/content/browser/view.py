@@ -229,6 +229,16 @@ class ConfirmCart(GeneralMethod):
 	    api.portal.show_message(message='Shop Cart Is Empty', request=request, type='warn')
 	    request.response.redirect('%s/products' %abs_url)
 	    return
+
+        useCoupon = True
+        if not api.user.is_anonymous():
+            user = api.user.get_current().getUserName()
+            groups = api.group.get_groups(username=user)
+            if 'level_A' in groups or 'level_B' in groups or 'level_C' in groups:
+                useCoupon = False
+
+        self.useCoupon = useCoupon
+
 	shop_cart = json.loads(request.cookies['shop_cart'])
 	uidList = shop_cart.keys()
 	productData = []
@@ -260,11 +270,16 @@ class UseCoupon(BrowserView):
 	coupon_code = request.get('coupon_code')
 	currency = request.get('currency')
 	total = request.get('total')
-        detail = request.get('detail')
+        product_detail = request.get('product_detail')
         discount = request.get('discount')
+        discount_detail = request.get('discount_detail')
         username = api.user.get_current().getUserName()
-        execStr = """INSERT INTO `coupon_status`(`coupon_code`, `user`, `detail`, `currency`, `total`, `discount`) VALUES (%s, '%s', 
-                     '%s', '%s', %s, %s)""" %(coupon_code, username, detail, currency, total, discount)
+        existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode')
+        coupon_owner = existCode[coupon_code]
+
+        execStr = """INSERT INTO `coupon_status`(`coupon_code`, `user`, `product_detail`, `currency`, `total`, `discount`, `coupon_owner`,
+                     discount_detail) VALUES (%s, '%s', '%s', '%s', %s, %s, '%s', '%s')
+                     """ %(coupon_code, username, product_detail, currency, total, discount, coupon_owner, discount_detail)
         execSql.execSql(execStr)
 
 
