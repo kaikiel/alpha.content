@@ -158,7 +158,7 @@ class CustomFolderView(FolderView):
         kwargs.setdefault('batch', True)
         kwargs.setdefault('sort_on', self.sort_on)
         kwargs.setdefault('sort_order', self.sort_order)
-        
+
         if self.searchableText:
             kwargs['SearchableText'] = self.munge_search_term(self.searchableText)
 
@@ -221,12 +221,14 @@ class SearchView(CustomFolderView, GeneralMethod):
 
 
 class ProductListing(CustomFolderView, GeneralMethod):
-    test = 123
     template =  ViewPageTemplateFile('templates/product_listing.pt')
+    special_template = ViewPageTemplateFile('templates/special_product_listing.pt')
+
     def __call__(self):
         categoryList = self.getCategoryListAll()
         self.categoryList = categoryList.values()[0]
         self.max_price = categoryList.keys()[0]
+
         return self.template()
 
     @property
@@ -278,4 +280,5 @@ class ProductListing(CustomFolderView, GeneralMethod):
             context = portal['resource']
         productAD = api.content.find(context=context, id="product-ad")
         return productAD
+
 
