@@ -250,52 +250,28 @@ class ConfirmCart(GeneralMethod):
 		    totalNumber += price * amount
 
 	        productData.append( [title, price, salePrice, abs_url, amount, uid, product] )
-        ###
-        self.isHighLv = True
-        ###
+        self.downloadExcel(productData)
 	self.totalNumber = totalNumber
 	self.productData = productData
 	return self.template()
 
-
-class DownloadExcel(GeneralMethod):
-    def __call__(self):
-        output = StringIO()
-        request = self.request
-        productData = json.loads(request.get('productData'))
+    def downloadExcel(self, productData):
+        import pdb;pdb.set_trace()
+        productNo = [0][6].productNo
         workbook = xlsxwriter.Workbook(output)
         worksheet = workbook.add_worksheet('Sheet1')
 
         worksheet.write('A1', '商品名稱')
-        worksheet.write('B1', '料號')
-        worksheet.write('C1', '價格')
-        worksheet.write('D1', '數量')
-        worksheet.write('E1', '總價')
+        worksheet.write('A2', '料號')
+        worksheet.write('A3', '價格')
+        worksheet.write('A4', '數量')
+        worksheet.write('A5', '總價')
 
-        count = 2
-        totalPrice = 0
-        for k,v in productData.items():
-            obj = api.content.get(UID=k)
-            price = self.salePrice(obj)
-            worksheet.write('A%s' %count, obj.title)
-            worksheet.write('B%s' %count, obj.productNo)
-            worksheet.write('C%s' %count, price)
-            worksheet.write('D%s' %count, v)
-            worksheet.write('E%s' %count, price * v)
-            totalPrice += price * v
-            count += 1
-        worksheet.write('A%s' %count, '總金額')
-        worksheet.write('B%s' %count, totalPrice)
 
         workbook.close()
 
-        response = request.response
         response.setHeader('Content-Type', 'application/xls')
-        response.setHeader('Content-Disposition', 'attachment; filename="清單.xls"' )
-        request.response.setCookie('shop_cart', '')
-        #api.portal.show_message(message='訂單已成立，之後會用email聯絡'.encode('utf-8'), request=request)
-        #abs_url = api.portal.get().absolute_url()
-        #request.response.redirect(abs_url + '/products')
+        response.setHeader('Content-Disposition', 'attachment; filename="aaa"' )
         return output.getvalue()
 
 

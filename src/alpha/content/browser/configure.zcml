@@ -221,7 +221,12 @@
       class=".view.GetProductData"
       permission="zope2.View"
   />
-
+   <browser:page
+      name="download_excel"
+      for="*"
+      class=".view.DownloadExcel"
+      permission="zope2.View"
+  />
 
 <!-- configlet -->
   <browser:page
