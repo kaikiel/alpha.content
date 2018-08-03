@@ -4,5 +4,29 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="alpha.content">
 
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".event.move_to_top"
+    />
+    
+    <subscriber
+        for="Products.PluggableAuthService.interfaces.events.IPrincipalCreatedEvent"
+        handler=".event.addUserToAnother"
+    />
+
+    <subscriber
+        for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
+        handler=".event.delUserPromoCodeConfiglet"
+    />
+
+    <subscriber
+        for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
+        handler=".event.delUserToAnother"
+    />
+
+    <subscriber
+        for="Products.CMFPlone.interfaces.IConfigurationChangedEvent"
+        handler=".event.modifyUserToAnother"
+    />
 
 </configure>

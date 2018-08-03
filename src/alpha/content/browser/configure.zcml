@@ -193,7 +193,9 @@
       template="templates/wishlist_view.pt"
       permission="zope2.View"
   />
- 
+
+
+<!-- for requests --> 
   <browser:page
       name="addwishlist"
       for="*"
@@ -215,11 +217,32 @@
       permission="zope2.View"
   />
   
-   <browser:page
+  <browser:page
       name="get_product_data"
       for="*"
       class=".view.GetProductData"
       permission="zope2.View"
+  />
+
+  <browser:page
+      name="adduser"
+      for="*"
+      class=".view.UserAdd"
+      permission="cmf.ListFolderContents"
+  />
+
+  <browser:page
+      name="getUserProperty"
+      for="*"
+      class=".view.UserProperty"
+      permission="cmf.ListFolderContents"
+  />
+
+  <browser:page
+      name="updateUserConfiglet"
+      for="*"
+      class=".view.UpdateUserConfiglet"
+      permission="cmf.ListFolderContents"
   />
 
 

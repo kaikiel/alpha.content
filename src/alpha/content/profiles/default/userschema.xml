@@ -4,6 +4,25 @@
        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
        i18n:domain="plone">
   <schema name="member-fields">
+    <field name="group" type="zope.schema.Choice"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>True</required>
+      <title i18n:translate="">Group</title>
+      <vocabulary>alpha.content.GroupList</vocabulary>
+      <default>level_D</default>
+    </field>
+
+    <field name="promoCode" type="zope.schema.ASCIILine"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <readonly>False</readonly>
+      <title i18n:translate="">promoCode</title>
+    </field>
+
     <field name="fName" type="zope.schema.ASCIILine"
       users:forms="In User Profile">
       <description i18n:translate="">
@@ -100,15 +119,6 @@
       <title i18n:translate="">Newsletter</title>
     </field>
 
-    <field name="promoCode" type="zope.schema.ASCIILine"
-      users:forms="In User Profile">
-      <description i18n:translate="">
-      </description>
-      <required>False</required>
-      <readonly>False</readonly>
-      <title i18n:translate="">promoCode</title>
-    </field>
-
     <field name="promoCodeLog" type="zope.schema.TextLine"
       users:forms="In User Profile">
       <description i18n:translate="">
@@ -125,6 +135,16 @@
       <required>False</required>
       <readonly>True</readonly>
       <title i18n:translate="">wishList</title>
+    </field>
+
+    <field name="modifyVersion" type="zope.schema.Int"
+      users:forms="In User Profile">
+      <description i18n:translate="">
+      </description>
+      <required>False</required>
+      <readonly>True</readonly>
+      <title i18n:translate="">Modify Version</title>
+      <default>0</default>
     </field>
   </schema>
 </model>

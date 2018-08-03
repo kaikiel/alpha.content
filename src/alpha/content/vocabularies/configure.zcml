@@ -9,5 +9,10 @@
         name="alpha.content.MapCategory"
     />
 
+    <utility
+        component=".group_list.GroupListFactory"
+        name="alpha.content.GroupList"
+    />
+
         
 </configure>

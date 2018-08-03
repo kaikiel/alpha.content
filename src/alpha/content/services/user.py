@@ -132,3 +132,4 @@ class UserDeleteWishList(Service):
                 raise BadRequest("Query string supplied is not valid")
         else: 
             self.request.response.setStatus(401)
+

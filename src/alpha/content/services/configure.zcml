@@ -13,22 +13,4 @@
       permission="zope2.View"
     />
 
-    <!--POST /@user_wishlist?username=***&wishItemUID=*** -->
-    <plone:service
-      method="POST"
-      name="@user_wishlist"
-      for="Products.CMFCore.interfaces.ISiteRoot"
-      factory=".user.UserSetWishList"
-      permission="zope2.View"
-    />
-
-    <!--DELETE /@user_wishlist?username=***&wishItemUID=*** -->
-    <plone:service
-      method="DELETE"
-      name="@user_wishlist"
-      for="Products.CMFCore.interfaces.ISiteRoot"
-      factory=".user.UserDeleteWishList"
-      permission="zope2.View"
-    />
-
 </configure>

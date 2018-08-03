@@ -35,7 +35,7 @@ class GeneralMethod(BrowserView):
 
         groupList = ['level_A', 'level_B', 'level_C', 'level_D']
         groupDict = {'level_A': 'l_a_price', 'level_B': 'l_b_price', 'level_C': 'l_c_price', 'level_D': 'salePrice'}
-        currentGroups = api.user.get_current().getUser().getGroups()
+        currentGroups = api.user.get_current().getProperty('group')
         for group in groupList:
             if group in currentGroups:
                 if group == 'level_D':
@@ -61,11 +61,23 @@ class GeneralMethod(BrowserView):
 
         groupList = ['level_A', 'level_B', 'level_C', 'level_D']
         groupDict = {'level_A': False, 'level_B': False, 'level_C': False, 'level_D': True}
-        currentGroups = api.user.get_current().getUser().getGroups()
+        currentGroups = api.user.get_current().getProperty('group')
         for group in groupList:
             if group in currentGroups:
                 return groupDict[group]
         return False
+
+    def hasPromoCode(self):
+        if api.user.is_anonymous():
+            return True
+
+        groupList = ['level_A', 'level_B', 'level_C', 'level_D']
+        groupDict = {'level_A': False, 'level_B': False, 'level_C': True, 'level_D': True}
+        currentGroups = api.user.get_current().getProperty('group')
+        for group in groupList:
+            if group in currentGroups:
+                return groupDict[group]
+        return True
 
 
 class GetProductData(GeneralMethod):
@@ -550,7 +562,61 @@ class CheckPromoCode(BrowserView):
     def __call__(self):
         promoCode = getattr(self.request, 'promoCode', '')
         existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
-        if str(promoCode) in existCode:
+        if str(promoCode) in existCode.values():
             return '1'
         else:
             return '0'
+
+class UserAdd(BrowserView):
+    def __call__(self):
+        request  = self.request
+        if request.get('BODY'):
+            data = json.loads(self.request.get('BODY', '{}'))
+            if data.has_key('username') and data.has_key('email') and data.has_key('password') and data.has_key('fullname'):
+                if not api.user.get(username=data['username']):
+                    # Disable CSRF protection
+                    alsoProvides(self.request, IDisableCSRFProtection)
+                    try:
+                        properties = {'fullname':data['fullname']}
+                        user = api.user.create(username=data['username'], email=data['email'], password=data['password'], properties=properties)
+                        return '{"success": "username":"user: '+ user.id +' is created"}'
+                    except Exception as ex:
+                        return '{"error": "username can not created"}'
+                return '{"error": "username can not created"}'
+            return '{"error": "Required username, email, password, fullname field is missing"}'
+        return '{"error": "json data is missing"}'
+
+class UserProperty(BrowserView):
+    def __call__(self):
+        request  = self.request
+        propertyList = ['city', 'fax', 'group', 'zip', 'address2', 'address1', 'company', 'promoCode', 'telephone', 'lName', 'state', 'fName', 'country', 'fullname', 'newsletter', 'email']
+        if request.get('BODY'):
+            body = json.loads(self.request.get('BODY', '{}'))
+            if body.has_key('username'):
+                username = body['username']
+                user = api.user.get(username=username)
+                if user:
+                    userProperty = {}
+                    for p in propertyList:
+                        userProperty.update({p : user.getProperty(p)})
+                    data = json.dumps(userProperty)
+                    return data
+                return '{"error": "username is not exist"}'
+            return '{"error": "Required username field is missing"}'
+        return '{"error": "json data is missing"}'
+
+class UpdateUserConfiglet(BrowserView):
+    def __call__(self):
+        request = self.request
+        if request.get('BODY'):
+            promoCode = json.loads(request.get('BODY'))['promoCode']
+            username = json.loads(request.get('BODY'))['username']
+            if promoCode:
+                # Disable CSRF protection
+                alsoProvides(self.request, IDisableCSRFProtection)
+
+                existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
+                existCode.update({str(username): str(promoCode)})
+                api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
+                return '{"success": "UserConfiglet is updated"}'
+            return '{"error": "json data is missing"}'

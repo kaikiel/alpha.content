@@ -6,17 +6,8 @@ from ZPublisher.HTTPResponse import HTTPResponse
 from random import randint
 import pdb
 import requests
-
-def propertiesUpdate(event):
-    userid = event.context.id
-    users = api.user.get_users()
-    request = getRequest()
-    flag = true
-    for user in users:
-        if event.data['promoCode'] == user.getProperty('pronoCoe'):
-            api.portal.show_message(message='優惠卷號碼重複'.decode('utf-8'), request=request)
-            flag = false
-            break;
+import time
+import datetime
 
 
 def move_to_top(item, event):
@@ -27,14 +18,6 @@ def move_to_top(item, event):
     folder.moveObjectsToTop(item.id)
     abs_url = folder.absolute_url()
     request.response.redirect('%s/folder_contents' %abs_url)
-
-def setCookieCurrentUser(event):
-    request = getRequest()
-    request.response.setCookie('currentUser', api.user.get_current().getUserName())
-
-def clearCookieCurrentUser(event):
-    request = getRequest()
-    request.response.setCookie('currentUser', '')
 
 def initPromoCode(event):
     promoCode = str(randint(0,99999)).zfill(5)
@@ -47,28 +30,80 @@ def initPromoCode(event):
         existCode.update({promoCode: currentUser.getUserName()})
         api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
 
-def addUserDefaultGroup(event):
-    request = getRequest()
-    userName = request.get('form.username', '')
-    email = str(request.get('form.widgets.email', ''))
-    pwd = str(request.get('form.widgets.password', ''))
-    fullname = str(request.get('form.widgets.fullname', ''))
-
-    api.group.add_user(groupname="level_D", username=userName)
-    if request['URL1'].split('alpha_')[1] == 'cn':
-         url = request['URL1'].replace('cn', 'en')
-    else:
-         url = request['URL1'].replace('en', 'cn')
-
-    requests.post(url + '/@users', headers={'Accept': 'application/json', 'Content-Type': 'application/json'},
-                   json={'email': email, 'fullname': fullname, 'password': pwd, 'roles': ['Member'], 'username': userName},
-                   auth=('admin', '123456'))
-
-
 def delUserPromoCodeConfiglet(event):
     username = event.principal
     existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
     existCode = {key:val for key, val in existCode.items() if val != username}
     api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
 
+def addUserToAnother(event):
+    request = getRequest()
+    if request.get('form.buttons.register'):
+        userName = request.get('form.widgets.username', '')
+        email = request.get('form.widgets.email', '')
+        pwd = request.get('form.widgets.password', '')
+        fullname = request.get('form.widgets.fullname', '')
 
+        if 'alpha_cn' in request['URL']:
+             url = request['URL1'].replace('alpha_cn', 'alpha_en')
+        else:
+             url = request['URL1'].replace('alpha_en', 'alpha_cn')
+
+        response = requests.post(url + '/adduser', headers={'Accept': 'application/json', 'Content-Type': 'application/json'}, 
+                                json={'email': email, 'password': pwd, 'username': userName, 'fullname': fullname}, 
+                                auth=('admin', '123456'))
+
+def modifyUserToAnother(event):
+    request = getRequest()
+    if hasattr(event.context, 'member'):
+        user = event.context.member.id
+        data = event.data
+
+        if data['promoCode']:
+            existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
+            if data['promoCode'] in existCode.values():
+                api.portal.show_message(message=_(u'promoCode is repeat!!'), request=getRequest(), type='error')
+            existCode.update({user: data['promoCode']})
+            api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
+        if request.get('form.buttons.save'):
+
+            if 'alpha_cn' in request['URL']:
+                 requests_url = request['URL1'].replace('alpha_cn', 'alpha_en')
+            else:
+                 requests_url = request['URL1'].replace('alpha_en', 'alpha_cn')
+            url = "{}/@users/{}".format(requests_url, user)
+
+            response = requests.patch(url, headers={'Accept': 'application/json', 'Content-Type': 'application/json'},
+                                      json= event.data,
+                                      auth=('admin', '123456'))
+            response = requests.post(requests_url+'/updateUserConfiglet', 
+                                     headers={'Accept': 'application/json', 'Content-Type': 'application/json'},
+                                     json= {'username': user, 'promoCode': data['promoCode']},
+                                     auth=('admin', '123456'))
+
+def delUserToAnother(event):
+    request = getRequest()
+    user = event.principal
+
+    existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
+    existCode.pop(user, None)
+    api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
+
+    # check event repeat
+    if request.get('form.button.Modify'):
+
+        if 'alpha_cn' in request['URL']:
+             requests_url = request['URL1'].replace('alpha_cn', 'alpha_en')
+        else:
+             requests_url = request['URL1'].replace('alpha_en', 'alpha_cn')
+        url = "{}/@users/{}".format(requests_url, user)
+        
+        response = requests.post(requests_url+'/getUserProperty', headers={'Accept': 'application/json', 'Content-Type': 'application/json'}, 
+                                 json={'username': user}, auth=('admin', '123456'), timeout=30)
+        if 'error' not in response.text:
+            print url
+            try:
+                response = requests.delete(url, headers={'Accept': 'application/json'}, auth=('admin', '123456'), timeout=30)
+                print response.text
+            except Exception as ex:
+                print ex
