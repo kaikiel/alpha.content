@@ -1,5 +1,5 @@
 <metal:block metal:define-macro="social_btn_fb">
-<script defer>
+<script async>
     var scriptTag = document.scripts[document.scripts.length - 1];
     var parentTag = scriptTag.parentNode;
     data_url = parentTag.getAttribute('data-url');
@@ -9,7 +9,7 @@
 </metal:block>
 
 <metal:block metal:define-macro="social_btn_tweet">
-<script defer>
+<script async>
     var scriptTag = document.scripts[document.scripts.length - 1];
     var parentTag = scriptTag.parentNode;
     data_url = parentTag.getAttribute('data-url');
@@ -20,7 +20,7 @@
 </metal:block>
 
 <metal:block metal:define-macro="social_btn_tweet_formodal">
-<script defer>
+<script async>
     var scriptTag = document.scripts[document.scripts.length - 1];
     var parentTag = scriptTag.parentNode;
     data_url = parentTag.getAttribute('data-url');

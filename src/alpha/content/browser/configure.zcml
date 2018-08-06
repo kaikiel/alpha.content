@@ -168,16 +168,10 @@
   />
 
   <browser:page
-      name="use_coupon"
-      for="*"
-      class=".view.UseCoupon"
-      permission="zope2.View"
-  />
-  <browser:page
       name="use_coupon_status"
       for="*"
       class=".view.UseCouponStatus"
-      permission="cmf.ListFolderContents"
+      permission="cmf.ManagePortal"
   />
   <browser:page
       name="companys"
@@ -196,6 +190,13 @@
 
 
 <!-- for requests --> 
+  <browser:page
+      name="use_coupon"
+      for="*"
+      class=".view.UseCoupon"
+      permission="zope2.View"
+  />
+
   <browser:page
       name="addwishlist"
       for="*"
@@ -243,6 +244,13 @@
       for="*"
       class=".view.UpdateUserConfiglet"
       permission="cmf.ListFolderContents"
+  />
+
+  <browser:page
+      name="download_excel"
+      for="*"
+      class=".view.DownloadExcel"
+      permission="zope2.View"
   />
 
 

@@ -124,7 +124,7 @@ msgstr "(啟用)"
 
 #: plone.app.users/plone/app/users/schema.py:54
 msgid "(protected)"
-msgstr "(唯讀欄位)"
+msgstr ""
 
 #. Default: "- An intranet workflow where content is only accessible if you are logged in. - Basic states are: Internal Draft, Pending Review, Internally Published and Private. - Also has an Externally Published state, so you can make selected content available to people outside the intranet."
 #: CMFPlone/profiles/default/workflows/intranet_workflow/definition.xml
@@ -2140,7 +2140,7 @@ msgstr ""
 
 #: plone.schemaeditor/plone/schemaeditor/schema.py:94
 msgid "Enter allowed choices one per line."
-msgstr "逐行輸入選項值"
+msgstr ""
 
 #: plone.app.widgets/plone/app/widgets/utils.py:76
 msgid "Enter date..."
@@ -2172,7 +2172,7 @@ msgstr "等於"
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:47
 #: CMFPlone/skins/plone_login/login_form.cpt:53
 msgid "Error"
-msgstr "錯誤"
+msgstr ""
 
 #: plone.app.content/plone/app/content/browser/contents/rearrange.py:33
 msgid "Error moving item"
@@ -3488,7 +3488,7 @@ msgstr "內容型別昇級管理"
 
 #: PlonePAS/plugins/passwordpolicy.py:64
 msgid "Minimum 5 characters."
-msgstr "至少要有 5 個字元。"
+msgstr ""
 
 #: Archetypes/browser/templates/calendar_macros.pt:173
 msgid "Minute"
@@ -3984,7 +3984,7 @@ msgstr "密碼不正確。"
 
 #: plone.app.users/plone/app/users/browser/register.py:304
 msgid "Passwords do not match."
-msgstr "輸入密碼不符合。"
+msgstr ""
 
 #: CMFPlone/skins/plone_login/login_password_validate.vpy:36
 msgid "Passwords must match."
@@ -4208,7 +4208,7 @@ msgstr "位置順序"
 
 #: plone.schemaeditor/plone/schemaeditor/schema.py:93
 msgid "Possible values"
-msgstr "可用的數值"
+msgstr ""
 
 msgid "PowerPoint presentation"
 msgstr "PowerPoint 檔案"
@@ -5163,7 +5163,7 @@ msgstr ""
 #. Default: "Start password reset"
 #: CMFPlone/browser/templates/mail_password_form.pt:62
 msgid "Start password reset"
-msgstr "開始密碼重設"
+msgstr ""
 
 #: plone.app.content/plone/app/content/browser/contents/workflow.py:26
 #: plone.app.contentmenu/plone/app/contentmenu/menu.py:668
@@ -5553,7 +5553,7 @@ msgstr "項目的位置"
 #: CMFPlone/RegistrationTool.py:230
 #: plone.app.users/plone/app/users/browser/register.py:359
 msgid "The login name you selected is already in use or is not valid. Please choose another."
-msgstr "選擇的帳號已被使用或是不合規定，請選用其他帳號。"
+msgstr ""
 
 #: plone.app.portlets/plone/app/portlets/portlets/classic.py:21
 msgid "The macro containing the portlet. Leave blank if there is no macro."
@@ -5752,7 +5752,7 @@ msgstr "發生錯誤"
 #: plone.app.users/plone/app/users/browser/register.py:64
 #: plone.app.users/plone/app/users/browser/registersettingspanel.py:20
 msgid "There were errors."
-msgstr "發生錯誤。"
+msgstr ""
 
 #: CMFPlone/interfaces/controlpanel.py:460
 msgid "These attributes are additionally allowed."
@@ -5902,7 +5902,7 @@ msgstr "這個標題已被使用。"
 
 #: plone.app.users/plone/app/users/browser/register.py:351
 msgid "This username is reserved. Please choose a different name."
-msgstr "這個帳號已被保留。請選擇另一個帳號。"
+msgstr ""
 
 #: CMFPlone/browser/templates/plone-upgrade.pt:68
 msgid "This will install plone.app.contenttypes and redirect you to a form where you can migrate your content."
@@ -6264,7 +6264,7 @@ msgstr "使用者已刪除"
 
 #: plone.app.users/plone/app/users/browser/register.py:711
 msgid "User added."
-msgstr "使用者已新增。"
+msgstr ""
 
 #: CMFPlone/controlpanel/browser/usergroups.py:27
 msgid "User and groups settings for this site."
@@ -6670,7 +6670,7 @@ msgstr "輸入的密碼並不一致，再試一次。"
 
 #: PlonePAS/plugins/passwordpolicy.py:69
 msgid "Your password must contain at least 5 characters."
-msgstr "你的密碼必須至少包含 5 個字元。"
+msgstr ""
 
 #: plone.app.contenttypes/plone/app/contenttypes/migration/atct_migrator.pt:84
 msgid "Your site has ${n} subtopic(s). Before migrating them you have to either remove all subtopics or create folderish Collections to be able to migrate them. Inheriting criteria to sub-collections is not supported by the default types. You can still migrate other content."
@@ -6866,7 +6866,7 @@ msgstr "錯誤"
 #: CMFPlone/skins/plone_login/login_form.cpt:272
 #: plone.app.portlets/plone/app/portlets/portlets/login.pt:96
 msgid "box_forgot_password_option"
-msgstr "忘記密碼?"
+msgstr ""
 
 #. Default: "Full review list…"
 #: plone.app.portlets/plone/app/portlets/portlets/review.pt:62
@@ -6898,7 +6898,7 @@ msgstr "最近所有改變…"
 #. Default: "New user?"
 #: plone.app.portlets/plone/app/portlets/portlets/login.pt:105
 msgid "box_new_user_option"
-msgstr "新使用者?"
+msgstr ""
 
 #. Default: "News"
 #: plone.app.portlets/plone/app/portlets/portlets/news.pt:9
@@ -6935,7 +6935,7 @@ msgstr "搜尋"
 #. Default: "Log in"
 #: plone.app.portlets/plone/app/portlets/portlets/login.pt:8
 msgid "box_sign_in"
-msgstr "登入"
+msgstr ""
 
 #. Default: "Delete"
 #: plone.app.discussion/plone/app/discussion/browser/moderation.pt:68
@@ -7286,12 +7286,12 @@ msgstr "當取出 (check-out) 版本時，會在選擇的目錄裡建立一個�
 #. Default: "Fill in this form to contact the site owners."
 #: CMFPlone/browser/templates/contact-info.pt:36
 msgid "description_contact_site_owner"
-msgstr "填寫這份表單，以連繫站長。"
+msgstr ""
 
 #. Default: "Thank you for your feedback"
 #: CMFPlone/browser/templates/contact-info.pt:46
 msgid "description_contact_site_owner_success"
-msgstr "感謝您的留言"
+msgstr ""
 
 #. Default: "Please set a descriptive title for the rule."
 #: plone.app.contentrules/plone/app/contentrules/browser/templates/manage-elements.pt:252
@@ -7438,17 +7438,17 @@ msgstr "可利用下列連結再次登入。"
 #. Default: "For security reasons, we store your password encrypted, and cannot mail it to you. If you would like to reset your password, fill out the form below and we will send you an email at the address you gave when you registered to start the process of resetting your password."
 #: CMFPlone/browser/templates/mail_password_form.pt:23
 msgid "description_lost_password"
-msgstr "基於安全因素，使用者密碼被加密後儲存於系統，同時，無法透過電子郵件寄送明碼。想要重設密碼的話，請填寫下列表單，系統將寄信到註冊時所填寫的電子郵件信箱，協助使用者重設密碼。"
+msgstr ""
 
 #. Default: "If this will not work for you (for example, if you forgot your user name or your email address has changed), contact the ${site_admin}."
 #: CMFPlone/browser/templates/mail_password_form.pt:75
 msgid "description_lost_password_mail_admin"
-msgstr "如果這無法解決你的問題 (例如: 忘了使用者名稱、或是電子郵件信箱已經變更)，請聯絡 ${site_admin}。"
+msgstr ""
 
 #. Default: "If this will not work for you (for example, if your email address has changed), contact the ${site_admin}."
 #: CMFPlone/browser/templates/mail_password_form.pt:85
 msgid "description_lost_password_mail_admin_2"
-msgstr "如果這無法解決你的問題 (例如: 你的電子郵件信箱已經改變)，請聯絡 ${site_admin}。"
+msgstr ""
 
 #. Default: "The left and right portlet slots will now display only those portlets assigned to this content type. Use the up, down, delete and edit links to manage user portlets. Use the drop-down list to add new portlets."
 #: plone.app.portlets/plone/app/portlets/browser/templates/manage-content-type.pt:28
@@ -7484,13 +7484,13 @@ msgstr "個人偏好設定。"
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:34
 #: CMFPlone/skins/plone_login/login_form.cpt:293
 msgid "description_no_account"
-msgstr "還沒有帳號的話，請到 ${registration_form} 網頁。"
+msgstr ""
 
 #. Default: "registration form"
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:35
 #: CMFPlone/skins/plone_login/login_form.cpt:294
 msgid "description_no_account_registration_linktext"
-msgstr "註冊表單"
+msgstr ""
 
 #. Default: "There are currently no items in this folder."
 #: plone.app.collection/plone/app/collection/browser/templates/standard_view.pt:173
@@ -7551,7 +7551,7 @@ msgstr "請注意：某些或全部 PAS 使用者來源外掛，無法列出其�
 #. Default: "You will receive an e-mail shortly containing a URL that will allow you to set your password. When you receive this e-mail, please follow the link to complete your registration process. NOTE: The password reset URL will expire on ${time}. If your password reset request expires, you may use the \"Forgot your password\" link to generate another password reset request."
 #: CMFPlone/skins/plone_login/registered.pt:39
 msgid "description_password_reset_or_registered"
-msgstr "系統將寄送一封通知信，信中包含一個網址，用來協助使用者設定密碼。收到通知信後，請盡快點選連結網址，以完成註冊程序。注意：通知信裡的網址將在 ${time} 之後失效。如果網址已經過時失效，可利用網站上的「忘記密碼」連結，重新產生密碼通知信。"
+msgstr ""
 
 #. Default: "Change your personal information"
 #: plone.app.users/plone/app/users/browser/userdatapanel.py:82
@@ -7656,7 +7656,7 @@ msgstr "透過下列表單，設定可以檢視或修改這個項目的帳號。
 #. Default: "To access this part of the site, you need to log in with your user name and password."
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:24
 msgid "description_sign_in"
-msgstr "必須先登入網站，才能存取這部份的網站內容。"
+msgstr ""
 
 #. Default: "Here is the full error message:"
 #: CMFPlone/skins/plone_templates/default_error_message.pt:133
@@ -7736,7 +7736,7 @@ msgstr "例: tw.plone.org"
 #. Default: "Select the fields for the join form. Fields in the right box will be shown on the form, fields on the left are disabled. Use the left/right buttons to move a field from right to left (to disable it) and vice versa. Use the up/down buttons to change the order in which the fields appear on the form."
 #: plone.app.users/plone/app/users/schema.py:174
 msgid "description_user_registration_fields"
-msgstr "挑選註冊表單裡要用到的欄位，右邊方框裡的欄位會顯示在表單上，左邊方框裡的欄位則不會顯示。使用左/右按鈕來移動欄位到左邊或右邊的方框，使用上/下按鈕來改變欄位在表單的顯示順序。"
+msgstr ""
 
 #. Default: "The site uses assistive technology like WAI-ARIA roles to the current best practices; however, site standards and content vary over time. If this web site does not validate correctly, please contact the ${site_admin}."
 #: CMFPlone/browser/templates/accessibility-info.pt:48
@@ -7761,12 +7761,12 @@ msgstr "如果在意使用者遺棄的項目內容，可 ${unlock_button} 處理
 #. Default: "You have been registered."
 #: CMFPlone/skins/plone_login/registered.pt:26
 msgid "description_you_are_registered"
-msgstr "你已經完成帳號註冊。"
+msgstr ""
 
 #. Default: "Click the button to log in immediately."
 #: CMFPlone/skins/plone_login/registered.pt:45
 msgid "description_you_can_log_on_now"
-msgstr "點選按鈕可以立即登入系統。"
+msgstr ""
 
 #: plone.formwidget.recurrence/plone/formwidget/recurrence/browser/i18n.py:9
 msgid "display_activate"
@@ -7817,7 +7817,7 @@ msgstr ""
 #: CMFPlone/skins/plone_login/login_form.cpt:56
 #: CMFPlone/skins/plone_login/registered.pt:53
 msgid "enable_cookies_message_before_login"
-msgstr "Cookie 無法使用。在登入之前，必須允許 Cookie 的使用。"
+msgstr ""
 
 #. Default: "Use this option to enable or disable the theme globally. Note that the options will also affect whether the theme is used when this option is enabled."
 #: plone/app/theming/interfaces.py:81
@@ -7999,7 +7999,7 @@ msgstr "增加新項目"
 #. Default: "Add New User"
 #: plone.app.users/plone/app/users/browser/register.py:618
 msgid "heading_add_user_form"
-msgstr "新增使用者"
+msgstr ""
 
 #. Default: "Assign to groups"
 #: CMFPlone/controlpanel/browser/usergroups_usermembership.pt:107
@@ -8029,7 +8029,7 @@ msgstr "瀏覽器語系設定"
 #. Default: "Change password for ${user}"
 #: CMFPlone/skins/plone_prefs/password_form.pt:15
 msgid "heading_change_password_for"
-msgstr "改變使用者 ${user} 密碼"
+msgstr ""
 
 #. Default: "Comment"
 #: plone.app.discussion/plone/app/discussion/browser/moderation.pt:84
@@ -8044,7 +8044,7 @@ msgstr "留言者"
 #. Default: "Contact form"
 #: CMFPlone/browser/templates/contact-info.pt:18
 msgid "heading_contact_form"
-msgstr "連絡表單"
+msgstr ""
 
 #. Default: "Use cookie for manual override"
 #: CMFPlone/interfaces/controlpanel.py:263
@@ -8155,7 +8155,7 @@ msgstr "語系設定"
 #. Default: "Lost Password"
 #: CMFPlone/browser/templates/mail_password_form.pt:18
 msgid "heading_lost_password"
-msgstr "密碼遺失"
+msgstr ""
 
 #. Default: "Search for users"
 #: plone.app.users/plone/app/users/browser/membersearch.py:88
@@ -8190,7 +8190,7 @@ msgstr "名稱"
 #. Default: "New user?"
 #: CMFPlone/skins/plone_login/login_form.cpt:287
 msgid "heading_new_user"
-msgstr "新的使用者?"
+msgstr ""
 
 #. Default: "Insufficient Privileges"
 #: CMFPlone/skins/plone_login/insufficient_privileges.pt:13
@@ -8250,7 +8250,7 @@ msgstr "發佈的項目"
 #. Default: "Registration form"
 #: plone.app.users/plone/app/users/browser/register.py:550
 msgid "heading_registration_form"
-msgstr "註冊表單"
+msgstr ""
 
 #. Default: "Configuration Registry"
 #: plone.app.registry/plone/app/registry/browser/templates/records.pt:27
@@ -8325,7 +8325,7 @@ msgstr "永遠設定語系 Cookie 值"
 #. Default: "Please log in"
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:8
 msgid "heading_sign_in"
-msgstr "請登入"
+msgstr ""
 
 #. Default: "You are now logged out"
 #: CMFPlone/skins/plone_login/logged_out.cpt:20
@@ -8407,7 +8407,7 @@ msgstr "版本資訊"
 #: CMFPlone/skins/plone_login/login_password.cpt:22
 #: CMFPlone/skins/plone_login/registered.pt:21
 msgid "heading_welcome"
-msgstr "歡迎!"
+msgstr ""
 
 #. Default: "Welcome to ${sitename}"
 #: CMFPlone/skins/plone_templates/index_html.pt:14
@@ -8498,7 +8498,7 @@ msgstr "True 或 False"
 #. Default: "Case sensitive, make sure caps lock is not enabled."
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:114
 msgid "help_capslock_password"
-msgstr "英文字母大小寫有差別，請確定鍵盤的 CapsLock 鍵沒被誤按。"
+msgstr ""
 
 #. Default: "Use this setting to enable or disable Captcha validation for comments. Install plone.formwidget.captcha, plone.formwidget.recaptcha, collective.akismet, or collective.z3cform.norobots if there are no options available."
 #: plone.app.discussion/plone/app/discussion/interfaces.py:311
@@ -8536,7 +8536,7 @@ msgstr "關於此連結的一些留言或意見。"
 #: CMFPlone/skins/plone_login/login_password.cpt:89
 #: CMFPlone/skins/plone_prefs/password_form.pt:64
 msgid "help_confirm_password"
-msgstr "再次輸入密碼，請確定密碼是一致的。"
+msgstr ""
 
 #. Default: "&e = the triggering event, &c = the context, &u = the user"
 #: plone.app.contentrules/plone/app/contentrules/actions/logger.py:42
@@ -8580,7 +8580,7 @@ msgstr "勾選的話，導覽樹將只會顯示目前的目錄，及其下的子
 #: CMFPlone/skins/plone_prefs/password_form.pt:36
 #: plone.app.users/plone/app/users/browser/passwordpanel.py:18
 msgid "help_current_password"
-msgstr "輸入你目前的密碼。"
+msgstr ""
 
 #. Default: "Columns in the table are controlled by 'Table Columns' below."
 #: widget description of BooleanWidget for label Display as Table
@@ -8632,8 +8632,7 @@ msgid "help_doctype"
 msgstr "可以指定網頁輸出時，在 \"html\" 標籤之前的 Doctype 字串，例如 \"&lt;!DOCTYPE html&gt;\"。留空的話，預設會使用 XHTML 1.0 的 Doctype 或是 Diazo 佈景主題所指定的字串。"
 
 #. Default: "Switching the email login setting in the ${link} on or off automatically changes the login name for existing users. This may fail when there are duplicates. On this page you can search for duplicates."
-#: CMFPlone/controlpanel/browser/emaillogin.pt:18
-msgid "help_duplicate_login_names"
+#: CMFPlone/controlpanel/browser/emailmsgid "help_duplicate_login_names"
 msgstr ""
 
 #. Default: "If selected, supports editing of comments for users with the \"Edit comments\" permission."
@@ -8651,12 +8650,12 @@ msgstr "指定該項目生效的日期。如果沒指定日期，項目將立即
 #. Default: "Enter an email address. This is necessary in case the password is lost. We respect your privacy, and will not give the address away to any third parties or expose it anywhere."
 #: plone.app.users/plone/app/users/browser/register.py:105
 msgid "help_email_creation"
-msgstr "請輸入電子信箱地址。當使用者忘記密碼時，重設密碼的通知信，會寄到這個信箱地址。請放心，這些資訊不會被交給其他人，電子信箱地址也不會被主動公開。"
+msgstr ""
 
 #. Default: "Enter an email address. This will be your login name. We respect your privacy, and will not give the address away to any third parties or expose it anywhere."
 #: plone.app.users/plone/app/users/browser/register.py:98
 msgid "help_email_creation_for_login"
-msgstr "請輸入電子郵件信箱，這會成為使用者的登入帳號。請放心，這些資訊不會被交給其他人，電子信箱地址也不會被主動公開。"
+msgstr ""
 
 #. Default: "Email Address"
 #: plone.app.z3cform/plone/app/z3cform/templates/link_input.pt:34
@@ -8729,7 +8728,7 @@ msgstr "如果你不確定用那種格式，請選擇純文字（Plain Text）�
 #. Default: "Enter full name, e.g. John Smith."
 #: plone.app.users/plone/app/users/schema.py:77
 msgid "help_full_name_creation"
-msgstr "輸入使用者的完整姓名，例如: 張三。"
+msgstr ""
 
 #. Default: "If selected, users are able to post comments on the site. However, you will still need to enable comments for specific content types, folders or content objects before users will be able to post comments."
 #: plone.app.discussion/plone/app/discussion/interfaces.py:214
@@ -8793,7 +8792,7 @@ msgstr "如果適用的話，資料項目會伴隨地理相關資訊。"
 #. Default: "Login names are case sensitive, make sure the caps lock key is not enabled."
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:90
 msgid "help_login_name_caps"
-msgstr "登入帳號的英文字母大小寫有差別，請確定鍵盤的 CapsLock 鍵沒被誤按。"
+msgstr ""
 
 #. Default: "If enabled all external links will be marked with link type specific icons."
 #: plone/app/theming/browser/controlpanel.pt:565
@@ -8850,7 +8849,7 @@ msgstr "代表階層深度的一個整數，用來指定導覽方框要顯示底
 #: CMFPlone/skins/plone_login/login_password.cpt:69
 #: CMFPlone/skins/plone_prefs/password_form.pt:50
 msgid "help_new_password"
-msgstr "輸入使用者的新密碼，至少 5 個字元。"
+msgstr ""
 
 #. Default: "You may also provide a longer description for your theme."
 #: plone/app/theming/browser/controlpanel.pt:220
@@ -8885,18 +8884,18 @@ msgstr "用來指定佈景主題的編譯參數，在規則檔裡可以用 <code
 #. Default: "Enter your new password."
 #: plone.app.users/plone/app/users/schema.py:105
 msgid "help_password_creation"
-msgstr "至少 5 個字元，大小寫字母有差別。"
+msgstr ""
 
 #. Default: "Enter your new password. ${errors}"
 #: plone.app.users/plone/app/users/browser/register.py:121
 msgid "help_password_creation_with_errors"
-msgstr "輸入新的密碼。 ${errors}"
+msgstr ""
 
 #. Default: "If you have forgotten your password, ${click_here}."
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:120
 #: CMFPlone/skins/plone_login/login_form.cpt:278
 msgid "help_password_retrieval"
-msgstr "忘記密碼的話，${click_here}。"
+msgstr ""
 
 #. Default: "Folders to search in."
 #: widget description of ReferenceBrowserWidget for label Folders
@@ -8947,13 +8946,13 @@ msgstr "輸入相對路徑，例如：<br /> '..' 代表上一層目錄 <br /> '
 #. Default: "Check this to have your email address filled in automatically when you log in later."
 #: CMFPlone/skins/plone_login/login_form.cpt:179
 msgid "help_remember_my_email"
-msgstr "下次登入時自動輸入電子郵件信箱"
+msgstr ""
 
 #. Default: "Check this to have your user name filled in automatically when you log in later."
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:149
 #: CMFPlone/skins/plone_login/login_form.cpt:170
 msgid "help_remember_my_name"
-msgstr "若點選這裡，往後當你登入時，瀏覽器將自動為你填寫使用者帳號。"
+msgstr ""
 
 #. Default: "If body text available for item, render it, otherwise use description."
 #: CMFPlone/interfaces/syndication.py:177
@@ -9165,7 +9164,7 @@ msgstr "為外部連結加上 http://。"
 #. Default: "Enter a user name, usually something like 'jsmith'. No spaces or special characters. Usernames and passwords are case sensitive, make sure the caps lock key is not enabled. This is the name used to log in."
 #: plone.app.users/plone/app/users/schema.py:94
 msgid "help_user_name_creation_casesensitive"
-msgstr "輸入想要的使用者帳號，常見的例子像是 'jsmith'。這會是用來登入系統的帳號，請不要使用中文、空白、或特殊字元，而且大小寫字母有差別。"
+msgstr ""
 
 #. Default: "If selected, users can choose to be notified of new comments by email."
 #: plone.app.discussion/plone/app/discussion/interfaces.py:364
@@ -9369,7 +9368,7 @@ msgstr "新增資訊方框…"
 #. Default: "Add to the following groups:"
 #: plone.app.users/plone/app/users/schema.py:130
 msgid "label_add_to_groups"
-msgstr "新增到下列群組裡:"
+msgstr ""
 
 #. Default: "Add user to selected groups"
 #: CMFPlone/controlpanel/browser/usergroups_usermembership.pt:194
@@ -9536,12 +9535,12 @@ msgstr "作者 ${author}"
 #: CMFPlone/controlpanel/browser/types.pt:265
 #: CMFPlone/skins/plone_prefs/password_form.pt:81
 msgid "label_cancel"
-msgstr "取消"
+msgstr ""
 
 #. Default: "Normally we would offer to send the user an email with instructions to set a password on completion of this form. But this site does not have a valid email setup. You can fix this in the Mail settings."
 #: plone.app.users/plone/app/users/browser/register.py:667
 msgid "label_cant_mail_password_reset"
-msgstr "系統會寄送通知信件，協助使用者完成註冊表單裡的密碼設定，但這個網站尚未設定電子郵件，請到郵件設定完成它。"
+msgstr ""
 
 #. Default: "Captcha"
 #: plone.app.discussion/plone/app/discussion/interfaces.py:309
@@ -9573,7 +9572,7 @@ msgstr "變更備註"
 #: CMFPlone/skins/plone_prefs/password_form.pt:76
 #: plone.app.users/plone/app/users/browser/passwordpanel.py:110
 msgid "label_change_password"
-msgstr "更改密碼"
+msgstr ""
 
 #. Default: "Change State"
 #: plone.app.content/plone/app/content/browser/contents/templates/workflow.pt:7
@@ -9635,7 +9634,7 @@ msgstr "清除顯示項目"
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:121
 #: CMFPlone/skins/plone_login/login_form.cpt:279
 msgid "label_click_here_to_retrieve"
-msgstr "我們可以寄送新密碼"
+msgstr ""
 
 #. Default: "Click to view full-size image…"
 #: plone.app.contenttypes/plone/app/contenttypes/browser/templates/image.pt:20
@@ -9669,7 +9668,7 @@ msgstr "比較"
 #: CMFPlone/skins/plone_login/login_password.cpt:86
 #: CMFPlone/skins/plone_prefs/password_form.pt:62
 msgid "label_confirm_password"
-msgstr "確認密碼"
+msgstr ""
 
 #. Default: "Contact E-mail"
 #: widget label of StringWidget - description ""
@@ -9822,7 +9821,7 @@ msgstr "項目顯示"
 #: CMFPlone/skins/plone_prefs/password_form.pt:34
 #: plone.app.users/plone/app/users/browser/passwordpanel.py:17
 msgid "label_current_password"
-msgstr "目前的密碼"
+msgstr ""
 
 #. Default: "Display as Table"
 #: widget label of BooleanWidget - description "Columns in the table are controlled by 'Table Columns' below."
@@ -9972,7 +9971,7 @@ msgstr "發佈日期"
 #: plone.app.portlets/plone/app/portlets/portlets/login.pt:46
 #: plone.app.users/plone/app/users/browser/membersearch.py:29
 msgid "label_email"
-msgstr "電子信箱"
+msgstr ""
 
 #. Default: "Email"
 #: plone.app.z3cform/plone/app/z3cform/templates/link_input.pt:31
@@ -10138,7 +10137,7 @@ msgstr "格式"
 #. Default: "Full Name"
 #: plone.app.users/plone/app/users/schema.py:62
 msgid "label_full_name"
-msgstr "使用者的全名"
+msgstr ""
 
 #. Default: "Full Name"
 #: plone.app.users/plone/app/users/browser/membersearch.py:36
@@ -10342,7 +10341,7 @@ msgstr "已鎖定"
 #: CMFPlone/skins/plone_login/login_form.cpt:189
 #: CMFPlone/skins/plone_login/registered.pt:92
 msgid "label_log_in"
-msgstr "登入"
+msgstr ""
 
 #. Default: "Continue"
 #: CMFPlone/skins/plone_login/external_login_return.cpt:58
@@ -10360,7 +10359,7 @@ msgstr "繼續到 ${portal_title} 首頁"
 #: CMFPlone/skins/plone_login/login_form.cpt:119
 #: plone.app.portlets/plone/app/portlets/portlets/login.pt:36
 msgid "label_login_name"
-msgstr "登入帳號"
+msgstr ""
 
 #. Default: "Log in to add comments"
 #: plone.app.discussion/plone/app/discussion/browser/comments.pt:20
@@ -10375,7 +10374,7 @@ msgstr "登入後發表留言"
 #. Default: "Send a confirmation mail with a link to set the password"
 #: plone.app.users/plone/app/users/schema.py:116
 msgid "label_mail_password"
-msgstr "寄送內含新密碼連結的通知信"
+msgstr ""
 
 #. Default: "Main Language:"
 #: CMFPlone/browser/templates/author.pt:108
@@ -10440,13 +10439,13 @@ msgstr "多選"
 #: CMFPlone/browser/templates/mail_password_form.pt:47
 #: CMFPlone/browser/templates/pwreset_form.pt:52
 msgid "label_my_email_address_is"
-msgstr "我的電子郵件信箱是"
+msgstr ""
 
 #. Default: "My user name is"
 #: CMFPlone/browser/templates/mail_password_form.pt:42
 #: CMFPlone/browser/templates/pwreset_form.pt:43
 msgid "label_my_user_name_is"
-msgstr "我的使用者名稱是"
+msgstr ""
 
 #. Default: "Name"
 #: CMFPlone/controlpanel/browser/usergroups_groupdetails.pt:28
@@ -10490,7 +10489,7 @@ msgstr "新的項目，自從…"
 #: CMFPlone/skins/plone_login/login_password.cpt:66
 #: CMFPlone/skins/plone_prefs/password_form.pt:48
 msgid "label_new_password"
-msgstr "新的密碼"
+msgstr ""
 
 #. Default: "New Short Name"
 #: plone.app.content/plone/app/content/browser/actions.py:104
@@ -10598,12 +10597,12 @@ msgstr "參數表示式"
 #: CMFPlone/skins/plone_login/login_form.cpt:143
 #: plone.app.portlets/plone/app/portlets/portlets/login.pt:58
 msgid "label_password"
-msgstr "密碼"
+msgstr ""
 
 #. Default: "A URL will be generated and e-mailed to you; follow the link to reach a page where you can change your password and complete the registration process."
 #: plone.app.users/plone/app/users/browser/register.py:607
 msgid "label_password_change_mail"
-msgstr "系統將寄出內含認證網址的通知信件，在認證網址的網頁上，能夠設定新的帳號密碼，以完成註冊程序。"
+msgstr ""
 
 #. Default: "Password"
 #: plone.schemaeditor/plone/schemaeditor/fields.py:93
@@ -10749,7 +10748,7 @@ msgstr "重新整理"
 #. Default: "Register"
 #: plone.app.users/plone/app/users/browser/register.py:387
 msgid "label_register"
-msgstr "註冊"
+msgstr ""
 
 #. Default: "Related content"
 #: plone.app.layout/plone/app/layout/viewlets/document_relateditems.pt:12
@@ -10764,13 +10763,13 @@ msgstr "相對路徑"
 #. Default: "Remember my email address."
 #: CMFPlone/skins/plone_login/login_form.cpt:177
 msgid "label_remember_my_email"
-msgstr "記住我的電子郵件信箱"
+msgstr ""
 
 #. Default: "Remember my name."
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:147
 #: CMFPlone/skins/plone_login/login_form.cpt:168
 msgid "label_remember_my_name"
-msgstr "記住我的名字"
+msgstr ""
 
 #. Default: "Remove"
 #: plone.app.contentrules/plone/app/contentrules/browser/templates/manage-elements.pt:61
@@ -10999,7 +10998,7 @@ msgstr "全部顯示"
 #: CMFPlone/browser/templates/mail_password_form.pt:76
 #: CMFPlone/skins/plone_templates/default_error_message.pt:50
 msgid "label_site_admin"
-msgstr "網站管理者"
+msgstr ""
 
 #. Default: "site administration"
 #: CMFPlone/skins/plone_login/insufficient_privileges.pt:19
@@ -11177,7 +11176,7 @@ msgstr "標題"
 #. Default: "Up to my dashboard"
 #: CMFPlone/skins/plone_prefs/password_form.pt:19
 msgid "label_to_dashboard"
-msgstr "回到個人資訊區"
+msgstr ""
 
 #. Default: "Select All/None"
 #: CMFPlone/browser/templates/search.pt:84
@@ -11235,7 +11234,7 @@ msgstr "網址"
 #: CMFPlone/skins/plone_prefs/prefs_error_log_showEntry.pt:51
 #: plone.app.users/plone/app/users/schema.py:93
 msgid "label_user_name"
-msgstr "使用者帳號"
+msgstr ""
 
 #. Default: "Enable user email notification"
 #: plone.app.discussion/plone/app/discussion/interfaces.py:360
@@ -11351,7 +11350,7 @@ msgstr "新的密碼"
 #: CMFPlone/skins/plone_prefs/password_form.pt:31
 #: plone.app.users/plone/app/users/browser/passwordpanel.py:60
 msgid "legend_password_details"
-msgstr "詳細密碼資訊"
+msgstr ""
 
 #. Default: "Personal Details"
 #: plone.app.users/plone/app/users/browser/personalpreferences.py:70
@@ -11495,12 +11494,12 @@ msgstr "使用者名稱"
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:56
 #: CMFPlone/skins/plone_login/login_form.cpt:62
 msgid "login_form_disabled"
-msgstr "由於已停用 cookie 認證，無法使用 cookie 來進行登入。"
+msgstr ""
 
 #. Default: "Cookie authentication is disabled. Login portlet not available."
 #: plone.app.portlets/plone/app/portlets/portlets/login.pt:120
 msgid "login_portlet_disabled"
-msgstr "Cookie 認證被關閉，無法使用登入資訊方框。"
+msgstr ""
 
 #: plone.formwidget.recurrence/plone/formwidget/recurrence/browser/i18n.py:117
 msgid "long_date_format"
@@ -11738,7 +11737,7 @@ msgstr "沒有發現重覆的帳號。"
 #. Default: "You must set a password or choose to send an email."
 #: plone.app.users/plone/app/users/browser/register.py:378
 msgid "msg_no_password_no_mail_me"
-msgstr "必須設定密碼或是選擇寄送通知信件。"
+msgstr ""
 
 #. Default: "Text is too long. (Maximum ${max} characters.)"
 #: plone.app.textfield/plone/app/textfield/__init__.py:64
@@ -12032,7 +12031,7 @@ msgstr "更新"
 #. Default: "Cookie authentication has been disabled."
 #: CMFPlone/skins/plone_login/registered.pt:13
 msgid "registered_disabled"
-msgstr "已停用 cookie 認證。"
+msgstr ""
 
 #. Default: "Add new record"
 #: plone.app.registry/plone/app/registry/browser/templates/records.pt:151
@@ -12134,7 +12133,7 @@ msgstr "顯示"
 #. Default: "You are receiving this mail because ${fullname} ${from_address} is sending feedback about the site you administer at ${url}."
 #: CMFPlone/browser/templates/contact-info-email.pt:19
 msgid "site_feedback_mailtemplate_body"
-msgstr "你會收到這封信件，是由於 ${fullname}（${from_address}）寄來回應意見，內容與你所管理的 Plone 入口網站有關，其網址在 ${url}。"
+msgstr ""
 
 #. Default: "Sort by"
 #: CMFPlone/browser/templates/search.pt:194
@@ -12144,12 +12143,12 @@ msgstr "排序條件"
 #. Default: "Failed to create your account: we were unable to send instructions for setting a password to your email address: ${address}"
 #: plone.app.users/plone/app/users/browser/register.py:490
 msgid "status_fatal_password_mail"
-msgstr "帳號建立失敗：系統無法將密碼寄到你提供的電子信箱： ${address}"
+msgstr ""
 
 #. Default: "This account has been created, but we were unable to send instructions for setting a password to this email address: ${address}"
 #: plone.app.users/plone/app/users/browser/register.py:502
 msgid "status_nonfatal_password_mail"
-msgstr "帳號已經建立，但系統無法將密碼寄到你提供的電子信箱： ${address}"
+msgstr ""
 
 #. Default: "Structured Text"
 #: Archetypes/skins/archetypes/wysiwyg_support.pt:31
@@ -12319,7 +12318,7 @@ msgstr "位於: ${location}"
 #: CMFPlone/browser/templates/author.pt:137
 #: CMFPlone/browser/templates/contact-info.pt:27
 msgid "text_no_email_setup"
-msgstr "本網站尚未完成電子郵件設定，因此無法使用連絡表單。"
+msgstr ""
 
 #. Default: "You have not configured a mail host or a site 'From' address, various features including contact forms, email notification and password reset will not work. Go to the ${label_mail_control_panel_link} to fix this."
 #: CMFPlone/controlpanel/browser/overview.pt:52
@@ -12786,7 +12785,7 @@ msgstr "切換其他 Portlet Manager"
 #. Default: "User registration fields"
 #: plone.app.users/plone/app/users/schema.py:170
 msgid "title_user_registration_fields"
-msgstr "使用者註冊表單欄位"
+msgstr ""
 
 #. Default: "Username Check"
 #: CMFPlone/browser/templates/explainPWResetTool.pt:26

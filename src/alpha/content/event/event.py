@@ -38,6 +38,10 @@ def delUserPromoCodeConfiglet(event):
 
 def addUserToAnother(event):
     request = getRequest()
+
+    currentUser = event.object
+    if hasattr(currentUser, 'setProperties'):
+        currentUser.setProperties({'group':'level_D'})
     if request.get('form.buttons.register'):
         userName = request.get('form.widgets.username', '')
         email = request.get('form.widgets.email', '')
@@ -63,7 +67,7 @@ def modifyUserToAnother(event):
             existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
             if data['promoCode'] in existCode.values():
                 api.portal.show_message(message=_(u'promoCode is repeat!!'), request=getRequest(), type='error')
-            existCode.update({user: data['promoCode']})
+            existCode.update({str(user): str(data['promoCode'])})
             api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
         if request.get('form.buttons.save'):
 
@@ -101,9 +105,7 @@ def delUserToAnother(event):
         response = requests.post(requests_url+'/getUserProperty', headers={'Accept': 'application/json', 'Content-Type': 'application/json'}, 
                                  json={'username': user}, auth=('admin', '123456'), timeout=30)
         if 'error' not in response.text:
-            print url
             try:
                 response = requests.delete(url, headers={'Accept': 'application/json'}, auth=('admin', '123456'), timeout=30)
-                print response.text
             except Exception as ex:
                 print ex
