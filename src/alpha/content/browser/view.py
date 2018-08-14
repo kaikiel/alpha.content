@@ -124,12 +124,18 @@ class Companys(BrowserView):
 class UseCouponStatus(BrowserView):
     template = ViewPageTemplateFile('templates/use_coupon_status.pt')
     def __call__(self):
-        request = self.request
-        execSql = SqlObj()
-        execStr = """SELECT * FROM coupon_status  ORDER BY `coupon_status`.`id` DESC"""
-        self.data = execSql.execSql(execStr)
+        username = api.user.get_current().id
+        permissions = api.user.get_permissions(username=username)['Manage Site']
+        if permissions:
+            request = self.request
+            execSql = SqlObj()
+            execStr = """SELECT * FROM coupon_status  ORDER BY `coupon_status`.`id` DESC"""
+            self.data = execSql.execSql(execStr)
 
-	return self.template()
+            return self.template()
+        else:
+            self.request.response.redirect(self.context.portal_url)
+
 
 class ReturnProduct(BrowserView):
     template = ViewPageTemplateFile('templates/return_product.pt')
@@ -316,43 +322,47 @@ class ConfirmCart(GeneralMethod):
 
 
 class DownloadExcel(GeneralMethod):
+
     def __call__(self):
         output = StringIO()
         request = self.request
-        productData = json.loads(request.get('productData'))
-        workbook = xlsxwriter.Workbook(output)
-        worksheet = workbook.add_worksheet('Sheet1')
+        productData = self.request.cookies.get('shop_cart', '')
+        if productData:
+            productData = json.loads(productData)
+            workbook = xlsxwriter.Workbook(output)
+            worksheet = workbook.add_worksheet('Sheet1')
 
-        worksheet.write('A1', '商品名稱')
-        worksheet.write('B1', '料號')
-        worksheet.write('C1', '價格')
-        worksheet.write('D1', '數量')
-        worksheet.write('E1', '總價')
+            worksheet.write('A1', '商品名稱')
+            worksheet.write('B1', '料號')
+            worksheet.write('C1', '價格')
+            worksheet.write('D1', '數量')
+            worksheet.write('E1', '總價')
 
-        count = 2
-        totalPrice = 0
-        for k,v in productData.items():
-            obj = api.content.get(UID=k)
-            price = self.salePrice(obj)
-            worksheet.write('A%s' %count, obj.title)
-            worksheet.write('B%s' %count, obj.productNo)
-            worksheet.write('C%s' %count, price)
-            worksheet.write('D%s' %count, int(v))
-            worksheet.write('E%s' %count, price * int(v))
-            totalPrice += price * int(v)
-            count += 1
-        worksheet.write('A%s' %count, '總金額')
-        worksheet.write('B%s' %count, totalPrice)
+            count = 2
+            totalPrice = 0
+            for k,v in productData.items():
+                obj = api.content.get(UID=k)
+                price = self.salePrice(obj)
+                worksheet.write('A%s' %count, obj.title)
+                worksheet.write('B%s' %count, obj.productNo)
+                worksheet.write('C%s' %count, price)
+                worksheet.write('D%s' %count, int(v))
+                worksheet.write('E%s' %count, price * int(v))
+                totalPrice += price * int(v)
+                count += 1
+            worksheet.write('A%s' %count, '總金額')
+            worksheet.write('B%s' %count, totalPrice)
 
-        workbook.close()
+            workbook.close()
 
-        response = request.response
-        response.setHeader('Content-Type', 'application/xls')
-        response.setHeader('Content-Disposition', 'attachment; filename="清單.xls"' )
-        request.response.setCookie('shop_cart', '')
-        #api.portal.show_message(message='訂單已成立，之後會用email聯絡'.encode('utf-8'), request=request)
-
-        return output.getvalue()
+            response = request.response
+            response.setHeader('Content-Type', 'application/xls')
+            response.setHeader('Content-Disposition', 'attachment; filename="shopping_list.xls"' )
+            request.response.setCookie('shop_cart', '')
+            #api.portal.show_message(message='訂單已成立，之後會用email聯絡'.encode('utf-8'), request=request)
+            response.appendBody(output.getvalue())
+            response.outputBody()
+        return 
 
 
 class UseCoupon(BrowserView):
@@ -362,21 +372,22 @@ class UseCoupon(BrowserView):
 	currency = request.get('currency')
 	total = request.get('total')
         product_detail = request.get('product_detail')
-        discount = request.get('discount')
+        discount = request.get('discount') or 'Null'
         discount_detail = request.get('discount_detail')
         username = api.user.get_current().getUserName()
         recipient_name = request.get('recipient_name', '')
         address = request.get('address', '')
         billing_no = request.get('billing_no', '')
-	coupon_code = request.get('coupon_code', '')
+	coupon_code = request.get('coupon_code') or 'Null'
+	create_time = request.get('create_time')
         coupon_owner = ''
         if coupon_code:
             existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode')
             coupon_owner = ', '.join([key for key, value in existCode.items() if value == coupon_code]) 
 
-        execStr = "INSERT INTO `coupon_status`(`billing_no`, `coupon_code`, `user`, `recipient_name`, `address`, `product_detail`, `currency`, `total`, `discount`, `coupon_owner`,  discount_detail) \
-                   VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', %s, %s, '%s', '%s')" \
-                   %(billing_no, coupon_code, username, recipient_name, address, product_detail, currency, total, discount, coupon_owner, discount_detail)
+        execStr = "INSERT INTO `coupon_status`(`billing_no`, `coupon_code`, `user`, `recipient_name`, `address`, `product_detail`, `currency`, `total`, `discount`, `coupon_owner`,  `discount_detail`, `time`) \
+                   VALUES ('%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s, '%s', '%s', '%s')" \
+                   %(billing_no, coupon_code, username, recipient_name, address, product_detail, currency, total, discount, coupon_owner, discount_detail, create_time)
         execSql.execSql(execStr)
 
 
@@ -396,8 +407,6 @@ class NewsFolderView(FolderView, NewsItemView):
         if 'object_provides' not in kwargs:  # object_provides is more specific
             kwargs.setdefault('portal_type', 'News Item')
         kwargs.setdefault('batch', True)
-        kwargs.setdefault('b_size', self.b_size)
-        kwargs.setdefault('b_start', self.b_start)
 
         listing = aq_inner(self.context).restrictedTraverse(
             '@@folderListing', None)
@@ -688,3 +697,25 @@ class UpdateUserConfiglet(BrowserView):
                 api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
                 return '{"success": "UserConfiglet is updated"}'
             return '{"error": "json data is missing"}'
+
+
+class OrderHistoryView(BrowserView):
+    @property
+    def viewTitle(self):
+        viewTitle = _(u'Order History')
+        return viewTitle
+
+    def checkAnonymous(self):
+        if api.user.is_anonymous():
+            self.request.response.redirect(self.context.portal_url()+'/login')
+
+    def getMyOrder(self):
+        username = api.user.get_current().id
+        execSql = SqlObj()
+        execStr = """SELECT * FROM coupon_status WHERE `user` LIKE '%s' ORDER BY `time` DESC""" %username
+        results = execSql.execSql(execStr)
+        
+	return results 
+
+
+

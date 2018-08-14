@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-01 05:48+0000\n"
+"POT-Creation-Date: 2018-08-14 08:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: alpha.content\n"
 
-#: ../browser/view.py:504
+#: ../browser/view.py:590
 msgid "Add WishList Must Be Login!!"
 msgstr ""
 
-#: ../browser/view.py:477
+#: ../browser/view.py:563
 msgid "Add WishList Repeat!!"
 msgstr ""
 
-#: ../browser/view.py:485
+#: ../browser/view.py:571
 msgid "Add WishList Success!!"
 msgstr ""
 
@@ -45,11 +45,11 @@ msgstr ""
 msgid "Best Seller"
 msgstr ""
 
-#: ../content/product.py:101
+#: ../content/product.py:94
 msgid "Brand"
 msgstr ""
 
-#: ../browser/view.py:129
+#: ../browser/view.py:168
 msgid "Brands"
 msgstr ""
 
@@ -57,15 +57,15 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: ../browser/view.py:351
+#: ../browser/view.py:437
 msgid "Compare List"
 msgstr ""
 
-#: ../browser/view.py:243
+#: ../browser/view.py:281
 msgid "Confirm Cart"
 msgstr ""
 
-#: ../browser/view.py:303
+#: ../browser/view.py:391
 msgid "Contact Us"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 msgid "Custom Related Setting"
 msgstr ""
 
-#: ../browser/view.py:522
+#: ../browser/view.py:608
 msgid "Delete WishList Success!!"
 msgstr ""
 
@@ -90,11 +90,11 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../content/product.py:165
+#: ../content/product.py:158
 msgid "Discount Amount"
 msgstr ""
 
-#: ../content/product.py:117
+#: ../content/product.py:110
 msgid "Download File"
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../content/product.py:136
+#: ../content/product.py:129
 msgid "Enter USD$"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Exist PromoCode"
 msgstr ""
 
-#: ../content/product.py:122
+#: ../content/product.py:115
 msgid "Feature"
 msgstr ""
 
@@ -140,15 +140,15 @@ msgstr ""
 msgid "Latest"
 msgstr ""
 
-#: ../content/product.py:159
+#: ../content/product.py:152
 msgid "Level A Group Price"
 msgstr ""
 
-#: ../content/product.py:153
+#: ../content/product.py:146
 msgid "Level B Group Price"
 msgstr ""
 
-#: ../content/product.py:147
+#: ../content/product.py:140
 msgid "Level C Group Price"
 msgstr ""
 
@@ -160,7 +160,7 @@ msgstr ""
 msgid "Middle East"
 msgstr ""
 
-#: ../content/product.py:99
+#: ../content/product.py:92
 msgid "More Info"
 msgstr ""
 
@@ -172,7 +172,11 @@ msgstr ""
 msgid "North America"
 msgstr ""
 
-#: ../browser/view.py:384
+#: ../browser/view.py:699
+msgid "Order History"
+msgstr ""
+
+#: ../browser/view.py:470
 msgid "Personal Details"
 msgstr ""
 
@@ -180,7 +184,7 @@ msgstr ""
 msgid "Please enter 1 to 5 in the Rating field"
 msgstr ""
 
-#: ../content/product.py:135
+#: ../content/product.py:128
 msgid "Price"
 msgstr ""
 
@@ -188,7 +192,7 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: ../content/product.py:106
+#: ../content/product.py:99
 msgid "Product Code"
 msgstr ""
 
@@ -204,7 +208,7 @@ msgstr ""
 msgid "Product Number"
 msgstr ""
 
-#: ../content/product.py:133
+#: ../content/product.py:126
 msgid "Product Price"
 msgstr ""
 
@@ -216,7 +220,7 @@ msgstr ""
 msgid "ProductReview"
 msgstr ""
 
-#: ../browser/view.py:500
+#: ../browser/view.py:586
 msgid "Query string supplied is not valid"
 msgstr ""
 
@@ -225,7 +229,7 @@ msgstr ""
 msgid "Rating"
 msgstr ""
 
-#: ../browser/view.py:378
+#: ../browser/view.py:464
 msgid "Register"
 msgstr ""
 
@@ -237,7 +241,7 @@ msgstr ""
 msgid "Related Product"
 msgstr ""
 
-#: ../browser/view.py:98
+#: ../browser/view.py:137
 msgid "Return"
 msgstr ""
 
@@ -245,11 +249,11 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: ../content/product.py:141
+#: ../content/product.py:134
 msgid "Sale Price"
 msgstr ""
 
-#: ../browser/folder_view.py:205
+#: ../browser/folder_view.py:210
 msgid "Search"
 msgstr ""
 
@@ -257,7 +261,7 @@ msgstr ""
 msgid "Select the classification of this product (Most View, Special, Latest)"
 msgstr ""
 
-#: ../browser/view.py:148
+#: ../browser/view.py:187
 msgid "Site Map"
 msgstr ""
 
@@ -297,11 +301,11 @@ msgstr ""
 msgid "Subcategory"
 msgstr ""
 
-#: ../content/product.py:97
+#: ../content/product.py:170
 msgid "The Discount Amount is bigger than price!"
 msgstr ""
 
-#: ../content/product.py:95
+#: ../content/product.py:168
 msgid "The sale price is bigger than price!"
 msgstr ""
 
@@ -333,7 +337,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ../browser/view.py:444
+#: ../browser/view.py:530
 msgid "Wish List"
 msgstr ""
 
@@ -357,11 +361,31 @@ msgstr ""
 msgid "email"
 msgstr ""
 
-#: ../content/product.py:128
+#: ../content/product.py:121
 msgid "ex. clockspeed:100mhz"
 msgstr ""
 
-#: ../content/product.py:127
+#: ../vocabularies/group_list.py:31
+msgid "level_A"
+msgstr ""
+
+#: ../vocabularies/group_list.py:30
+msgid "level_B"
+msgstr ""
+
+#: ../vocabularies/group_list.py:29
+msgid "level_C"
+msgstr ""
+
+#: ../vocabularies/group_list.py:28
+msgid "level_D"
+msgstr ""
+
+#: ../event/event.py:69
+msgid "promoCode is repeat!!"
+msgstr ""
+
+#: ../content/product.py:120
 msgid "specification"
 msgstr ""
 
@@ -377,6 +401,6 @@ msgstr ""
 msgid "store full product data"
 msgstr ""
 
-#: ../browser/view.py:489
+#: ../browser/view.py:575
 msgid "wishItemUID is not valid!!"
 msgstr ""

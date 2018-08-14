@@ -168,10 +168,10 @@
   />
 
   <browser:page
-      name="use_coupon_status"
+      name="all_orders"
       for="*"
       class=".view.UseCouponStatus"
-      permission="cmf.ManagePortal"
+      permission="zope2.View"
   />
   <browser:page
       name="companys"
@@ -185,6 +185,14 @@
       for="*"
       class=".view.WishListView"
       template="templates/wishlist_view.pt"
+      permission="zope2.View"
+  />
+
+  <browser:page
+      name="order_history"
+      for="*"
+      class=".view.OrderHistoryView"
+      template="templates/order_history.pt"
       permission="zope2.View"
   />
 
