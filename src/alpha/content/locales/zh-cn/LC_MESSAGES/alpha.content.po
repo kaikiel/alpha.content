@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-14 08:20+0000\n"
+"POT-Creation-Date: 2018-08-15 07:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,15 +14,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ../browser/view.py:590
+#: ../browser/view.py:616
 msgid "Add WishList Must Be Login!!"
 msgstr "新增愿望清单必须先登入"
 
-#: ../browser/view.py:563
+#: ../browser/view.py:589
 msgid "Add WishList Repeat!!"
 msgstr "新增愿望清单项目重复"
 
-#: ../browser/view.py:571
+#: ../browser/view.py:597
 msgid "Add WishList Success!!"
 msgstr "新增愿望清单成功"
 
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Asia"
 msgstr ""
 
-#: ../browser/base_inform_configlet.py:32
+#: ../browser/base_inform_configlet.py:70
 msgid "Basic Inform"
 msgstr "公司资讯"
 
@@ -46,7 +46,7 @@ msgstr "热门商品"
 msgid "Brand"
 msgstr "品牌"
 
-#: ../browser/view.py:168
+#: ../browser/view.py:174
 msgid "Brands"
 msgstr "品牌"
 
@@ -54,15 +54,19 @@ msgstr "品牌"
 msgid "Category"
 msgstr "分类"
 
-#: ../browser/view.py:437
+#: ../browser/base_inform_configlet.py:17
+msgid "Company Description"
+msgstr "公司描述"
+
+#: ../browser/view.py:461
 msgid "Compare List"
 msgstr "比较表"
 
-#: ../browser/view.py:281
+#: ../browser/view.py:287
 msgid "Confirm Cart"
 msgstr "购物车"
 
-#: ../browser/view.py:391
+#: ../browser/view.py:398
 msgid "Contact Us"
 msgstr "联络我们"
 
@@ -79,7 +83,7 @@ msgstr "封面图片"
 msgid "Custom Related Setting"
 msgstr ""
 
-#: ../browser/view.py:608
+#: ../browser/view.py:634
 msgid "Delete WishList Success!!"
 msgstr "删除愿望清单成功"
 
@@ -112,6 +116,10 @@ msgstr ""
 #: ../browser/user_configlet.py:14
 msgid "Exist PromoCode"
 msgstr ""
+
+#: ../browser/base_inform_configlet.py:37
+msgid "Facebook Link"
+msgstr "Facebook 連結"
 
 #: ../content/product.py:115
 msgid "Feature"
@@ -169,11 +177,11 @@ msgstr "观看次数最多"
 msgid "North America"
 msgstr ""
 
-#: ../browser/view.py:699
+#: ../browser/view.py:725
 msgid "Order History"
 msgstr "历史订单"
 
-#: ../browser/view.py:470
+#: ../browser/view.py:494
 msgid "Personal Details"
 msgstr "我的帐户"
 
@@ -217,7 +225,7 @@ msgstr "商品图片"
 msgid "ProductReview"
 msgstr ""
 
-#: ../browser/view.py:586
+#: ../browser/view.py:612
 msgid "Query string supplied is not valid"
 msgstr ""
 
@@ -226,7 +234,15 @@ msgstr ""
 msgid "Rating"
 msgstr "评分"
 
-#: ../browser/view.py:464
+#: ../browser/base_inform_configlet.py:62
+msgid "Receive Email is not valid!"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:33
+msgid "Recipient Email"
+msgstr "Email (用於接收回饋信件)"
+
+#: ../browser/view.py:488
 msgid "Register"
 msgstr "注册"
 
@@ -238,7 +254,7 @@ msgstr "相关商品"
 msgid "Related Product"
 msgstr "相关商品"
 
-#: ../browser/view.py:137
+#: ../browser/view.py:143
 msgid "Return"
 msgstr "退货商品"
 
@@ -250,7 +266,7 @@ msgstr ""
 msgid "Sale Price"
 msgstr "會員價"
 
-#: ../browser/folder_view.py:210
+#: ../browser/folder_view.py:204
 msgid "Search"
 msgstr "搜寻"
 
@@ -258,7 +274,7 @@ msgstr "搜寻"
 msgid "Select the classification of this product (Most View, Special, Latest)"
 msgstr "请选择此商品在首页中显示的分类"
 
-#: ../browser/view.py:187
+#: ../browser/view.py:193
 msgid "Site Map"
 msgstr "网站地图"
 
@@ -334,11 +350,27 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ../browser/view.py:530
+#: ../browser/base_inform_configlet.py:41
+msgid "Weibo Link"
+msgstr "微博 連結"
+
+#: ../browser/view.py:554
 msgid "Wish List"
 msgstr "愿望清单"
 
-#: ../browser/base_inform_configlet.py:22
+#: ../browser/base_inform_configlet.py:45
+msgid "Youku Link"
+msgstr "優酷 連結"
+
+#: ../browser/base_inform_configlet.py:60
+msgid "Your Email is not valid!"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:49
+msgid "Youtube Link"
+msgstr "Youtube 連結"
+
+#: ../browser/base_inform_configlet.py:29
 msgid "address"
 msgstr "地址"
 
@@ -350,13 +382,13 @@ msgstr ""
 msgid "alpha.content (uninstall)"
 msgstr ""
 
-#: ../browser/base_inform_configlet.py:18
+#: ../browser/base_inform_configlet.py:25
 msgid "cellphone"
 msgstr "电话"
 
-#: ../browser/base_inform_configlet.py:14
+#: ../browser/base_inform_configlet.py:21
 msgid "email"
-msgstr ""
+msgstr "Email"
 
 #: ../content/product.py:121
 msgid "ex. clockspeed:100mhz"
@@ -380,7 +412,7 @@ msgstr ""
 
 #: ../event/event.py:69
 msgid "promoCode is repeat!!"
-msgstr ""
+msgstr "推薦碼已使用重複"
 
 #: ../content/product.py:120
 msgid "specification"
@@ -398,6 +430,6 @@ msgstr ""
 msgid "store full product data"
 msgstr ""
 
-#: ../browser/view.py:575
+#: ../browser/view.py:601
 msgid "wishItemUID is not valid!!"
 msgstr ""

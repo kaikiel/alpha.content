@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-14 08:20+0000\n"
+"POT-Creation-Date: 2018-08-15 07:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,15 +14,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ../browser/view.py:590
+#: ../browser/view.py:616
 msgid "Add WishList Must Be Login!!"
 msgstr ""
 
-#: ../browser/view.py:563
+#: ../browser/view.py:589
 msgid "Add WishList Repeat!!"
 msgstr ""
 
-#: ../browser/view.py:571
+#: ../browser/view.py:597
 msgid "Add WishList Success!!"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Asia"
 msgstr ""
 
-#: ../browser/base_inform_configlet.py:32
+#: ../browser/base_inform_configlet.py:70
 msgid "Basic Inform"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr "熱門商品"
 msgid "Brand"
 msgstr "品牌"
 
-#: ../browser/view.py:168
+#: ../browser/view.py:174
 msgid "Brands"
 msgstr ""
 
@@ -54,15 +54,19 @@ msgstr ""
 msgid "Category"
 msgstr "分類"
 
-#: ../browser/view.py:437
+#: ../browser/base_inform_configlet.py:17
+msgid "Company Description"
+msgstr ""
+
+#: ../browser/view.py:461
 msgid "Compare List"
 msgstr ""
 
-#: ../browser/view.py:281
+#: ../browser/view.py:287
 msgid "Confirm Cart"
 msgstr ""
 
-#: ../browser/view.py:391
+#: ../browser/view.py:398
 msgid "Contact Us"
 msgstr ""
 
@@ -79,7 +83,7 @@ msgstr "封面圖片"
 msgid "Custom Related Setting"
 msgstr ""
 
-#: ../browser/view.py:608
+#: ../browser/view.py:634
 msgid "Delete WishList Success!!"
 msgstr ""
 
@@ -111,6 +115,10 @@ msgstr ""
 
 #: ../browser/user_configlet.py:14
 msgid "Exist PromoCode"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:37
+msgid "Facebook Link"
 msgstr ""
 
 #: ../content/product.py:115
@@ -169,11 +177,11 @@ msgstr "觀看次數最多"
 msgid "North America"
 msgstr ""
 
-#: ../browser/view.py:699
+#: ../browser/view.py:725
 msgid "Order History"
 msgstr ""
 
-#: ../browser/view.py:470
+#: ../browser/view.py:494
 msgid "Personal Details"
 msgstr ""
 
@@ -217,7 +225,7 @@ msgstr "商品圖片"
 msgid "ProductReview"
 msgstr ""
 
-#: ../browser/view.py:586
+#: ../browser/view.py:612
 msgid "Query string supplied is not valid"
 msgstr ""
 
@@ -226,7 +234,15 @@ msgstr ""
 msgid "Rating"
 msgstr "評分"
 
-#: ../browser/view.py:464
+#: ../browser/base_inform_configlet.py:62
+msgid "Receive Email is not valid!"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:33
+msgid "Recipient Email"
+msgstr ""
+
+#: ../browser/view.py:488
 msgid "Register"
 msgstr ""
 
@@ -238,7 +254,7 @@ msgstr "相關商品"
 msgid "Related Product"
 msgstr "相關商品"
 
-#: ../browser/view.py:137
+#: ../browser/view.py:143
 msgid "Return"
 msgstr ""
 
@@ -250,7 +266,7 @@ msgstr ""
 msgid "Sale Price"
 msgstr "特價"
 
-#: ../browser/folder_view.py:210
+#: ../browser/folder_view.py:204
 msgid "Search"
 msgstr ""
 
@@ -258,7 +274,7 @@ msgstr ""
 msgid "Select the classification of this product (Most View, Special, Latest)"
 msgstr "請選擇此商品在首頁中顯示的分類"
 
-#: ../browser/view.py:187
+#: ../browser/view.py:193
 msgid "Site Map"
 msgstr ""
 
@@ -334,11 +350,27 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ../browser/view.py:530
+#: ../browser/base_inform_configlet.py:41
+msgid "Weibo Link"
+msgstr ""
+
+#: ../browser/view.py:554
 msgid "Wish List"
 msgstr ""
 
-#: ../browser/base_inform_configlet.py:22
+#: ../browser/base_inform_configlet.py:45
+msgid "Youku Link"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:60
+msgid "Your Email is not valid!"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:49
+msgid "Youtube Link"
+msgstr ""
+
+#: ../browser/base_inform_configlet.py:29
 msgid "address"
 msgstr ""
 
@@ -350,11 +382,11 @@ msgstr ""
 msgid "alpha.content (uninstall)"
 msgstr ""
 
-#: ../browser/base_inform_configlet.py:18
+#: ../browser/base_inform_configlet.py:25
 msgid "cellphone"
 msgstr ""
 
-#: ../browser/base_inform_configlet.py:14
+#: ../browser/base_inform_configlet.py:21
 msgid "email"
 msgstr ""
 
@@ -398,6 +430,6 @@ msgstr ""
 msgid "store full product data"
 msgstr ""
 
-#: ../browser/view.py:575
+#: ../browser/view.py:601
 msgid "wishItemUID is not valid!!"
 msgstr ""

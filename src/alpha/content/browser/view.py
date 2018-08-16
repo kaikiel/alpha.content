@@ -381,7 +381,8 @@ class UseCoupon(BrowserView):
 	coupon_code = request.get('coupon_code') or 'Null'
 	create_time = request.get('create_time')
         coupon_owner = ''
-        if coupon_code:
+        if coupon_code and coupon_code != 'Null':
+
             existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode')
             coupon_owner = ', '.join([key for key, value in existCode.items() if value == coupon_code]) 
 
@@ -397,6 +398,22 @@ class ContactUs(BrowserView):
         self.viewTitle = _(u'Contact Us')
 	self.address = api.portal.get_registry_record('address', interface=IInform)
 	self.cellphone = api.portal.get_registry_record('cellphone', interface=IInform)
+
+        request = self.request
+	name = request.get('name', '')
+	email = request.get('email', '')
+	message = request.get('message', '')
+        if name and email and message:
+            body_str = """Name:{}<br/>Email:{}<br/>Message:{}""".format(name, email, message)
+            mime_text = MIMEText(body_str, 'html', 'utf-8')
+            r_email = api.portal.get_registry_record('r_email' , interface=IInform) or ''
+            api.portal.send_email(
+                recipient=r_email,
+                sender=email,
+                subject="Contact Us From {}".format(name),
+                body=mime_text.as_string(),
+            )
+            api.portal.show_message(message='發送成功!'.decode('utf-8'), request=request)
 
 	return self.template()
 
@@ -428,10 +445,11 @@ class SendMail(BrowserView):
 	message = request.get('message')
         body_str = """Name:{}<br/>Email:{}<br/>Message:{}""".format(name, email, message)
         mime_text = MIMEText(body_str, 'html', 'utf-8')
+        r_email = api.portal.get_registry_record('r_email' , interface=IInform) or ''
         api.portal.send_email(
-            recipient="ah13441673@gmail.com",
-            sender="henry@mingtak.com.tw",
-            subject="Contact Us",
+            recipient=r_email,
+            sender=email,
+            subject="Contact Us From {}".format(name),
             body=mime_text.as_string(),
         )
         api.portal.show_message(message='發送成功!'.decode('utf-8'), request=request)
@@ -551,7 +569,9 @@ class WishListView(GeneralMethod):
         wishUIDList = self.getUserProperty_wishList()
         wishList = []
         for uid in wishUIDList:
-            wishList.append(api.content.get(UID=uid))
+            item = api.content.get(UID=uid)
+            if item:
+                wishList.append(item)
         return wishList
 
 class AddWishList(BrowserView):
@@ -638,8 +658,9 @@ class DelWishList(BrowserView):
 class CheckPromoCode(BrowserView):
     def __call__(self):
         promoCode = getattr(self.request, 'promoCode', '')
+        user = api.user.get_current().id
         existCode = api.portal.get_registry_record('alpha.content.browser.user_configlet.IUser.promoCode') or {}
-        if str(promoCode) in existCode.values():
+        if str(promoCode) in existCode.values() and user not in existCode.keys():
             return '1'
         else:
             return '0'

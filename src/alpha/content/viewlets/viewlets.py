@@ -12,14 +12,14 @@ from alpha.content.browser.base_inform_configlet import IInform
 
 class NewFooter(base.ViewletBase):
     def update(self):
-	try:
-            self.address = api.portal.get_registry_record('address', interface=IInform)
-            self.cellphone = api.portal.get_registry_record('cellphone', interface=IInform)
-            self.email = api.portal.get_registry_record('email', interface=IInform)
-	except:
-	    self.address = ''
-	    self.cellphone = ''
-	    self.email = ''
+        self.description = api.portal.get_registry_record('description', interface=IInform) or ''
+        self.address = api.portal.get_registry_record('address', interface=IInform) or ''
+        self.cellphone = api.portal.get_registry_record('cellphone', interface=IInform) or ''
+        self.email = api.portal.get_registry_record('email', interface=IInform) or ''
+        self.fb_link      = api.portal.get_registry_record('fb_link'     , interface=IInform) or ''
+        self.weibo_link   = api.portal.get_registry_record('weibo_link'  , interface=IInform) or ''
+        self.youku_link   = api.portal.get_registry_record('youku_link'  , interface=IInform) or ''
+        self.youtube_link = api.portal.get_registry_record('youtube_link', interface=IInform) or ''
 
 
 class ProductViewlet(base.ViewletBase, GeneralMethod):

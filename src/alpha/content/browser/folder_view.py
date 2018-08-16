@@ -63,11 +63,7 @@ class CustomFolderView(FolderView):
 
     @property
     def path(self):
-        portal = api.portal.get()
-        context = self.context
-        if portal.hasObject('products'):
-            context = portal['products']
-        path = getattr(self.request, 'context_path', context.absolute_url_path())
+        path = getattr(self.request, 'context_path', self.context.absolute_url_path())
         return path
 
     @property
@@ -157,8 +153,6 @@ class CustomFolderView(FolderView):
             kwargs.setdefault('portal_type', 'Product')
         kwargs.setdefault('path', self.path)
         kwargs.setdefault('batch', True)
-        kwargs.setdefault('sort_on', self.sort_on)
-        kwargs.setdefault('sort_order', self.sort_order)
 
         if self.searchableText:
             kwargs['SearchableText'] = self.munge_search_term(self.searchableText)
@@ -210,6 +204,10 @@ class SearchView(CustomFolderView, GeneralMethod):
         viewTitle = _(u'Search')
         return viewTitle
 
+    @property
+    def path(self):
+        return ""
+
     def getRandProduct(self):
         portal = api.portal.get()
         context = self.context
@@ -238,7 +236,11 @@ class ProductListing(CustomFolderView, GeneralMethod):
 
     @property
     def path(self):
-        path = getattr(self.request, 'context_path', self.context.absolute_url_path())
+        portal = api.portal.get()
+        context = self.context
+        if portal.hasObject('products'):
+            context = portal['products']
+        path = context.absolute_url_path()
         return path
 
     @property
