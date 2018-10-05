@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone.app.layout.viewlets import common as base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.CMFPlone.utils import getSiteLogo
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 from alpha.content.browser.view import GeneralMethod
@@ -10,7 +11,15 @@ import datetime
 from alpha.content.browser.base_inform_configlet import IInform
 
 
-class NewFooter(base.ViewletBase):
+class NewFooter(base.ViewletBase, GeneralMethod):
+    def getSiteLogo(self):
+        return getSiteLogo()
+
+    def getProductCategory(self):
+        portal_catalog = api.portal.get_tool(name='portal_catalog')
+        index = portal_catalog.Indexes['p_category']
+        return index.uniqueValues()
+
     def update(self):
         self.description = api.portal.get_registry_record('description', interface=IInform) or ''
         self.address = api.portal.get_registry_record('address', interface=IInform) or ''
@@ -23,6 +32,14 @@ class NewFooter(base.ViewletBase):
 
 
 class ProductViewlet(base.ViewletBase, GeneralMethod):
+    def getStaticCenter(self):
+        portal = api.portal.get()
+        if portal.hasObject('resource'):
+            if portal['resource'].hasObject('static-center'):
+                static_center = portal['resource']['static-center']
+                return static_center
+        return 
+
     def getMostView(self):
         context = api.portal.get()
         if context.hasObject('products'):

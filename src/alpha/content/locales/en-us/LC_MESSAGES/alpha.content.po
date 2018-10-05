@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-15 07:46+0000\n"
+"POT-Creation-Date: 2018-09-27 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,59 +14,107 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ../browser/view.py:616
+#: ../browser/view.py:985
+msgid "Add New User"
+msgstr "新增使用者"
+
+#: ../browser/view.py:1167
 msgid "Add WishList Must Be Login!!"
 msgstr ""
 
-#: ../browser/view.py:589
+#: ../browser/view.py:1140
 msgid "Add WishList Repeat!!"
 msgstr ""
 
-#: ../browser/view.py:597
+#: ../browser/view.py:1148
 msgid "Add WishList Success!!"
 msgstr ""
 
 #: ../vocabularies/map_category.py:31
 msgid "Africa"
+msgstr "非洲"
+
+#: ../profiles/default/controlpanel.xml
+msgid "All Order"
+msgstr "訂單紀錄"
+
+#: ../browser/view.py:633
+msgid "Alpha have a new Order {}, Total Price are {} {}."
+msgstr ""
+
+#: ../browser/view.py:686
+msgid "Alpha have a new order {}"
 msgstr ""
 
 #: ../vocabularies/map_category.py:32
 msgid "Asia"
-msgstr ""
+msgstr "亞洲"
 
 #: ../browser/base_inform_configlet.py:70
 msgid "Basic Inform"
-msgstr "公司资讯"
+msgstr "公司資訊"
 
-#: ../content/product.py:206
+#: ../content/product.py:238
 msgid "Best Seller"
-msgstr "热门商品"
+msgstr "熱門商品"
 
-#: ../content/product.py:94
+#: ../content/product.py:182
+msgid "Bonus"
+msgstr "紅利"
+
+#: ../browser/view.py:1430
+msgid "Bonus History"
+msgstr ""
+
+#: ../browser/weight_configlet.py:13
+msgid "Bonus To Money"
+msgstr "紅利轉換"
+
+#: ../content/product.py:183
+msgid "Bonus points earned when you purchase this product"
+msgstr "購買此產品可獲得的紅利點數"
+
+#: ../content/product.py:102
 msgid "Brand"
 msgstr "品牌"
 
-#: ../browser/view.py:174
+#: ../browser/view.py:185
 msgid "Brands"
 msgstr ""
 
-#: ../content/product.py:73
+#: ../content/product.py:81
 msgid "Category"
-msgstr "分类"
+msgstr "分類"
+
+#: ../vocabularies/city_category.py:34
+msgid "Changhua"
+msgstr ""
+
+#: ../vocabularies/city_category.py:36
+msgid "Chiayi"
+msgstr ""
+
+#: ../behaviors/city_category.py:16
+msgid "City Category"
+msgstr ""
+
+#: ../profiles/default/types/Company.xml
+msgid "Company"
+msgstr ""
 
 #: ../browser/base_inform_configlet.py:17
 msgid "Company Description"
 msgstr "公司描述"
 
-#: ../browser/view.py:461
+#: ../browser/view.py:846
 msgid "Compare List"
 msgstr ""
 
-#: ../browser/view.py:287
+#: ../browser/view.py:304
 msgid "Confirm Cart"
 msgstr ""
 
-#: ../browser/view.py:398
+#: ../browser/view.py:783
 msgid "Contact Us"
 msgstr ""
 
@@ -74,43 +122,57 @@ msgstr ""
 msgid "Cover"
 msgstr "封面"
 
-#: ../content/product.py:63
+#: ../content/company.py:26
+#: ../content/product.py:71
 msgid "Cover Image"
-msgstr "封面图片"
+msgstr "封面圖片"
 
 #: ../browser/configlet.py:34
 #: ../profiles/default/controlpanel.xml
 msgid "Custom Related Setting"
-msgstr ""
+msgstr "資料庫設定 (管理員設定)"
 
-#: ../browser/view.py:634
+#: ../browser/view.py:1185
 msgid "Delete WishList Success!!"
 msgstr ""
 
-#: ../content/product.py:68
+#: ../content/product.py:76
 msgid "Description"
 msgstr "描述"
 
-#: ../content/product.py:158
+#: ../content/product.py:175
 msgid "Discount Amount"
-msgstr "折扣金额"
+msgstr "折扣金額"
 
-#: ../content/product.py:110
+#: ../content/product.py:112
 msgid "Download File"
-msgstr "下载档案"
+msgstr "下載檔案"
 
+#: ../profiles/default/types/Company.xml
 #: ../profiles/default/types/Cover.xml
 #: ../profiles/default/types/Product.xml
-#: ../profiles/default/types/ProductImg.xml
 msgid "Edit"
-msgstr "编辑"
+msgstr "編輯"
 
-#: ../content/product.py:129
+#: ../browser/view.py:33
+msgid "Email is repeat!!"
+msgstr ""
+
+#: ../browser/weight_configlet.py:36
+#: ../content/product.py:139
 msgid "Enter USD$"
-msgstr "请输入 USD$"
+msgstr "請輸入 USD$"
+
+#: ../content/product.py:176
+msgid "Enter USD$ (just used on price and sale_price)"
+msgstr "請輸入 USD$ (此折扣只會使用在非會員及一般會員價上)"
 
 #: ../vocabularies/map_category.py:30
 msgid "Europe"
+msgstr "歐洲"
+
+#: ../browser/view.py:298
+msgid "Exceeding available bonus points"
 msgstr ""
 
 #: ../browser/user_configlet.py:14
@@ -121,75 +183,131 @@ msgstr ""
 msgid "Facebook Link"
 msgstr "Facebook 連結"
 
-#: ../content/product.py:115
+#: ../content/product.py:117
 msgid "Feature"
 msgstr "特色"
 
-#: ../content/product.py:212
+#: ../browser/weight_configlet.py:22
+msgid "Free shipping when reaching this weight"
+msgstr "達到此重量時免運費"
+
+#: ../browser/weight_configlet.py:14
+msgid "How much is a bonus point?"
+msgstr "一個紅利積點代表多少錢"
+
+#: ../vocabularies/city_category.py:31
+msgid "Hsinchu"
+msgstr ""
+
+#: ../vocabularies/city_category.py:42
+msgid "Hualien"
+msgstr ""
+
+#: ../content/product.py:244
 msgid "If you want to set the time limit, you must put this product in the \"Promotions\" folder"
-msgstr "如果要设定限时商品,必须放在 '促销' 资料夹中"
+msgstr "如果要設定限時商品，必須放在'促銷'資料夾中"
 
-#: ../content/product.py:197
+#: ../content/product.py:229
 msgid "Index Category"
-msgstr "首页商品分类"
+msgstr "首頁商品分類"
 
-#: ../content/product.py:193
+#: ../content/product.py:225
 msgid "Index Information"
-msgstr "加入首页设定"
+msgstr "加入首頁設定"
 
 #: ../configure.zcml:33
 msgid "Installs the alpha.content add-on."
+msgstr ""
+
+#: ../vocabularies/city_category.py:39
+msgid "Kaohsiung"
+msgstr ""
+
+#: ../vocabularies/city_category.py:45
+msgid "Kinmen"
 msgstr ""
 
 #: ../content/product.py:29
 msgid "Latest"
 msgstr "最新商品"
 
-#: ../content/product.py:152
+#: ../content/product.py:168
 msgid "Level A Group Price"
-msgstr "Level A 会员价格"
+msgstr "代理商A級 會員價格"
 
-#: ../content/product.py:146
+#: ../content/product.py:161
 msgid "Level B Group Price"
-msgstr "Level B 会员价格"
+msgstr "代理商B級 會員價格"
 
-#: ../content/product.py:140
+#: ../content/product.py:154
 msgid "Level C Group Price"
-msgstr "Level C 会员价格"
+msgstr "特殊會員價格"
 
-#: ../behaviors/map_category.py:19
-msgid "Map Category"
+#: ../vocabularies/city_category.py:46
+msgid "Lienchiang"
+msgstr ""
+
+#: ../content/product.py:56
+msgid "Limited quantity"
+msgstr ""
+
+#: ../vocabularies/city_category.py:32
+msgid "Miaoli"
 msgstr ""
 
 #: ../vocabularies/map_category.py:34
 msgid "Middle East"
-msgstr ""
+msgstr "中東"
 
-#: ../content/product.py:92
+#: ../content/product.py:100
 msgid "More Info"
 msgstr "商品下方资讯"
 
 #: ../content/product.py:27
 msgid "Most View"
-msgstr "观看次数最多"
+msgstr "觀看次數最多"
+
+#: ../vocabularies/city_category.py:37
+msgid "Nantou"
+msgstr ""
+
+#: ../vocabularies/city_category.py:29
+msgid "New Taipei"
+msgstr ""
 
 #: ../vocabularies/map_category.py:28
 msgid "North America"
-msgstr ""
+msgstr "北美"
 
-#: ../browser/view.py:725
+#: ../browser/view.py:1293
 msgid "Order History"
 msgstr ""
 
-#: ../browser/view.py:494
+#: ../browser/view.py:300
+msgid "Out of stock"
+msgstr ""
+
+#: ../browser/view.py:35
+msgid "Passwords do not match."
+msgstr ""
+
+#: ../vocabularies/city_category.py:44
+msgid "Penghu"
+msgstr ""
+
+#: ../browser/view.py:1008
 msgid "Personal Details"
+msgstr ""
+
+#: ../vocabularies/city_category.py:40
+msgid "Pingtung"
 msgstr ""
 
 #: ../content/product.py:34
 msgid "Please enter 1 to 5 in the Rating field"
 msgstr "请输入1到5的评分"
 
-#: ../content/product.py:128
+#: ../content/product.py:138
 msgid "Price"
 msgstr "非會員價"
 
@@ -197,13 +315,13 @@ msgstr "非會員價"
 msgid "Product"
 msgstr "商品"
 
-#: ../content/product.py:99
+#: ../content/product.py:107
 msgid "Product Code"
-msgstr ""
+msgstr "商品編號"
 
 #: ../content/productimg.py:21
 msgid "Product Image"
-msgstr "商品图片"
+msgstr "商品圖片"
 
 #: ../content/product.py:44
 msgid "Product Info"
@@ -213,26 +331,42 @@ msgstr "商品基本資訊"
 msgid "Product Number"
 msgstr "商品型號"
 
-#: ../content/product.py:126
+#: ../content/product.py:128
 msgid "Product Price"
-msgstr "商品价格"
+msgstr "商品價格"
+
+#: ../browser/weight_configlet.py:29
+msgid "Product shipping fee"
+msgstr "紅利及運費設定"
+
+#: ../content/product.py:131
+msgid "Product weight (Please enter kg)"
+msgstr "商品重量 (單位為 kg)"
 
 #: ../profiles/default/types/ProductImg.xml
 msgid "ProductImg"
-msgstr "商品图片"
+msgstr "商品圖片"
 
 #: ../profiles/default/types/ProductReview.xml
 msgid "ProductReview"
 msgstr ""
 
-#: ../browser/view.py:612
+#: ../content/product.py:190
+msgid "Promocode Rebate"
+msgstr ""
+
+#: ../browser/view.py:1163
 msgid "Query string supplied is not valid"
 msgstr ""
 
-#: ../content/product.py:56
+#: ../content/product.py:64
 #: ../content/productreview.py:26
 msgid "Rating"
-msgstr "评分"
+msgstr "評分"
+
+#: ../browser/view.py:1511
+msgid "Rebate History"
+msgstr ""
 
 #: ../browser/base_inform_configlet.py:62
 msgid "Receive Email is not valid!"
@@ -242,19 +376,15 @@ msgstr ""
 msgid "Recipient Email"
 msgstr "Email (用於接收回饋信件)"
 
-#: ../browser/view.py:488
-msgid "Register"
-msgstr ""
-
-#: ../content/product.py:86
+#: ../content/product.py:94
 msgid "Related"
-msgstr "相关商品"
+msgstr "相關商品"
 
-#: ../content/product.py:83
+#: ../content/product.py:91
 msgid "Related Product"
-msgstr "相关商品"
+msgstr "相關商品"
 
-#: ../browser/view.py:143
+#: ../browser/view.py:154
 msgid "Return"
 msgstr ""
 
@@ -262,79 +392,127 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: ../content/product.py:134
+#: ../content/product.py:146
 msgid "Sale Price"
 msgstr "會員價"
 
-#: ../browser/folder_view.py:204
+#: ../browser/folder_view.py:205
 msgid "Search"
 msgstr ""
 
-#: ../content/product.py:198
+#: ../content/product.py:230
 msgid "Select the classification of this product (Most View, Special, Latest)"
-msgstr "请选择此商品在首页中显示的分类"
+msgstr "請選擇此商品在首頁中顯示的分類"
 
-#: ../browser/view.py:193
+#: ../browser/view.py:204
 msgid "Site Map"
 msgstr ""
 
-#: ../content/product.py:172
+#: ../content/product.py:204
 msgid "Slider"
-msgstr "商品图片"
+msgstr "商品圖片"
 
-#: ../content/product.py:174
+#: ../content/product.py:206
 msgid "Slider Image1"
-msgstr "商品图片1"
+msgstr "商品圖片1"
 
-#: ../content/product.py:179
+#: ../content/product.py:211
 msgid "Slider Image2"
-msgstr "商品图片2"
+msgstr "商品圖片2"
 
-#: ../content/product.py:184
+#: ../content/product.py:216
 msgid "Slider Image3"
-msgstr "商品图片3"
+msgstr "商品圖片3"
 
-#: ../content/product.py:189
+#: ../content/product.py:221
 msgid "Slider Image4"
-msgstr "商品图片4"
+msgstr "商品圖片4"
 
 #: ../vocabularies/map_category.py:29
 msgid "South America"
-msgstr ""
+msgstr "南美洲"
 
 #: ../vocabularies/map_category.py:33
 msgid "South Pacific"
-msgstr ""
+msgstr "南太平洋"
 
 #: ../content/product.py:28
 msgid "Special"
 msgstr "特別商品"
 
-#: ../content/product.py:78
+#: ../content/product.py:86
 msgid "Subcategory"
-msgstr "子分类"
+msgstr "子分類"
 
-#: ../content/product.py:170
+#: ../vocabularies/city_category.py:33
+msgid "Taichung"
+msgstr ""
+
+#: ../vocabularies/city_category.py:38
+msgid "Tainan"
+msgstr ""
+
+#: ../vocabularies/city_category.py:28
+msgid "Taipei"
+msgstr ""
+
+#: ../vocabularies/city_category.py:43
+msgid "Taitung"
+msgstr ""
+
+#: ../vocabularies/city_category.py:30
+msgid "Taoyuan"
+msgstr ""
+
+#: ../content/company.py:21
+msgid "Text"
+msgstr ""
+
+#: ../browser/view.py:773
+msgid "Thanks for your order!"
+msgstr ""
+
+#: ../browser/view.py:599
+msgid "Thanks for your recommend!"
+msgstr ""
+
+#: ../content/product.py:202
 msgid "The Discount Amount is bigger than price!"
-msgstr "非會員價必须大于折扣金额"
+msgstr "非會員價必須大於折扣金額"
 
-#: ../content/product.py:168
+#: ../browser/view.py:297
+msgid "The highest available bonus is"
+msgstr ""
+
+#: ../browser/view.py:31
+msgid "The login name you selected is already in use or is not valid. Please choose another."
+msgstr ""
+
+#: ../content/product.py:200
 msgid "The sale price is bigger than price!"
-msgstr "非會員價必须大于會員價"
+msgstr "非會員價必須大於會員價"
 
-#: ../content/product.py:211
+#: ../content/product.py:243
 msgid "Time Limit"
-msgstr "限时商品"
+msgstr "限時商品"
+
+#: ../content/product.py:57
+msgid "Time Limit Product quantity"
+msgstr ""
 
 #: ../content/product.py:39
 msgid "Time limit date can not be before today."
-msgstr "限时时间必须大于现在时间"
+msgstr "限時時間必須大於現在時間"
 
+#: ../browser/view.py:299
+msgid "Time-limited product time has passed"
+msgstr ""
+
+#: ../content/company.py:16
+#: ../content/cover.py:16
 #: ../content/product.py:46
-#: ../content/productimg.py:16
-#: ../content/productreview.py:16
 msgid "Title"
-msgstr "标题"
+msgstr "標題"
 
 #: ../configure.zcml:42
 msgid "Uninstalls the alpha.content add-on."
@@ -344,9 +522,9 @@ msgstr ""
 msgid "User PromoCode"
 msgstr ""
 
+#: ../profiles/default/types/Company.xml
 #: ../profiles/default/types/Cover.xml
 #: ../profiles/default/types/Product.xml
-#: ../profiles/default/types/ProductImg.xml
 msgid "View"
 msgstr ""
 
@@ -354,8 +532,25 @@ msgstr ""
 msgid "Weibo Link"
 msgstr "微博 連結"
 
-#: ../browser/view.py:554
+#: ../browser/weight_configlet.py:31
+#: ../content/product.py:130
+msgid "Weight"
+msgstr "重量 (kg)"
+
+#: ../browser/weight_configlet.py:35
+msgid "Weight Price"
+msgstr "運費"
+
+#: ../content/product.py:191
+msgid "When the customer completes the expenditure, the owner can get a rebate"
+msgstr ""
+
+#: ../browser/view.py:1105
 msgid "Wish List"
+msgstr ""
+
+#: ../vocabularies/city_category.py:41
+msgid "Yilan"
 msgstr ""
 
 #: ../browser/base_inform_configlet.py:45
@@ -364,11 +559,15 @@ msgstr "優酷 連結"
 
 #: ../browser/base_inform_configlet.py:60
 msgid "Your Email is not valid!"
-msgstr ""
+msgstr "您輸入的信箱不符合格式"
 
 #: ../browser/base_inform_configlet.py:49
 msgid "Youtube Link"
 msgstr "Youtube 連結"
+
+#: ../vocabularies/city_category.py:35
+msgid "Yunlin"
+msgstr ""
 
 #: ../browser/base_inform_configlet.py:29
 msgid "address"
@@ -384,39 +583,60 @@ msgstr ""
 
 #: ../browser/base_inform_configlet.py:25
 msgid "cellphone"
-msgstr "电话"
+msgstr "電話"
+
+#: ../browser/view.py:1556
+msgid "clear"
+msgstr ""
 
 #: ../browser/base_inform_configlet.py:21
 msgid "email"
 msgstr "Email"
 
-#: ../content/product.py:121
+#: ../content/product.py:123
 msgid "ex. clockspeed:100mhz"
 msgstr ""
 
+#: ../browser/weight_configlet.py:21
+msgid "free shipping weight"
+msgstr "免運費重量 (kg)"
+
 #: ../vocabularies/group_list.py:31
 msgid "level_A"
-msgstr ""
+msgstr "代理商A級"
 
 #: ../vocabularies/group_list.py:30
 msgid "level_B"
-msgstr ""
+msgstr "代理商B級"
 
 #: ../vocabularies/group_list.py:29
 msgid "level_C"
-msgstr ""
+msgstr "特殊會員"
 
 #: ../vocabularies/group_list.py:28
 msgid "level_D"
+msgstr "一般會員"
+
+#: ../browser/view.py:301
+msgid "only left with"
 msgstr ""
 
-#: ../event/event.py:69
+#: ../browser/view.py:34
+msgid "password just only Letter and Number. Minimum 5 characters."
+msgstr ""
+
+#: ../browser/view.py:32
+#: ../event/event.py:72
 msgid "promoCode is repeat!!"
 msgstr "推薦碼已使用重複"
 
-#: ../content/product.py:120
+#: ../browser/view.py:1488
+msgid "returned"
+msgstr ""
+
+#: ../content/product.py:122
 msgid "specification"
-msgstr "规格"
+msgstr "規格"
 
 #: ../browser/configlet.py:18
 msgid "store brand count number"
@@ -430,6 +650,22 @@ msgstr ""
 msgid "store full product data"
 msgstr ""
 
-#: ../browser/view.py:601
+#: ../browser/view.py:720
+msgid "thanks for your order, we hope you enjoyed shopping with us."
+msgstr ""
+
+#: ../browser/view.py:1556
+msgid "unclear"
+msgstr ""
+
+#: ../browser/view.py:1488
+msgid "unusable"
+msgstr ""
+
+#: ../browser/view.py:1488
+msgid "usable"
+msgstr ""
+
+#: ../browser/view.py:1152
 msgid "wishItemUID is not valid!!"
 msgstr ""

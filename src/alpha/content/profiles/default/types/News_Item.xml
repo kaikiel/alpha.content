@@ -7,7 +7,7 @@
 
   <!-- View information -->
   <property name="default_view">news_item_view</property>
-  <property name="immediate_view">view</property>
+  <property name="immediate_view">news_item_view</property>
   <property name="view_methods">
     <element value="news_item_view"/>
     <element value="newsitem_view"/>

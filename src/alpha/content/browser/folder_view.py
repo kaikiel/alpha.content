@@ -11,7 +11,9 @@ from Products.Five import BrowserView
 from Products.ZCTextIndex.ParseTree import ParseError
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from alpha.content.browser.view import GeneralMethod
+from collections import defaultdict
 import ast
+import datetime
 import random
 import json
 import re
@@ -63,7 +65,7 @@ class CustomFolderView(FolderView):
 
     @property
     def path(self):
-        path = getattr(self.request, 'context_path', self.context.absolute_url_path())
+        path = getattr(self.request, 'context_path', '/'.join(self.context.getPhysicalPath()) )
         return path
 
     @property
@@ -123,34 +125,18 @@ class CustomFolderView(FolderView):
     @property
     def price_min(self):
         price_min = getattr(self.request, 'price_min', 0)
-        return int(price_min)
+        return float(price_min)
 
     @property
     def price_max(self):
         price_max = getattr(self.request, 'price_max', 20000)
-        return int(price_max)
+        return float(price_max)
 
-    @property
-    def price(self):
-        price = range(self.price_min, self.price_max+1)
+    def price(self, price):
+        price = True if price >= self.price_min and price <= self.price_max else False
         return price
 
     def results(self, **kwargs):
-        """Return a content listing based result set with contents of the
-        folder.
-
-        :param **kwargs: Any keyword argument, which can be used for catalog
-                         queries.
-        :type  **kwargs: keyword argument
-
-        :returns: plone.app.contentlisting based result set.
-        :rtype: ``plone.app.contentlisting.interfaces.IContentListing`` based
-                sequence.
-        """
-        # Extra filter
-        kwargs.update(self.request.get('contentFilter', {}))
-        if 'object_provides' not in kwargs:  # object_provides is more specific
-            kwargs.setdefault('portal_type', 'Product')
         kwargs.setdefault('path', self.path)
         kwargs.setdefault('batch', True)
 
@@ -165,18 +151,9 @@ class CustomFolderView(FolderView):
 
         if self.p_subject:
             kwargs['p_subject'] = self.p_subject
-
-        listing = aq_inner(self.context).restrictedTraverse(
-            '@@coverListing', None)
-        if listing is None:
-            return []
-        try:
-            results = listing(**kwargs)
-        except ParseError:
-            return []
-
+	results = api.content.find(portal_type='Product', **kwargs)
         # in diff user price is different
-        results = [item for item in results if self.salePrice(item.getObject()) in self.price]
+        results = [item for item in results if self.price( self.salePrice(item.getObject()) ) ]
         return results
 
     def batch(self):
@@ -240,30 +217,47 @@ class ProductListing(CustomFolderView, GeneralMethod):
         context = self.context
         if portal.hasObject('products'):
             context = portal['products']
-        path = context.absolute_url_path()
+        path = '/'.join(self.context.getPhysicalPath())
         return path
+
+    @property
+    def price_min(self):
+        price_min = getattr(self.request, 'price_min', 0)
+        return float(price_min)
 
     @property
     def price_max(self):
         price_max = getattr(self.request, 'price_max', self.max_price)
-        return int(price_max)
+        return float(price_max)
+
+    def getCurrentResult(self):
+        kwargs={}
+        if self.brands:
+            kwargs['brands'] = self.brands
+
+        if self.p_category:
+            kwargs['p_category'] = self.p_category
+
+        if self.p_subject:
+            kwargs['p_subject'] = self.p_subject
+
+	productBrain = api.content.find(portal_type='Product', **kwargs)
+        return productBrain
 
     def getBrandList(self):
-        brandList = {}
-	productBrain = api.content.find(context=self.context, portal_type='Product')
+        brandList = defaultdict(int)
+        productBrain = self.getCurrentResult()
 	for item in productBrain:
 	    obj = item.getObject()
             brand = obj.brand
-            if brandList.has_key(brand):
-                brandList[brand] += 1
-            else:
-                brandList[brand] = 1
+            brandList[brand] += 1
 	return brandList
 
     def getCategoryListAll(self):
         categoryList = {}
         price = 0
-	productBrain = api.content.find(context=self.context, portal_type='Product')
+	productBrain = self.getCurrentResult()
+
 	for item in productBrain:
 	    obj = item.getObject()
             contentPrice = self.salePrice(obj)
@@ -289,26 +283,12 @@ class ProductListing(CustomFolderView, GeneralMethod):
         return productAD
 
     def results_promo(self, **kwargs):
-        """Return a content listing based result set with contents of the
-        folder.
-
-        :param **kwargs: Any keyword argument, which can be used for catalog
-                         queries.
-        :type  **kwargs: keyword argument
-
-        :returns: plone.app.contentlisting based result set.
-        :rtype: ``plone.app.contentlisting.interfaces.IContentListing`` based
-                sequence.
-        """
-        # Extra filter
-        kwargs.update(self.request.get('contentFilter', {}))
-        if 'object_provides' not in kwargs:  # object_provides is more specific
-            kwargs.setdefault('portal_type', 'Product')
         portal = api.portal.get()
         context = self.context
         if portal.hasObject('promotions'):
             context = portal['promotions']
-        kwargs.setdefault('path', context.absolute_url_path())
+        kwargs.setdefault('path', '/'.join(self.context.getPhysicalPath()))
+        kwargs.setdefault('portal_type', 'Product')
         kwargs.setdefault('sort_on', self.sort_on)
         kwargs.setdefault('sort_order', self.sort_order)
         
@@ -324,12 +304,15 @@ class ProductListing(CustomFolderView, GeneralMethod):
         if self.p_subject:
             kwargs['p_subject'] = self.p_subject
 
-        listing = aq_inner(self.context).restrictedTraverse(
-            '@@coverListing', None)
-        if listing is None:
-            return []
-        results = listing(**kwargs)
+        results = api.content.find(**kwargs)
 
-        # in diff user price is different
-        results = [item for item in results if self.salePrice(item.getObject()) in self.price]
+        # in diff user price is different and drop time up
+        tmp_results = []
+        for item in results:
+            obj_timeLimit = item.getObject().timeLimit or datetime.datetime(1,1,1,0,0)
+            if not(obj_timeLimit and not obj_timeLimit >= datetime.datetime.today()) \
+                and self.price( self.salePrice(item.getObject()) ):
+                tmp_results.append(item)
+        results = tmp_results
         return results
+

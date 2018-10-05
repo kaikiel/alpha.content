@@ -28,6 +28,32 @@
         visible="False">
             <permission>Manage portal</permission>
     </configlet>
+
+    <configlet
+        title="Product shipping fee"
+        action_id="alpha.connect.Weight"
+        appId="alpha.connect"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@WeightControlPanel"
+        icon_expr="string:/favicon.ico"
+        visible="True">
+            <permission>Manage portal</permission>
+    </configlet>
+
+    <configlet
+        title="All Order"
+        action_id="alpha.connect.AllOrder"
+        appId="alpha.connect"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@order_history"
+        icon_expr="string:/favicon.ico"
+        visible="True"
+        i18n:attributes="title">
+            <permission>Manage portal</permission>
+    </configlet>
+
     <configlet
         title="Basic Inform"
         action_id="alpha.connect.Inform"

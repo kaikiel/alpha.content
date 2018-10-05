@@ -1,0 +1,203 @@
+<metal:block metal:define-macro="country_select">
+  <option value="AL" i18n:translate="">ALBANIA</option>
+  <option value="DZ" i18n:translate="">ALGERIA</option>
+  <option value="AD" i18n:translate="">ANDORRA</option>
+  <option value="AO" i18n:translate="">ANGOLA</option>
+  <option value="AI" i18n:translate="">ANGUILLA</option>
+  <option value="AG" i18n:translate="">ANTIGUA & BARBUDA</option>
+  <option value="AR" i18n:translate="">ARGENTINA</option>
+  <option value="AM" i18n:translate="">ARMENIA</option>
+  <option value="AW" i18n:translate="">ARUBA</option>
+  <option value="AU" i18n:translate="">AUSTRALIA</option>
+  <option value="AT" i18n:translate="">AUSTRIA</option>
+  <option value="AZ" i18n:translate="">AZERBAIJAN</option>
+  <option value="BS" i18n:translate="">BAHAMAS</option>
+  <option value="BH" i18n:translate="">BAHRAIN</option>
+  <option value="BB" i18n:translate="">BARBADOS</option>
+  <option value="BY" i18n:translate="">BELARUS</option>
+  <option value="BE" i18n:translate="">BELGIUM</option>
+  <option value="BZ" i18n:translate="">BELIZE</option>
+  <option value="BJ" i18n:translate="">BENIN</option>
+  <option value="BM" i18n:translate="">BERMUDA</option>
+  <option value="BT" i18n:translate="">BHUTAN</option>
+  <option value="BO" i18n:translate="">BOLIVIA</option>
+  <option value="BA" i18n:translate="">BOSNIA & HERZEGOVINA</option>
+  <option value="BW" i18n:translate="">BOTSWANA</option>
+  <option value="BR" i18n:translate="">BRAZIL</option>
+  <option value="VG" i18n:translate="">BRITISH VIRGIN ISLANDS</option>
+  <option value="BN" i18n:translate="">BRUNEI</option>
+  <option value="BG" i18n:translate="">BULGARIA</option>
+  <option value="BF" i18n:translate="">BURKINA FASO</option>
+  <option value="BI" i18n:translate="">BURUNDI</option>
+  <option value="KH" i18n:translate="">CAMBODIA</option>
+  <option value="CM" i18n:translate="">CAMEROON</option>
+  <option value="CA" i18n:translate="">CANADA</option>
+  <option value="CV" i18n:translate="">CAPE VERDE</option>
+  <option value="KY" i18n:translate="">CAYMAN ISLANDS</option>
+  <option value="TD" i18n:translate="">CHAD</option>
+  <option value="CL" i18n:translate="">CHILE</option>
+  <option value="C2" i18n:translate="">CHINA</option>
+  <option value="CO" i18n:translate="">COLOMBIA</option>
+  <option value="KM" i18n:translate="">COMOROS</option>
+  <option value="CG" i18n:translate="">CONGO - BRAZZAVILLE</option>
+  <option value="CD" i18n:translate="">CONGO - KINSHASA</option>
+  <option value="CK" i18n:translate="">COOK ISLANDS</option>
+  <option value="CR" i18n:translate="">COSTA RICA</option>
+  <option value="CI" i18n:translate="">CÔTE D’IVOIRE</option>
+  <option value="HR" i18n:translate="">CROATIA</option>
+  <option value="CY" i18n:translate="">CYPRUS</option>
+  <option value="CZ" i18n:translate="">CZECH REPUBLIC</option>
+  <option value="DK" i18n:translate="">DENMARK</option>
+  <option value="DJ" i18n:translate="">DJIBOUTI</option>
+  <option value="DM" i18n:translate="">DOMINICA</option>
+  <option value="DO" i18n:translate="">DOMINICAN REPUBLIC</option>
+  <option value="EC" i18n:translate="">ECUADOR</option>
+  <option value="EG" i18n:translate="">EGYPT</option>
+  <option value="SV" i18n:translate="">EL SALVADOR</option>
+  <option value="ER" i18n:translate="">ERITREA</option>
+  <option value="EE" i18n:translate="">ESTONIA</option>
+  <option value="ET" i18n:translate="">ETHIOPIA</option>
+  <option value="FK" i18n:translate="">FALKLAND ISLANDS</option>
+  <option value="FO" i18n:translate="">FAROE ISLANDS</option>
+  <option value="FJ" i18n:translate="">FIJI</option>
+  <option value="FI" i18n:translate="">FINLAND</option>
+  <option value="FR" i18n:translate="">FRANCE</option>
+  <option value="GF" i18n:translate="">FRENCH GUIANA</option>
+  <option value="PF" i18n:translate="">FRENCH POLYNESIA</option>
+  <option value="GA" i18n:translate="">GABON</option>
+  <option value="GM" i18n:translate="">GAMBIA</option>
+  <option value="GE" i18n:translate="">GEORGIA</option>
+  <option value="DE" i18n:translate="">GERMANY</option>
+  <option value="GI" i18n:translate="">GIBRALTAR</option>
+  <option value="GR" i18n:translate="">GREECE</option>
+  <option value="GL" i18n:translate="">GREENLAND</option>
+  <option value="GD" i18n:translate="">GRENADA</option>
+  <option value="GP" i18n:translate="">GUADELOUPE</option>
+  <option value="GT" i18n:translate="">GUATEMALA</option>
+  <option value="GN" i18n:translate="">GUINEA</option>
+  <option value="GW" i18n:translate="">GUINEA-BISSAU</option>
+  <option value="GY" i18n:translate="">GUYANA</option>
+  <option value="HN" i18n:translate="">HONDURAS</option>
+  <option value="HK" i18n:translate="">HONG KONG SAR CHINA</option>
+  <option value="HU" i18n:translate="">HUNGARY</option>
+  <option value="IS" i18n:translate="">ICELAND</option>
+  <option value="IN" i18n:translate="">INDIA</option>
+  <option value="ID" i18n:translate="">INDONESIA</option>
+  <option value="IE" i18n:translate="">IRELAND</option>
+  <option value="IL" i18n:translate="">ISRAEL</option>
+  <option value="IT" i18n:translate="">ITALY</option>
+  <option value="JM" i18n:translate="">JAMAICA</option>
+  <option value="JP" i18n:translate="">JAPAN</option>
+  <option value="JO" i18n:translate="">JORDAN</option>
+  <option value="KZ" i18n:translate="">KAZAKHSTAN</option>
+  <option value="KE" i18n:translate="">KENYA</option>
+  <option value="KI" i18n:translate="">KIRIBATI</option>
+  <option value="KW" i18n:translate="">KUWAIT</option>
+  <option value="KG" i18n:translate="">KYRGYZSTAN</option>
+  <option value="LA" i18n:translate="">LAOS</option>
+  <option value="LV" i18n:translate="">LATVIA</option>
+  <option value="LS" i18n:translate="">LESOTHO</option>
+  <option value="LI" i18n:translate="">LIECHTENSTEIN</option>
+  <option value="LT" i18n:translate="">LITHUANIA</option>
+  <option value="LU" i18n:translate="">LUXEMBOURG</option>
+  <option value="MK" i18n:translate="">MACEDONIA</option>
+  <option value="MG" i18n:translate="">MADAGASCAR</option>
+  <option value="MW" i18n:translate="">MALAWI</option>
+  <option value="MY" i18n:translate="">MALAYSIA</option>
+  <option value="MV" i18n:translate="">MALDIVES</option>
+  <option value="ML" i18n:translate="">MALI</option>
+  <option value="MT" i18n:translate="">MALTA</option>
+  <option value="MH" i18n:translate="">MARSHALL ISLANDS</option>
+  <option value="MQ" i18n:translate="">MARTINIQUE</option>
+  <option value="MR" i18n:translate="">MAURITANIA</option>
+  <option value="MU" i18n:translate="">MAURITIUS</option>
+  <option value="YT" i18n:translate="">MAYOTTE</option>
+  <option value="MX" i18n:translate="">MEXICO</option>
+  <option value="FM" i18n:translate="">MICRONESIA</option>
+  <option value="MD" i18n:translate="">MOLDOVA</option>
+  <option value="MC" i18n:translate="">MONACO</option>
+  <option value="MN" i18n:translate="">MONGOLIA</option>
+  <option value="ME" i18n:translate="">MONTENEGRO</option>
+  <option value="MS" i18n:translate="">MONTSERRAT</option>
+  <option value="MA" i18n:translate="">MOROCCO</option>
+  <option value="MZ" i18n:translate="">MOZAMBIQUE</option>
+  <option value="NA" i18n:translate="">NAMIBIA</option>
+  <option value="NR" i18n:translate="">NAURU</option>
+  <option value="NP" i18n:translate="">NEPAL</option>
+  <option value="NL" i18n:translate="">NETHERLANDS</option>
+  <option value="NC" i18n:translate="">NEW CALEDONIA</option>
+  <option value="NZ" i18n:translate="">NEW ZEALAND</option>
+  <option value="NI" i18n:translate="">NICARAGUA</option>
+  <option value="NE" i18n:translate="">NIGER</option>
+  <option value="NG" i18n:translate="">NIGERIA</option>
+  <option value="NU" i18n:translate="">NIUE</option>
+  <option value="NF" i18n:translate="">NORFOLK ISLAND</option>
+  <option value="NO" i18n:translate="">NORWAY</option>
+  <option value="OM" i18n:translate="">OMAN</option>
+  <option value="PW" i18n:translate="">PALAU</option>
+  <option value="PA" i18n:translate="">PANAMA</option>
+  <option value="PG" i18n:translate="">PAPUA NEW GUINEA</option>
+  <option value="PY" i18n:translate="">PARAGUAY</option>
+  <option value="PE" i18n:translate="">PERU</option>
+  <option value="PH" i18n:translate="">PHILIPPINES</option>
+  <option value="PN" i18n:translate="">PITCAIRN ISLANDS</option>
+  <option value="PL" i18n:translate="">POLAND</option>
+  <option value="PT" i18n:translate="">PORTUGAL</option>
+  <option value="QA" i18n:translate="">QATAR</option>
+  <option value="RE" i18n:translate="">RÉUNION</option>
+  <option value="RO" i18n:translate="">ROMANIA</option>
+  <option value="RU" i18n:translate="">RUSSIA</option>
+  <option value="RW" i18n:translate="">RWANDA</option>
+  <option value="WS" i18n:translate="">SAMOA</option>
+  <option value="SM" i18n:translate="">SAN MARINO</option>
+  <option value="ST" i18n:translate="">SÃO TOMÉ & PRÍNCIPE</option>
+  <option value="SA" i18n:translate="">SAUDI ARABIA</option>
+  <option value="SN" i18n:translate="">SENEGAL</option>
+  <option value="RS" i18n:translate="">SERBIA</option>
+  <option value="SC" i18n:translate="">SEYCHELLES</option>
+  <option value="SL" i18n:translate="">SIERRA LEONE</option>
+  <option value="SG" i18n:translate="">SINGAPORE</option>
+  <option value="SK" i18n:translate="">SLOVAKIA</option>
+  <option value="SI" i18n:translate="">SLOVENIA</option>
+  <option value="SB" i18n:translate="">SOLOMON ISLANDS</option>
+  <option value="SO" i18n:translate="">SOMALIA</option>
+  <option value="ZA" i18n:translate="">SOUTH AFRICA</option>
+  <option value="KR" i18n:translate="">SOUTH KOREA</option>
+  <option value="ES" i18n:translate="">SPAIN</option>
+  <option value="LK" i18n:translate="">SRI LANKA</option>
+  <option value="SH" i18n:translate="">ST. HELENA</option>
+  <option value="KN" i18n:translate="">ST. KITTS & NEVIS</option>
+  <option value="LC" i18n:translate="">ST. LUCIA</option>
+  <option value="PM" i18n:translate="">ST. PIERRE & MIQUELON</option>
+  <option value="VC" i18n:translate="">ST. VINCENT & GRENADINES</option>
+  <option value="SR" i18n:translate="">SURINAME</option>
+  <option value="SJ" i18n:translate="">SVALBARD & JAN MAYEN</option>
+  <option value="SZ" i18n:translate="">SWAZILAND</option>
+  <option value="SE" i18n:translate="">SWEDEN</option>
+  <option value="CH" i18n:translate="">SWITZERLAND</option>
+  <option value="TW" i18n:translate="">TAIWAN</option>
+  <option value="TJ" i18n:translate="">TAJIKISTAN</option>
+  <option value="TZ" i18n:translate="">TANZANIA</option>
+  <option value="TH" i18n:translate="">THAILAND</option>
+  <option value="TG" i18n:translate="">TOGO</option>
+  <option value="TO" i18n:translate="">TONGA</option>
+  <option value="TT" i18n:translate="">TRINIDAD & TOBAGO</option>
+  <option value="TN" i18n:translate="">TUNISIA</option>
+  <option value="TM" i18n:translate="">TURKMENISTAN</option>
+  <option value="TC" i18n:translate="">TURKS & CAICOS ISLANDS</option>
+  <option value="TV" i18n:translate="">TUVALU</option>
+  <option value="UG" i18n:translate="">UGANDA</option>
+  <option value="UA" i18n:translate="">UKRAINE</option>
+  <option value="AE" i18n:translate="">UNITED ARAB EMIRATES</option>
+  <option value="GB" i18n:translate="">UNITED KINGDOM</option>
+  <option value="US" i18n:translate="">UNITED STATES</option>
+  <option value="UY" i18n:translate="">URUGUAY</option>
+  <option value="VU" i18n:translate="">VANUATU</option>
+  <option value="VA" i18n:translate="">VATICAN CITY</option>
+  <option value="VE" i18n:translate="">VENEZUELA</option>
+  <option value="VN" i18n:translate="">VIETNAM</option>
+  <option value="WF" i18n:translate="">WALLIS & FUTUNA</option>
+  <option value="YE" i18n:translate="">YEMEN</option>
+  <option value="ZM" i18n:translate="">ZAMBIA</option>
+  <option value="ZW" i18n:translate="">ZIMBABWE</option>
+</metal:block>

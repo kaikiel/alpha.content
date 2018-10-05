@@ -96,6 +96,15 @@
   />
 
   <browser:page
+      name="country_select_macro"
+      for="*"
+      template="templates/country_select_macro.pt"
+      class=".view.SocialButtonMacro"
+      layer="zope.interface.Interface"
+      permission="zope2.View"
+  />
+
+  <browser:page
       name="send_mail"
       for="*"
       class=".view.SendMail"
@@ -122,7 +131,16 @@
       name="register_form"
       for="*"
       permission="zope2.Public"
-      class=".view.RegistrationForm"
+      template="templates/register_form.pt"
+      class=".view.Register"
+  />
+
+  <browser:page
+      name="new_user_form"
+      for="*"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      template="templates/new_user_form.pt"
+      class=".view.NewUserForm"
   />
 
   <browser:page
@@ -166,13 +184,6 @@
       class=".folder_view.SearchView"
       template="templates/search_view.pt"
   />
-
-  <browser:page
-      name="all_orders"
-      for="*"
-      class=".view.UseCouponStatus"
-      permission="zope2.View"
-  />
   <browser:page
       name="companys"
       for="*"
@@ -196,8 +207,38 @@
       permission="zope2.View"
   />
 
+  <browser:page
+      name="bonus_history"
+      for="*"
+      class=".view.BonusHistoryView"
+      template="templates/bonus_history_view.pt"
+      permission="zope2.View"
+  />
+
+  <browser:page
+      name="rebate_history"
+      for="*"
+      class=".view.RebateHistoryView"
+      template="templates/rebate_history_view.pt"
+      permission="zope2.View"
+  />
+
 
 <!-- for requests --> 
+  <browser:page
+      name="count_shipping_fee"
+      for="*"
+      class=".view.CountShippingFee"
+      permission="zope2.View"
+  />
+
+  <browser:page
+      name="delPromoQty"
+      for="*"
+      class=".view.DelPromoQty"
+      permission="zope2.View"
+  />
+
   <browser:page
       name="use_coupon"
       for="*"
@@ -275,6 +316,13 @@
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
     permission="cmf.ManagePortal"
     class=".user_configlet.UserControlPanelForm"
+    />
+
+  <browser:page
+    name="WeightControlPanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    permission="cmf.ManagePortal"
+    class=".weight_configlet.WeightControlPanelForm"
     />
 
   <browser:page

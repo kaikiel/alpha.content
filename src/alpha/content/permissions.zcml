@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="alpha.content.AddCompany"
+        title="alpha.content: Add Company"
+    />
+
+        
+    <permission
         id="alpha.content.AddLllll"
         title="alpha.content: Add Lllll"
     />

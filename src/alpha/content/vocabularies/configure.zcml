@@ -10,6 +10,11 @@
     />
 
     <utility
+        component=".city_category.CityCategoryFactory"
+        name="alpha.content.CityCategory"
+    />
+
+    <utility
         component=".group_list.GroupListFactory"
         name="alpha.content.GroupList"
     />

@@ -41,7 +41,7 @@ def future_date(value):
 
 
 class IProduct(model.Schema):
-    fieldset(_('Product Info'), fields=['title', 'productNo', 'rating', 'cover', 'description', 'category', 'subcategory', 'relatedProduct'])
+    fieldset(_('Product Info'), fields=['title', 'productNo', 'limit_qty', 'rating', 'cover', 'description', 'category', 'subcategory', 'relatedProduct'])
     title = schema.TextLine(
         title=_(u'Title'),
         required=True,
@@ -50,6 +50,14 @@ class IProduct(model.Schema):
     productNo = schema.TextLine(
         title=_(u'Product Number'),
         required=True,
+    )
+
+    limit_qty = schema.Int(
+        title=_(u'Limited quantity'),
+        description=_(u'Time Limit Product quantity'),
+        default=0,
+        min=0,
+        required=True
     )
  
     rating = schema.Int(
@@ -89,7 +97,7 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    fieldset(_('More Info'), fields=['brand', 'productCode', 'availability', 'downloadFile', 'feature', 'specification'])
+    fieldset(_('More Info'), fields=['brand', 'productCode', 'downloadFile', 'feature', 'specification'])
     brand = schema.TextLine(
         title=_(u'Brand'),
         required=True
@@ -97,12 +105,6 @@ class IProduct(model.Schema):
 
     productCode = schema.TextLine(
         title=_(u'Product Code'),
-        required=False
-    )
-
-    availability = schema.Bool(
-        title=(u'Availability'),
-	default=True,
         required=False
     )
 
@@ -123,43 +125,73 @@ class IProduct(model.Schema):
         required=False,
     )
 
-    fieldset(_('Product Price'), fields=['price', 'salePrice', 'l_c_price', 'l_b_price', 'l_a_price', 'disc_amount'])
-    price = schema.Int(
+    fieldset(_('Product Price'), fields=['weight', 'price', 'salePrice', 'l_c_price', 'l_b_price', 'l_a_price', 'disc_amount', 'bonus', 'rebate'])
+    weight = schema.Float(
+        title=_(u'Weight'),
+        description=_(u'Product weight (Please enter kg)'),
+        default=0.0,
+        min=0.0,
+        required=True
+    )
+
+    price = schema.Float(
         title=_(u'Price'),
         description=_(u'Enter USD$'),
+        default=0.0,
+        min=0.0,
         required=True,
     )
 
-    salePrice = schema.Int(
+    salePrice = schema.Float(
         title=_(u'Sale Price'),
         description=_(u'Enter USD$'),
+        default=0.0,
+        min=0.0,
         required=True,
     )
 
-    l_c_price = schema.Int(
+    l_c_price = schema.Float(
         title=_(u'Level C Group Price'),
         description=_(u'Enter USD$'),
+        min=0.0,
         required=False
     )
     
-    l_b_price = schema.Int(
+    l_b_price = schema.Float(
         title=_(u'Level B Group Price'),
         description=_(u'Enter USD$'),
+        min=0.0,
         required=False
     )
 
-    l_a_price = schema.Int(
+    l_a_price = schema.Float(
         title=_(u'Level A Group Price'),
         description=_(u'Enter USD$'),
+        min=0.0,
         required=False
     )
 
-    disc_amount = schema.Int(
+    disc_amount = schema.Float(
         title=_(u'Discount Amount'),
-        description=_(u'Enter USD$'),
+        description=_(u'Enter USD$ (just used on price and sale_price)'),
+        min=0.0,
+        required=False
+    )
+
+    bonus = schema.Int(
+        title=_(u'Bonus'),
+        description=_(u'Bonus points earned when you purchase this product'),
         default=0,
         min=0,
-        required=False
+        required=True
+    )
+
+    rebate = schema.Float(
+        title=_(u'Promocode Rebate'),
+        description=_(u'When the customer completes the expenditure, the owner can get a rebate'),
+        default=0.0,
+        min=0.0,
+        required=True
     )
 
     @invariant

@@ -11,14 +11,24 @@ from zope.interface import implementer
 from alpha.content import _
 
 
-class ICover(model.Schema):
+class ICompany(model.Schema):
     title = schema.TextLine(
         title=_(u'Title'),
         required=True,
     )
 
+    text = RichText(
+        title=_(u'Text'),
+        required=True,
+    )
 
-@implementer(ICover)
-class Cover(Item):
+    image = namedfile.NamedBlobImage(
+        title=_(u'Cover Image'),
+        required=True,
+    )
+
+
+@implementer(ICompany)
+class Company(Item):
     """
     """

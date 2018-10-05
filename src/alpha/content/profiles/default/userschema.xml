@@ -135,5 +135,13 @@
       <readonly>True</readonly>
       <title i18n:translate="">wishList</title>
     </field>
+
+    <field name="bonus" type="zope.schema.Int"
+      users:forms="In User Profile">
+      <required>False</required>
+      <readonly>True</readonly>
+      <title i18n:translate="">bonus</title>
+    </field>
+
   </schema>
 </model>

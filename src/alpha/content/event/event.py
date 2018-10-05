@@ -38,15 +38,18 @@ def delUserPromoCodeConfiglet(event):
 
 def addUserToAnother(event):
     request = getRequest()
+    if request.form.get('widget-form-btn', '') == 'widget-form-btn':
 
-    currentUser = event.object
-    if hasattr(currentUser, 'setProperties'):
-        currentUser.setProperties({'group':'level_D'})
-    if request.get('form.buttons.register'):
-        userName = request.get('form.widgets.username', '')
-        email = request.get('form.widgets.email', '')
-        pwd = request.get('form.widgets.password', '')
-        fullname = request.get('form.widgets.fullname', '')
+        propertyList = ['fName', 'lName', 'telephone', 'fax', 'country', 'state', 'city', 'zip', 'address1', 'address2', 'company', 'promoCode', 'group']
+        propertyDict={}
+        for property in propertyList:
+            value = request.form.get(property, '')
+            if value:
+                propertyDict.update({property: value})
+        username = request.form.get('username', '')
+        password = request.form.get('password', '')
+        email    = request.form.get('email', '')
+        propertyDict.update({'fullname': request.form.get('lName', '') + ' ' + request.form.get('fName', '')})
 
         if 'alpha_cn' in request['URL']:
              url = request['URL1'].replace('alpha_cn', 'alpha_en')
@@ -54,7 +57,7 @@ def addUserToAnother(event):
              url = request['URL1'].replace('alpha_en', 'alpha_cn')
 
         response = requests.post(url + '/adduser', headers={'Accept': 'application/json', 'Content-Type': 'application/json'}, 
-                                json={'email': email, 'password': pwd, 'username': userName, 'fullname': fullname}, 
+                                json={'email': email, 'password': password, 'username': username, 'properties': propertyDict}, 
                                 auth=('admin', '123456'))
 
 def modifyUserToAnother(event):
@@ -70,7 +73,6 @@ def modifyUserToAnother(event):
             existCode.update({str(user): str(data['promoCode'])})
             api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
         if request.get('form.buttons.save'):
-
             if 'alpha_cn' in request['URL']:
                  requests_url = request['URL1'].replace('alpha_cn', 'alpha_en')
             else:
@@ -94,7 +96,7 @@ def delUserToAnother(event):
     api.portal.set_registry_record('alpha.content.browser.user_configlet.IUser.promoCode', existCode)
 
     # check event repeat
-    if request.get('form.button.Modify'):
+    if request.get('form.button.Modify') or request.get('widget-form-btn'):
 
         if 'alpha_cn' in request['URL']:
              requests_url = request['URL1'].replace('alpha_cn', 'alpha_en')

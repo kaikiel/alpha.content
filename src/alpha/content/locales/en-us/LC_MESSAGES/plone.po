@@ -7641,7 +7641,7 @@ msgstr "填入朋友的電子信箱地址，將會寄出包含此頁連結的電
 #. Default: "Your password reset request has been mailed. It should arrive in your mailbox shortly. When you receive the message, visit the address it contains to reset your password."
 #: CMFPlone/browser/templates/mail_password_response.pt:16
 msgid "description_sent_password"
-msgstr "密碼重設的要求已經寄出，通知信應該很快寄到電子郵件信箱。收到之後，請點選裡頭提示的網址，以重設密碼。"
+msgstr "Your password reset request has been mailed. It should arrive in your mailbox shortly. When you receive the message, visit the address it contains to reset your password."
 
 #. Default: "i.e. also when the 'set_language' request parameter is absent"
 #: CMFPlone/interfaces/controlpanel.py:290
@@ -8315,7 +8315,7 @@ msgstr "寄送此頁內容給親友"
 #. Default: "Password reset confirmation sent"
 #: CMFPlone/browser/templates/mail_password_response.pt:11
 msgid "heading_sent_password"
-msgstr "密碼重設要求已送出"
+msgstr "Password reset confirmation sent"
 
 #. Default: "Set the language cookie always"
 #: CMFPlone/interfaces/controlpanel.py:287
@@ -11534,37 +11534,37 @@ msgstr ""
 #. Default: "Welcome ${fullname}, Your user account has been created. Your username is ${member}. Please activate it by visiting ${set_password} Please activate your account before ${expirationdate}"
 #: CMFPlone/browser/templates/registered_notify_template.pt:23
 msgid "mailtemplate_registered_user_body"
-msgstr "歡迎 ${fullname}，你的使用者帳號已經建立完成，帳號名稱是 ${member}。點選 ${set_password} 就可以啟用這個帳號，但這個網址只在 ${expirationdate} 之前有效。"
+msgstr ""
 
 #. Default: "The site administrator asks you to reset your password for '${userid}' userid. Your old password doesn't work anymore."
 #: CMFPlone/browser/templates/mail_password_template.pt:14
 msgid "mailtemplate_reset_information"
-msgstr "網站管理員要求重設 '${userid}' 帳號的密碼，你的舊密碼已失效。"
+msgstr ""
 
 #. Default: "Password reset request"
 #: CMFPlone/browser/password_reset.py:54
 msgid "mailtemplate_subject_resetpasswordrequest"
-msgstr "密碼重設要求"
+msgstr ""
 
 #. Default: "(This link is valid for ${hours} hours)"
 #: CMFPlone/browser/templates/mail_password_template.pt:28
 msgid "mailtemplate_text_expirationdate_linkreset"
-msgstr "(這個網址連結在 ${hours} 小時內有效)"
+msgstr ""
 
 #. Default: "The following link will take you to a page where you can reset your password for ${site_name} site: ${reset_url}"
 #: CMFPlone/browser/templates/mail_password_template.pt:23
 msgid "mailtemplate_text_linkreset"
-msgstr "下列網址所連結的網頁，能用來重新設定 ${site_name} 網站的帳號密碼: ${reset_url}"
+msgstr ""
 
 #. Default: "If you didn't expect to receive this email, please ignore it. Your password has not been changed. Request made from IP address ${ipaddress}"
 #: CMFPlone/browser/templates/mail_password_template.pt:36
 msgid "mailtemplate_tracking_information"
-msgstr "如果沒預期會收到這項通知，請予以忽略，你的密碼並未被變更。這項密碼重設要求由 IP 位置 ${ipaddress} 所提出。"
+msgstr ""
 
 #. Default: "User Account Information for ${portal_name}"
 #: CMFPlone/browser/password_reset.py:48
 msgid "mailtemplate_user_account_info"
-msgstr "${portal_name} 的使用者帳號資訊"
+msgstr ""
 
 #. Default: "All…"
 #: plone.app.contentmenu/plone/app/contentmenu/menu.py:917

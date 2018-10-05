@@ -18,5 +18,14 @@
         marker=".map_category.IMapCategory"
         />
 
+    <plone:behavior
+        name="alpha.content.city_category"
+        title="CityCategory"
+        description="City Category"
+        provides=".city_category.ICityCategory"
+        factory=".city_category.CityCategory"
+        marker=".city_category.ICityCategory"
+        />
+
         
 </configure>

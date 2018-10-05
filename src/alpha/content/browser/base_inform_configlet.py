@@ -39,10 +39,12 @@ class IInform(Form.Schema):
     )
     weibo_link = schema.TextLine(
         title=_(u'Weibo Link'),
+        readonly=True,
         required=False,
     )
     youku_link = schema.TextLine(
         title=_(u'Youku Link'),
+        readonly=True,
         required=False,
     )
     youtube_link = schema.TextLine(

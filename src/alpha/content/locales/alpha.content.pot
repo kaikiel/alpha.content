@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-08-15 07:46+0000\n"
+"POT-Creation-Date: 2018-09-27 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,36 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: alpha.content\n"
 
-#: ../browser/view.py:616
+#: ../browser/view.py:985
+msgid "Add New User"
+msgstr ""
+
+#: ../browser/view.py:1167
 msgid "Add WishList Must Be Login!!"
 msgstr ""
 
-#: ../browser/view.py:589
+#: ../browser/view.py:1140
 msgid "Add WishList Repeat!!"
 msgstr ""
 
-#: ../browser/view.py:597
+#: ../browser/view.py:1148
 msgid "Add WishList Success!!"
 msgstr ""
 
 #: ../vocabularies/map_category.py:31
 msgid "Africa"
+msgstr ""
+
+#: ../profiles/default/controlpanel.xml
+msgid "All Order"
+msgstr ""
+
+#: ../browser/view.py:633
+msgid "Alpha have a new Order {}, Total Price are {} {}."
+msgstr ""
+
+#: ../browser/view.py:686
+msgid "Alpha have a new order {}"
 msgstr ""
 
 #: ../vocabularies/map_category.py:32
@@ -41,35 +57,67 @@ msgstr ""
 msgid "Basic Inform"
 msgstr ""
 
-#: ../content/product.py:206
+#: ../content/product.py:238
 msgid "Best Seller"
 msgstr ""
 
-#: ../content/product.py:94
+#: ../content/product.py:182
+msgid "Bonus"
+msgstr ""
+
+#: ../browser/view.py:1430
+msgid "Bonus History"
+msgstr ""
+
+#: ../browser/weight_configlet.py:13
+msgid "Bonus To Money"
+msgstr ""
+
+#: ../content/product.py:183
+msgid "Bonus points earned when you purchase this product"
+msgstr ""
+
+#: ../content/product.py:102
 msgid "Brand"
 msgstr ""
 
-#: ../browser/view.py:174
+#: ../browser/view.py:185
 msgid "Brands"
 msgstr ""
 
-#: ../content/product.py:73
+#: ../content/product.py:81
 msgid "Category"
+msgstr ""
+
+#: ../vocabularies/city_category.py:34
+msgid "Changhua"
+msgstr ""
+
+#: ../vocabularies/city_category.py:36
+msgid "Chiayi"
+msgstr ""
+
+#: ../behaviors/city_category.py:16
+msgid "City Category"
+msgstr ""
+
+#: ../profiles/default/types/Company.xml
+msgid "Company"
 msgstr ""
 
 #: ../browser/base_inform_configlet.py:17
 msgid "Company Description"
 msgstr ""
 
-#: ../browser/view.py:461
+#: ../browser/view.py:846
 msgid "Compare List"
 msgstr ""
 
-#: ../browser/view.py:287
+#: ../browser/view.py:304
 msgid "Confirm Cart"
 msgstr ""
 
-#: ../browser/view.py:398
+#: ../browser/view.py:783
 msgid "Contact Us"
 msgstr ""
 
@@ -77,7 +125,8 @@ msgstr ""
 msgid "Cover"
 msgstr ""
 
-#: ../content/product.py:63
+#: ../content/company.py:26
+#: ../content/product.py:71
 msgid "Cover Image"
 msgstr ""
 
@@ -86,34 +135,47 @@ msgstr ""
 msgid "Custom Related Setting"
 msgstr ""
 
-#: ../browser/view.py:634
+#: ../browser/view.py:1185
 msgid "Delete WishList Success!!"
 msgstr ""
 
-#: ../content/product.py:68
+#: ../content/product.py:76
 msgid "Description"
 msgstr ""
 
-#: ../content/product.py:158
+#: ../content/product.py:175
 msgid "Discount Amount"
 msgstr ""
 
-#: ../content/product.py:110
+#: ../content/product.py:112
 msgid "Download File"
 msgstr ""
 
+#: ../profiles/default/types/Company.xml
 #: ../profiles/default/types/Cover.xml
 #: ../profiles/default/types/Product.xml
-#: ../profiles/default/types/ProductImg.xml
 msgid "Edit"
 msgstr ""
 
-#: ../content/product.py:129
+#: ../browser/view.py:33
+msgid "Email is repeat!!"
+msgstr ""
+
+#: ../browser/weight_configlet.py:36
+#: ../content/product.py:139
 msgid "Enter USD$"
+msgstr ""
+
+#: ../content/product.py:176
+msgid "Enter USD$ (just used on price and sale_price)"
 msgstr ""
 
 #: ../vocabularies/map_category.py:30
 msgid "Europe"
+msgstr ""
+
+#: ../browser/view.py:298
+msgid "Exceeding available bonus points"
 msgstr ""
 
 #: ../browser/user_configlet.py:14
@@ -124,19 +186,35 @@ msgstr ""
 msgid "Facebook Link"
 msgstr ""
 
-#: ../content/product.py:115
+#: ../content/product.py:117
 msgid "Feature"
 msgstr ""
 
-#: ../content/product.py:212
+#: ../browser/weight_configlet.py:22
+msgid "Free shipping when reaching this weight"
+msgstr ""
+
+#: ../browser/weight_configlet.py:14
+msgid "How much is a bonus point?"
+msgstr ""
+
+#: ../vocabularies/city_category.py:31
+msgid "Hsinchu"
+msgstr ""
+
+#: ../vocabularies/city_category.py:42
+msgid "Hualien"
+msgstr ""
+
+#: ../content/product.py:244
 msgid "If you want to set the time limit, you must put this product in the \"Promotions\" folder"
 msgstr ""
 
-#: ../content/product.py:197
+#: ../content/product.py:229
 msgid "Index Category"
 msgstr ""
 
-#: ../content/product.py:193
+#: ../content/product.py:225
 msgid "Index Information"
 msgstr ""
 
@@ -144,31 +222,47 @@ msgstr ""
 msgid "Installs the alpha.content add-on."
 msgstr ""
 
+#: ../vocabularies/city_category.py:39
+msgid "Kaohsiung"
+msgstr ""
+
+#: ../vocabularies/city_category.py:45
+msgid "Kinmen"
+msgstr ""
+
 #: ../content/product.py:29
 msgid "Latest"
 msgstr ""
 
-#: ../content/product.py:152
+#: ../content/product.py:168
 msgid "Level A Group Price"
 msgstr ""
 
-#: ../content/product.py:146
+#: ../content/product.py:161
 msgid "Level B Group Price"
 msgstr ""
 
-#: ../content/product.py:140
+#: ../content/product.py:154
 msgid "Level C Group Price"
 msgstr ""
 
-#: ../behaviors/map_category.py:19
-msgid "Map Category"
+#: ../vocabularies/city_category.py:46
+msgid "Lienchiang"
+msgstr ""
+
+#: ../content/product.py:56
+msgid "Limited quantity"
+msgstr ""
+
+#: ../vocabularies/city_category.py:32
+msgid "Miaoli"
 msgstr ""
 
 #: ../vocabularies/map_category.py:34
 msgid "Middle East"
 msgstr ""
 
-#: ../content/product.py:92
+#: ../content/product.py:100
 msgid "More Info"
 msgstr ""
 
@@ -176,23 +270,47 @@ msgstr ""
 msgid "Most View"
 msgstr ""
 
+#: ../vocabularies/city_category.py:37
+msgid "Nantou"
+msgstr ""
+
+#: ../vocabularies/city_category.py:29
+msgid "New Taipei"
+msgstr ""
+
 #: ../vocabularies/map_category.py:28
 msgid "North America"
 msgstr ""
 
-#: ../browser/view.py:725
+#: ../browser/view.py:1293
 msgid "Order History"
 msgstr ""
 
-#: ../browser/view.py:494
+#: ../browser/view.py:300
+msgid "Out of stock"
+msgstr ""
+
+#: ../browser/view.py:35
+msgid "Passwords do not match."
+msgstr ""
+
+#: ../vocabularies/city_category.py:44
+msgid "Penghu"
+msgstr ""
+
+#: ../browser/view.py:1008
 msgid "Personal Details"
+msgstr ""
+
+#: ../vocabularies/city_category.py:40
+msgid "Pingtung"
 msgstr ""
 
 #: ../content/product.py:34
 msgid "Please enter 1 to 5 in the Rating field"
 msgstr ""
 
-#: ../content/product.py:128
+#: ../content/product.py:138
 msgid "Price"
 msgstr ""
 
@@ -200,7 +318,7 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: ../content/product.py:99
+#: ../content/product.py:107
 msgid "Product Code"
 msgstr ""
 
@@ -216,8 +334,16 @@ msgstr ""
 msgid "Product Number"
 msgstr ""
 
-#: ../content/product.py:126
+#: ../content/product.py:128
 msgid "Product Price"
+msgstr ""
+
+#: ../browser/weight_configlet.py:29
+msgid "Product shipping fee"
+msgstr ""
+
+#: ../content/product.py:131
+msgid "Product weight (Please enter kg)"
 msgstr ""
 
 #: ../profiles/default/types/ProductImg.xml
@@ -228,13 +354,21 @@ msgstr ""
 msgid "ProductReview"
 msgstr ""
 
-#: ../browser/view.py:612
+#: ../content/product.py:190
+msgid "Promocode Rebate"
+msgstr ""
+
+#: ../browser/view.py:1163
 msgid "Query string supplied is not valid"
 msgstr ""
 
-#: ../content/product.py:56
+#: ../content/product.py:64
 #: ../content/productreview.py:26
 msgid "Rating"
+msgstr ""
+
+#: ../browser/view.py:1511
+msgid "Rebate History"
 msgstr ""
 
 #: ../browser/base_inform_configlet.py:62
@@ -245,19 +379,15 @@ msgstr ""
 msgid "Recipient Email"
 msgstr ""
 
-#: ../browser/view.py:488
-msgid "Register"
-msgstr ""
-
-#: ../content/product.py:86
+#: ../content/product.py:94
 msgid "Related"
 msgstr ""
 
-#: ../content/product.py:83
+#: ../content/product.py:91
 msgid "Related Product"
 msgstr ""
 
-#: ../browser/view.py:143
+#: ../browser/view.py:154
 msgid "Return"
 msgstr ""
 
@@ -265,39 +395,39 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: ../content/product.py:134
+#: ../content/product.py:146
 msgid "Sale Price"
 msgstr ""
 
-#: ../browser/folder_view.py:204
+#: ../browser/folder_view.py:205
 msgid "Search"
 msgstr ""
 
-#: ../content/product.py:198
+#: ../content/product.py:230
 msgid "Select the classification of this product (Most View, Special, Latest)"
 msgstr ""
 
-#: ../browser/view.py:193
+#: ../browser/view.py:204
 msgid "Site Map"
 msgstr ""
 
-#: ../content/product.py:172
+#: ../content/product.py:204
 msgid "Slider"
 msgstr ""
 
-#: ../content/product.py:174
+#: ../content/product.py:206
 msgid "Slider Image1"
 msgstr ""
 
-#: ../content/product.py:179
+#: ../content/product.py:211
 msgid "Slider Image2"
 msgstr ""
 
-#: ../content/product.py:184
+#: ../content/product.py:216
 msgid "Slider Image3"
 msgstr ""
 
-#: ../content/product.py:189
+#: ../content/product.py:221
 msgid "Slider Image4"
 msgstr ""
 
@@ -313,29 +443,77 @@ msgstr ""
 msgid "Special"
 msgstr ""
 
-#: ../content/product.py:78
+#: ../content/product.py:86
 msgid "Subcategory"
 msgstr ""
 
-#: ../content/product.py:170
+#: ../vocabularies/city_category.py:33
+msgid "Taichung"
+msgstr ""
+
+#: ../vocabularies/city_category.py:38
+msgid "Tainan"
+msgstr ""
+
+#: ../vocabularies/city_category.py:28
+msgid "Taipei"
+msgstr ""
+
+#: ../vocabularies/city_category.py:43
+msgid "Taitung"
+msgstr ""
+
+#: ../vocabularies/city_category.py:30
+msgid "Taoyuan"
+msgstr ""
+
+#: ../content/company.py:21
+msgid "Text"
+msgstr ""
+
+#: ../browser/view.py:773
+msgid "Thanks for your order!"
+msgstr ""
+
+#: ../browser/view.py:599
+msgid "Thanks for your recommend!"
+msgstr ""
+
+#: ../content/product.py:202
 msgid "The Discount Amount is bigger than price!"
 msgstr ""
 
-#: ../content/product.py:168
+#: ../browser/view.py:297
+msgid "The highest available bonus is"
+msgstr ""
+
+#: ../browser/view.py:31
+msgid "The login name you selected is already in use or is not valid. Please choose another."
+msgstr ""
+
+#: ../content/product.py:200
 msgid "The sale price is bigger than price!"
 msgstr ""
 
-#: ../content/product.py:211
+#: ../content/product.py:243
 msgid "Time Limit"
+msgstr ""
+
+#: ../content/product.py:57
+msgid "Time Limit Product quantity"
 msgstr ""
 
 #: ../content/product.py:39
 msgid "Time limit date can not be before today."
 msgstr ""
 
+#: ../browser/view.py:299
+msgid "Time-limited product time has passed"
+msgstr ""
+
+#: ../content/company.py:16
+#: ../content/cover.py:16
 #: ../content/product.py:46
-#: ../content/productimg.py:16
-#: ../content/productreview.py:16
 msgid "Title"
 msgstr ""
 
@@ -347,9 +525,9 @@ msgstr ""
 msgid "User PromoCode"
 msgstr ""
 
+#: ../profiles/default/types/Company.xml
 #: ../profiles/default/types/Cover.xml
 #: ../profiles/default/types/Product.xml
-#: ../profiles/default/types/ProductImg.xml
 msgid "View"
 msgstr ""
 
@@ -357,8 +535,25 @@ msgstr ""
 msgid "Weibo Link"
 msgstr ""
 
-#: ../browser/view.py:554
+#: ../browser/weight_configlet.py:31
+#: ../content/product.py:130
+msgid "Weight"
+msgstr ""
+
+#: ../browser/weight_configlet.py:35
+msgid "Weight Price"
+msgstr ""
+
+#: ../content/product.py:191
+msgid "When the customer completes the expenditure, the owner can get a rebate"
+msgstr ""
+
+#: ../browser/view.py:1105
 msgid "Wish List"
+msgstr ""
+
+#: ../vocabularies/city_category.py:41
+msgid "Yilan"
 msgstr ""
 
 #: ../browser/base_inform_configlet.py:45
@@ -371,6 +566,10 @@ msgstr ""
 
 #: ../browser/base_inform_configlet.py:49
 msgid "Youtube Link"
+msgstr ""
+
+#: ../vocabularies/city_category.py:35
+msgid "Yunlin"
 msgstr ""
 
 #: ../browser/base_inform_configlet.py:29
@@ -389,12 +588,20 @@ msgstr ""
 msgid "cellphone"
 msgstr ""
 
+#: ../browser/view.py:1556
+msgid "clear"
+msgstr ""
+
 #: ../browser/base_inform_configlet.py:21
 msgid "email"
 msgstr ""
 
-#: ../content/product.py:121
+#: ../content/product.py:123
 msgid "ex. clockspeed:100mhz"
+msgstr ""
+
+#: ../browser/weight_configlet.py:21
+msgid "free shipping weight"
 msgstr ""
 
 #: ../vocabularies/group_list.py:31
@@ -413,11 +620,24 @@ msgstr ""
 msgid "level_D"
 msgstr ""
 
-#: ../event/event.py:69
+#: ../browser/view.py:301
+msgid "only left with"
+msgstr ""
+
+#: ../browser/view.py:34
+msgid "password just only Letter and Number. Minimum 5 characters."
+msgstr ""
+
+#: ../browser/view.py:32
+#: ../event/event.py:72
 msgid "promoCode is repeat!!"
 msgstr ""
 
-#: ../content/product.py:120
+#: ../browser/view.py:1488
+msgid "returned"
+msgstr ""
+
+#: ../content/product.py:122
 msgid "specification"
 msgstr ""
 
@@ -433,6 +653,22 @@ msgstr ""
 msgid "store full product data"
 msgstr ""
 
-#: ../browser/view.py:601
+#: ../browser/view.py:720
+msgid "thanks for your order, we hope you enjoyed shopping with us."
+msgstr ""
+
+#: ../browser/view.py:1556
+msgid "unclear"
+msgstr ""
+
+#: ../browser/view.py:1488
+msgid "unusable"
+msgstr ""
+
+#: ../browser/view.py:1488
+msgid "usable"
+msgstr ""
+
+#: ../browser/view.py:1152
 msgid "wishItemUID is not valid!!"
 msgstr ""
